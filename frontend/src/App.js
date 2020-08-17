@@ -10,7 +10,9 @@ import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 
 class App extends Component {
-  state = {};
+  state = {
+    loading: true
+  };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
@@ -18,7 +20,7 @@ class App extends Component {
     console.log("coolest ");
   }
 
-  setUser = (user) => this.setState(user);
+  setUser = user => this.setState(user);
 
   logOut = async () => {
     let res = await actions.logOut();
@@ -47,21 +49,21 @@ class App extends Component {
           )}
         </nav>
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route exact path="/" render={props => <Home {...props} />} />
           <Route
             exact
             path="/sign-up"
-            render={(props) => <SignUp {...props} setUser={this.setUser} />}
+            render={props => <SignUp {...props} setUser={this.setUser} />}
           />
           <Route
             exact
             path="/log-in"
-            render={(props) => <LogIn {...props} setUser={this.setUser} />}
+            render={props => <LogIn {...props} setUser={this.setUser} />}
           />
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} user={this.state} />}
+            render={props => <Profile {...props} user={this.state} />}
           />
 
           <Route component={NotFound} />
