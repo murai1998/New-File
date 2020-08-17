@@ -11,7 +11,7 @@ class LogIn extends Component {
       .logIn(this.state)
       .then(async user => {
         await this.props.setUser({ ...user.data });
-        this.props.history.push("/profile");
+        this.props.history.push("/create");
       })
       .catch(({ response }) => {
         alert(

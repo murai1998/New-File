@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
 let options = [];
@@ -23,22 +24,13 @@ class CreateExercise extends Component {
       [e.target.name]: e.target.value
     });
   };
-  componentDidMount() {
-    // axios.get("http://localhost:5000/").then(res => {
-    //   if (res.data.length > 0) {
-    //     this.setState({
-    //       users: res.data.map(user => user.username),
-    //       username: res.data[0].username
-    //     });
-    //   }
-    axios.get("http://localhost:5000/exercise/list").then(res => {
-      console.log(res.data);
-      this.setState({
-        list: res.data
-      });
+  async componentDidMount() {
+    let res = await actions.list();
+    console.log(res);
+
+    this.setState({
+      list: res.data
     });
-    // });
-    //
   }
   handleDate = date => {
     this.setState({
@@ -48,10 +40,10 @@ class CreateExercise extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let exercise = { ...this.state };
-    axios.post("http://localhost:5000/exercise/add", exercise).then(res => {
+    actions.createExs(exercise).then(res => {
       console.log(res.data);
     });
-    window.location = "/";
+    // window.location = "/";
     console.log("Exercise:", exercise);
     return <p>You have added a new exercise</p>;
   };
@@ -72,6 +64,7 @@ class CreateExercise extends Component {
     console.groupEnd();
   };
   render() {
+    console.log(this.props.user);
     return (
       <div>
         <Navbar />

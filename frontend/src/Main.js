@@ -6,6 +6,7 @@ import actions from "./services/index";
 import ExercisesList from "./components/exercise-list";
 import EditExercise from "./components/edit-exercise";
 import CreateExercise from "./components/create-exersice";
+import "bootstrap/dist/css/bootstrap.min.css";
 require("dotenv").config();
 
 class Main extends Component {
@@ -60,7 +61,7 @@ class Main extends Component {
             render={props => (
               <CreateExercise
                 setUser={this.setUser}
-                user={this.state}
+                user={this.state.user}
                 {...props}
               />
             )}
