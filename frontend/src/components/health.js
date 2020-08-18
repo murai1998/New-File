@@ -1,37 +1,68 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import PerfectWeight from "./weight";
 
 class Health extends Component {
   state = {
     gender: "",
     height: "",
-    weight: "",
-    age: ""
+    weight: "79",
+    age: "",
+    perfectWeight: []
   };
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
-
+  getRatingData = () => {
+    let data = [
+      {
+        name: "Devine",
+        x: "D",
+        ra: this.state.perfectWeight?.Devine?.toFixed(1)
+      },
+      {
+        name: "Hamwi",
+        x: "H",
+        ra: this.state.perfectWeight?.Hamwi?.toFixed(1)
+      },
+      {
+        name: "My weight",
+        x: "Weight",
+        ra: this.state.weight
+      },
+      {
+        name: "Miller",
+        x: "M",
+        ra: this.state.perfectWeight?.Miller?.toFixed(1)
+      },
+      {
+        name: "Robinson",
+        x: "R",
+        ra: this.state.perfectWeight?.Robinson?.toFixed(1)
+      }
+    ];
+    return data;
+  };
   getInfo = async e => {
     e.preventDefault();
-    let res1 = await axios({
-      method: "GET",
-      url: "https://fitness-calculator.p.rapidapi.com/bmi",
-      headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
-        useQueryString: true
-      },
-      params: {
-        age: this.state.age,
-        height: this.state.height,
-        weight: this.state.weight
-      }
-    });
+    // let res1 = await axios({
+    //   method: "GET",
+    //   url: "https://fitness-calculator.p.rapidapi.com/bmi",
+    //   headers: {
+    //     "content-type": "application/octet-stream",
+    //     "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+    //     "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+    //     useQueryString: true
+    //   },
+    //   params: {
+    //     age: this.state.age,
+    //     height: this.state.height,
+    //     weight: this.state.weight
+    //   }
+    // });
 
     let res2 = await axios({
       method: "GET",
@@ -48,7 +79,10 @@ class Health extends Component {
         height: this.state.height
       }
     });
-    console.log(res1, res2);
+    console.log(res2.data);
+    this.setState({
+      perfectWeight: res2.data
+    });
   };
 
   render() {
@@ -89,6 +123,7 @@ class Health extends Component {
             Calculate
           </button>
         </form>
+        <PerfectWeight data={this.getRatingData()} title="Perfect weight" />
       </div>
     );
   }
