@@ -4,6 +4,7 @@ import SignUp from "./components/auth/SignUp";
 import LogIn from "./components/auth/LogIn";
 import actions from "./services/index";
 import ExercisesList from "./components/exercise-list";
+import Health from "./components/health";
 import EditExercise from "./components/edit-exercise";
 import CreateExercise from "./components/create-exersice";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -60,6 +61,17 @@ class Main extends Component {
             path="/create"
             render={props => (
               <CreateExercise
+                setUser={this.setUser}
+                user={this.state.user}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/calculator"
+            render={props => (
+              <Health
                 setUser={this.setUser}
                 user={this.state.user}
                 {...props}
