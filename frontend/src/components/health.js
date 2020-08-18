@@ -20,28 +20,28 @@ class Health extends Component {
     let data = [
       {
         name: "Devine",
-        x: "D",
-        ra: this.state.perfectWeight?.Devine?.toFixed(1)
+        x: "Devine",
+        "Perfect Weight": this.state.perfectWeight?.Devine?.toFixed(1)
       },
       {
         name: "Hamwi",
-        x: "H",
-        ra: this.state.perfectWeight?.Hamwi?.toFixed(1)
+        x: "Hamwi",
+        "Perfect Weight": this.state.perfectWeight?.Hamwi?.toFixed(1)
       },
       {
         name: "My weight",
         x: "Weight",
-        ra: this.state.weight
+        "My weight": this.state.weight
       },
       {
         name: "Miller",
-        x: "M",
-        ra: this.state.perfectWeight?.Miller?.toFixed(1)
+        x: "Miller",
+        "Perfect Weight": this.state.perfectWeight?.Miller?.toFixed(1)
       },
       {
         name: "Robinson",
-        x: "R",
-        ra: this.state.perfectWeight?.Robinson?.toFixed(1)
+        x: "Robinson",
+        "Perfect Weight": this.state.perfectWeight?.Robinson?.toFixed(1)
       }
     ];
     return data;
