@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PerfectWeight from "./weight";
+import Slider from "react-rangeslider";
 
 class Health extends Component {
   state = {
@@ -9,7 +10,13 @@ class Health extends Component {
     height: "",
     weight: "79",
     age: "",
-    perfectWeight: []
+    perfectWeight: [],
+    horizontal: 10
+  };
+  handleChangeHorizontal = value => {
+    this.setState({
+      horizontal: value
+    });
   };
   handleChange = event => {
     this.setState({
@@ -20,28 +27,26 @@ class Health extends Component {
     let data = [
       {
         name: "Devine",
-        x: "Devine",
-        "Perfect Weight": this.state.perfectWeight?.Devine?.toFixed(1)
+        weight: this.state.perfectWeight?.Devine?.toFixed(1)
       },
       {
         name: "Hamwi",
-        x: "Hamwi",
-        "Perfect Weight": this.state.perfectWeight?.Hamwi?.toFixed(1)
+
+        weight: this.state.perfectWeight?.Hamwi?.toFixed(1)
       },
       {
         name: "My weight",
-        x: "Weight",
-        "My weight": this.state.weight
+        weight: this.state.weight
       },
       {
         name: "Miller",
-        x: "Miller",
-        "Perfect Weight": this.state.perfectWeight?.Miller?.toFixed(1)
+
+        weight: this.state.perfectWeight?.Miller?.toFixed(1)
       },
       {
         name: "Robinson",
-        x: "Robinson",
-        "Perfect Weight": this.state.perfectWeight?.Robinson?.toFixed(1)
+
+        weight: this.state.perfectWeight?.Robinson?.toFixed(1)
       }
     ];
     return data;
@@ -86,27 +91,47 @@ class Health extends Component {
   };
 
   render() {
+    const { horizontal } = this.state;
+    const horizontalLabels = {
+      0: "Short",
+      50: "Medium",
+      100: "Tall"
+    };
+
+    const formatcm = value => value + " cm";
     return (
       <div>
+        <h1>Ideal Weight Calculator</h1>
         <form onSubmit={this.getInfo}>
-          <label>Body Health Chart</label>
-          <input
-            placeholder="Gender"
-            onChange={this.handleChange}
-            type="text"
-            name="gender"
-          />
-
-          <label>height</label>
-          <input
-            placeholder="170cm"
+          <label>Gender</label>
+          <select onChange={this.handleChange} type="text">
+            <option name="female" value="female">
+              Female
+            </option>
+            <option name="male" value="male">
+              Male
+            </option>
+          </select>
+          <label>Height</label>
+          {/* <input
+            placeholder="170"
             onChange={this.handleChange}
             type="text"
             name="height"
-          />
-          <label>Weight</label>
+          /> */}
           <input
-            placeholder="89kg"
+            id="typeinp"
+            type="range"
+            min="100"
+            max="250"
+            name="height"
+            onChange={this.handleChange}
+            step="1"
+          />
+          {this.state.height} cm
+          <label>Weight in kg</label>
+          <input
+            placeholder="89 "
             onChange={this.handleChange}
             type="text"
             name="weight"
@@ -123,7 +148,10 @@ class Health extends Component {
             Calculate
           </button>
         </form>
-        <PerfectWeight data={this.getRatingData()} title="Perfect weight" />
+        <PerfectWeight
+          data={this.getRatingData()}
+          title="Perfect weight in kg"
+        />
       </div>
     );
   }

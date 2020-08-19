@@ -89,7 +89,7 @@ class CreateExercise extends Component {
             {(options = [])}
           </div>
           <div className="form-group">
-            <label>Duration (in minutes)</label>
+            <label>Duration in minutes</label>
             <input
               type="text"
               name="duration"
