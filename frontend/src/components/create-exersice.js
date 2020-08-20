@@ -215,7 +215,8 @@ class CreateExercise extends Component {
             <input type="submit" value="Create" className="btn btn-primary" />
           </div>
         </form>
-        <ChangingProgressProvider values={[0, 20, 40, 60, 80, percentage]}>
+        {/* [...Array(percentage).keys()] */}
+        <ChangingProgressProvider values={[...Array(percentage).keys()]}>
           {percentage => (
             <CircularProgressbar value={percentage} text={`${percentage}%`} />
           )}

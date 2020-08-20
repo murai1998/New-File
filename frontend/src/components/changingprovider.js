@@ -2,7 +2,7 @@ import React from "react";
 
 class ChangingProgressProvider extends React.Component {
   static defaultProps = {
-    interval: 900
+    interval: 50
   };
 
   state = {
@@ -10,10 +10,16 @@ class ChangingProgressProvider extends React.Component {
   };
 
   componentDidMount() {
-    setInterval(() => {
+    const id = setInterval(() => {
       this.setState({
         valuesIndex: (this.state.valuesIndex + 1) % this.props.values.length
       });
+      if (
+        this.state.valuesIndex ==
+        this.props.values[this.props.values.length - 1]
+      )
+        clearInterval(id);
+      console.log("ID", this.props.values[this.props.values.length - 1] + 1);
     }, this.props.interval);
   }
 
