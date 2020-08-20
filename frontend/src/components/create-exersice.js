@@ -8,6 +8,11 @@ import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
 import exs from "../components/mets/mets.json";
 import { getWeekYearWithOptions } from "date-fns/fp";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import ChangingProgressProvider from "./changingprovider";
+const percentage = 66;
+
 let options = [];
 let options2 = [];
 let options3 = [];
@@ -25,9 +30,11 @@ class CreateExercise extends Component {
     date: new Date(),
     users: [],
     list: [],
+    met: "",
     custom: true,
     selected: ""
   };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -82,7 +89,8 @@ class CreateExercise extends Component {
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
     this.setState({
-      description: newValue.value
+      description: newValue.value,
+      met: newValue.met
     });
   };
   handleInputChange = (inputValue: any, actionMeta: any) => {
@@ -92,10 +100,35 @@ class CreateExercise extends Component {
     console.groupEnd();
   };
   render() {
-    console.log(keys);
+    console.log("MET", this.state.met);
     return (
       <div>
         <Navbar />
+        <p>
+          Physical activity has a large effect on total human energy
+          expenditure, and contributes 20-30% to the body's total energy output.
+          The amount of energy expended for different activities will vary with
+          the intensity and type of exercise. For each person, the range for
+          total daily energy expenditure is highly variable, it depends on many
+          factors, including: activity level, age, gender, size, weight and body
+          composition.
+        </p>
+        <p>
+          One of the easiest methods for recording of the intensity of a
+          physical activity is the Metabolic Equivalent Task (MET) method. The
+          energy cost of many activities has been determined, usually by
+          monitoring the oxygen consumption during the activity, to determine an
+          average oxygen uptake per unit of time. This value is then compared to
+          the resting oxygen uptake.
+        </p>
+        <h4>
+          Let us help you to calculate how many calories you burn doing various
+          physical tasks.{" "}
+        </h4>
+        <p>
+          Enter your weight, then describe the duration and intensity of each
+          activity
+        </p>
         CreateExercise
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -132,11 +165,12 @@ class CreateExercise extends Component {
               {
                 options3.push({
                   value: item.specific,
-                  label: item.specific
+                  label: item.specific,
+                  met: item.MET
                 });
               }
             })}
-            {console.log("Arr", options3)}
+            {console.log("Arr", Object.values(arr))}
             <CreatableSelect
               isClearable
               onChange={this.handleChange3}
@@ -144,25 +178,29 @@ class CreateExercise extends Component {
               options={options3}
             />
             {(options3 = [])}
-            {/* {(keys2 = Object.values(arr))}
-            {console.log("Arr", keys2)} */}
-            {/* <CreatableSelect
-              isClearable
-              onChange={this.handleChange2}
-              onInputChange={this.handleInputChange}
-              options={options}
-            />
-            {(options = [])} */}
           </div>
           <div className="form-group">
             <label>Duration in minutes</label>
             <input
-              type="text"
+              type="number"
               name="duration"
               required
               className="form-control"
               onChange={this.handleChange}
             />
+          </div>
+          <div className="form-group">
+            <label>Your weight</label>
+            <input
+              id="typeinp"
+              type="range"
+              min="20"
+              max="150"
+              name="weight"
+              onChange={this.handleChange}
+              step="1"
+            />
+            {this.state.weight} kg
           </div>
           <div className="form-group">
             <label>Date</label>
@@ -177,6 +215,11 @@ class CreateExercise extends Component {
             <input type="submit" value="Create" className="btn btn-primary" />
           </div>
         </form>
+        <ChangingProgressProvider values={[0, 20, 40, 60, 80, percentage]}>
+          {percentage => (
+            <CircularProgressbar value={percentage} text={`${percentage}%`} />
+          )}
+        </ChangingProgressProvider>
       </div>
     );
   }
