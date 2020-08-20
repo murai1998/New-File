@@ -7,16 +7,20 @@ import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
 import exs from "../components/mets/mets.json";
+import { getWeekYearWithOptions } from "date-fns/fp";
 let options = [];
 let options2 = [];
-let arr = [];
+let options3 = [];
+let arr = {};
 let keys = Object.entries(exs);
+let keys2 = [];
 
 class CreateExercise extends Component {
   state = {
     user: { ...this.props.user },
     username: this.props.user.email,
     description: "",
+    description2: "",
     duration: 0,
     date: new Date(),
     users: [],
@@ -69,6 +73,15 @@ class CreateExercise extends Component {
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
     this.setState({
+      description2: newValue.value
+    });
+  };
+  handleChange3 = (newValue: any, actionMeta: any) => {
+    console.group("Value Changed");
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+    this.setState({
       description: newValue.value
     });
   };
@@ -102,6 +115,7 @@ class CreateExercise extends Component {
                 });
               }
             })}
+
             <CreatableSelect
               isClearable
               onChange={this.handleChange2}
@@ -110,11 +124,28 @@ class CreateExercise extends Component {
             />
 
             {keys.filter(item => {
-              if (item[0] == this.state.description) arr.push(item[1]);
+              if (item[0] == this.state.description2) arr = item[1];
             })}
             {(options2 = [])}
-            {console.log("Arr", arr)}
 
+            {Object.values(arr).filter(item => {
+              {
+                options3.push({
+                  value: item.specific,
+                  label: item.specific
+                });
+              }
+            })}
+            {console.log("Arr", options3)}
+            <CreatableSelect
+              isClearable
+              onChange={this.handleChange3}
+              onInputChange={this.handleInputChange}
+              options={options3}
+            />
+            {(options3 = [])}
+            {/* {(keys2 = Object.values(arr))}
+            {console.log("Arr", keys2)} */}
             {/* <CreatableSelect
               isClearable
               onChange={this.handleChange2}
