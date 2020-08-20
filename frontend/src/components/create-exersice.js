@@ -6,7 +6,12 @@ import axios from "axios";
 import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
+import exs from "../components/mets/mets.json";
 let options = [];
+let options2 = [];
+let arr = [];
+let keys = Object.entries(exs);
+
 class CreateExercise extends Component {
   state = {
     user: { ...this.props.user },
@@ -26,7 +31,17 @@ class CreateExercise extends Component {
   };
   async componentDidMount() {
     let res = await actions.list();
-    console.log(res);
+    // let res2 = await axios({
+    //   method: "GET",
+    //   url: "https://fitness-calculator.p.rapidapi.com/mets",
+    //   headers: {
+    //     "content-type": "application/octet-stream",
+    //     "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+    //     "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+    //     useQueryString: true
+    //   }
+    // });
+    console.log("RESSSSS", exs);
 
     this.setState({
       list: res.data
@@ -64,7 +79,7 @@ class CreateExercise extends Component {
     console.groupEnd();
   };
   render() {
-    console.log(this.props.user);
+    console.log(keys);
     return (
       <div>
         <Navbar />
@@ -78,15 +93,35 @@ class CreateExercise extends Component {
                 label: item.description
               });
             })}
-            {console.log(options)}
-            {/* <Select options={options} /> */}
+            {console.log(keys)}
+            {keys.filter(item => {
+              {
+                options2.push({
+                  value: item[0],
+                  label: item[0]
+                });
+              }
+            })}
             <CreatableSelect
+              isClearable
+              onChange={this.handleChange2}
+              onInputChange={this.handleInputChange}
+              options={options2}
+            />
+
+            {keys.filter(item => {
+              if (item[0] == this.state.description) arr.push(item[1]);
+            })}
+            {(options2 = [])}
+            {console.log("Arr", arr)}
+
+            {/* <CreatableSelect
               isClearable
               onChange={this.handleChange2}
               onInputChange={this.handleInputChange}
               options={options}
             />
-            {(options = [])}
+            {(options = [])} */}
           </div>
           <div className="form-group">
             <label>Duration in minutes</label>
