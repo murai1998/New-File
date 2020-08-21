@@ -7,6 +7,7 @@ import ExercisesList from "./components/exercise-list";
 import Health from "./components/health";
 import EditExercise from "./components/edit-exercise";
 import CreateExercise from "./components/create-exersice";
+import Profile from "./components/profile";
 import "bootstrap/dist/css/bootstrap.min.css";
 require("dotenv").config();
 
@@ -76,6 +77,13 @@ class Main extends Component {
                 user={this.state.user}
                 {...props}
               />
+            )}
+          />
+          <Route
+            exact
+            path="/profile"
+            render={props => (
+              <Profile {...props} setUser={this.setUser} user={this.state} />
             )}
           />
         </Switch>
