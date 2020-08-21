@@ -55,6 +55,7 @@ class Health extends Component {
   };
   getInfo = async e => {
     e.preventDefault();
+    console.log("Gender", this.state.gender);
     let res1 = await axios({
       method: "GET",
       url: "https://fitness-calculator.p.rapidapi.com/bmi",
@@ -121,11 +122,11 @@ class Health extends Component {
         <form className="form1" onSubmit={this.getInfo}>
           <div id="sex">
             <label>Gender</label>
-            <select onChange={this.handleChange} type="text">
-              <option name="female" value="female">
+            <select onChange={this.handleChange} type="text" name="gender">
+              <option name="gender" value="female">
                 Female
               </option>
-              <option name="male" value="male">
+              <option name="gender" value="male">
                 Male
               </option>
             </select>
