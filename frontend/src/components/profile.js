@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import Navbar from "./navbar";
 import axios from "axios";
 import CreatableSelect from "react-select/creatable";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 class Profile extends Component {
   state = {
     user: { ...this.props.user },
     weight: "",
-    levels: []
+    levels: [],
+    button: true
   };
 
   handleChange = e => {
@@ -56,29 +59,40 @@ class Profile extends Component {
     let levels = [
       {
         value: res1.data.data["Sedentary: little or no exercise"],
-        label: "Sedentary"
+        label: `Sedentary, ${res1.data.data[
+          "Sedentary: little or no exercise"
+        ].toFixed(1)}cals`
       },
       {
         value: res1.data.data["Exercise 1-3 times/week"],
-        label: "Lightly active"
+        label: `Lightly active, ${res1.data.data[
+          "Exercise 1-3 times/week"
+        ].toFixed(1)}cals`
       },
       {
         value: res1.data.data["Exercise 4-5 times/week"],
-        label: "Moderately active"
+        label: `Moderately active, ${res1.data.data[
+          "Exercise 4-5 times/week"
+        ].toFixed(1)}cals`
       },
       {
         value: res1.data.data["Intense exercise 6-7 times/week"],
-        label: "Very active"
+        label: `Very active, ${res1.data.data[
+          "Intense exercise 6-7 times/week"
+        ].toFixed(1)}cals`
       },
       {
         value: res1.data.data["Very intense exercise daily, or physical job"],
-        label: "Extra active"
+        label: `Extra active, ${res1.data.data[
+          "Very intense exercise daily, or physical job"
+        ].toFixed(1)}cals`
       }
     ];
 
     this.setState({
       levels: levels,
-      default: res1.data.data["Exercise 4-5 times/week"]
+      default: res1.data.data["Exercise 4-5 times/week"],
+      button: false
     });
   };
   render() {
@@ -100,20 +114,30 @@ class Profile extends Component {
               step="1"
             />
             {this.state.weight} kg
-            <div className="form-group">
-              <input type="submit" value="Submit" className="btn btn-primary" />
-            </div>
+            {this.state.button ? (
+              <div className="form-group">
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-primary"
+                />
+              </div>
+            ) : (
+              ""
+            )}
           </form>
-          <CreatableSelect
-            isClearable
-            onChange={this.handleChange3}
-            onInputChange={this.handleInputChange}
-            defaultValue={{
-              label: "Moderately active",
-              value: this.state.default
-            }}
-            options={this.state.levels}
-          />
+          <div>
+            <CreatableSelect
+              isClearable
+              onChange={this.handleChange3}
+              onInputChange={this.handleInputChange}
+              //   defaultValue={{
+              //     label: `Moderately active`,
+              //     value: this.state.default
+              //   }}
+              options={this.state.levels}
+            />
+          </div>
         </div>
         <table class="table">
           <thead>
@@ -180,6 +204,13 @@ class Profile extends Component {
             </tr>
           </tbody>
         </table>
+        <div style={{ width: "400px" }}>
+          <CircularProgressbar
+            value={500}
+            maxValue={this.state.level}
+            text={`${Math.round((500 * 100) / this.state.level)}%`}
+          />
+        </div>
       </div>
     );
   }
