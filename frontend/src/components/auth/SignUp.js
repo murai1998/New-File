@@ -1,11 +1,41 @@
 import React, { Component, Fragment } from "react";
 import actions from "../../services/index";
 import DatePicker from "react-datepicker";
+import CreatableSelect from "react-select/creatable";
 
+const opts = [
+  { value: "female", label: "female" },
+  { value: "male", label: "male" }
+];
 class SignUp extends Component {
-  state = { gender: "" };
+  state = {};
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleChange3 = e => {
+    let date2 = new Date().getFullYear();
+    // console.log(this.state.user.birth);
+    let date3 = new Date(e.target.value);
+    console.log("DATTTTEE", date3);
+    console.log("resD", date3.getFullYear());
+    this.setState({
+      birth: -date3.getFullYear() + date2
+    });
+  };
 
+  handleChange2 = (newValue: any, actionMeta: any) => {
+    console.group("Value Changed");
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+    this.setState({
+      gender: newValue.value
+    });
+  };
+  handleInputChange = (inputValue: any, actionMeta: any) => {
+    console.group("Input Changed");
+    console.log(inputValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+  };
   handleSubmit = e => {
     e.preventDefault();
     actions
@@ -55,25 +85,27 @@ class SignUp extends Component {
             />
             {this.state.height} cm
           </div>
-          {/* <div id="sex">
+          <div id="sex">
             <label>Gender</label>
-            <select onChange={this.handleChange} type="text">
-              <option name="gender" value="female">
-                Female
-              </option>
-              <option name="gender" value="male">
-                Male
-              </option>
-            </select>
-          </div> */}
-          <input name="gender" type="text" onChange={this.handleChange} />
+            <CreatableSelect
+              isClearable
+              onChange={this.handleChange2}
+              onInputChange={this.handleInputChange}
+              options={opts}
+            />
+          </div>
+
           <div className="form-group">
             <label>Date of birth</label>
             <div>
-              <DatePicker
-                selected={this.state.date}
-                onSelect={this.handleDate}
-              />
+              {/* <input name="email" type="email" onChange={this.handleChange} /> */}
+              <input
+                type="date"
+                id="start"
+                name="birth"
+                min="1920-01-01"
+                onChange={this.handleChange3}
+              ></input>
             </div>
           </div>
           <input type="submit" value="Sign Up" />

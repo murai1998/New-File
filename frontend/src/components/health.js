@@ -3,6 +3,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import PerfectWeight from "./weight";
 import Slider from "react-rangeslider";
+import Navbar from "./navbar";
+import CreatableSelect from "react-select/creatable";
+const opts = [
+  { value: "female", label: "female" },
+  { value: "male", label: "male" }
+];
 
 class Health extends Component {
   state = {
@@ -19,6 +25,21 @@ class Health extends Component {
     this.setState({
       horizontal: value
     });
+  };
+  handleChange3 = (newValue: any, actionMeta: any) => {
+    console.group("Value Changed");
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+    this.setState({
+      gender: newValue.value
+    });
+  };
+  handleInputChange = (inputValue: any, actionMeta: any) => {
+    console.group("Input Changed");
+    console.log(inputValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
   };
   handleChange = event => {
     this.setState({
@@ -110,6 +131,7 @@ class Health extends Component {
     const formatcm = value => value + " cm";
     return (
       <div>
+        <Navbar />
         <h1>Ideal Weight Calculator</h1>
         <p>
           If you are really concerned about your health or your looks and want
@@ -122,14 +144,12 @@ class Health extends Component {
         <form className="form1" onSubmit={this.getInfo}>
           <div id="sex">
             <label>Gender</label>
-            <select onChange={this.handleChange} type="text" name="gender">
-              <option name="gender" value="female">
-                Female
-              </option>
-              <option name="gender" value="male">
-                Male
-              </option>
-            </select>
+            <CreatableSelect
+              isClearable
+              onChange={this.handleChange3}
+              onInputChange={this.handleInputChange}
+              options={opts}
+            />
           </div>
           <div id="height">
             <label>Height</label>

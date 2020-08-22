@@ -19,8 +19,8 @@ const userSchema = new Schema(
       required: true
     },
     birth: {
-      type: Date,
-      default: Date.now
+      type: String,
+      required: true
     },
     googleId: String,
     imageUrl: String

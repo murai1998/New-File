@@ -19,7 +19,6 @@ class ChangingProgressProvider extends React.Component {
         this.props.values[this.props.values.length - 1]
       )
         clearInterval(id);
-      console.log("ID", this.props.values[this.props.values.length - 1] + 1);
     }, this.props.interval);
   }
 
