@@ -64,40 +64,40 @@ router.post("/exercise/update/:id", (req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.post("/add-activity/:userDate", (req, res, next) => {
-  //   Activity.static('findOneOrCreate', async function findOneOrCreate(condition, doc) {
-  //   const one = await this.findOne(condition);
+router.post("/add-activity", (req, res, next) => {
+  const username = req.body.username;
+  const requiredAct = Number(req.body.requiredAct);
+  const activity = Number(req.body.activity);
+  const userDate = req.body.userDate;
 
-  //   return one || this.create(doc);
-  // });
-  // Page.findOneOrCreate({ userDate: req.params.userDate }, page).then(...).catch(...)
+  const newActivity = new Activity({
+    username,
+    requiredAct,
+    activity,
+    userDate
+  });
 
-  Activity.findById(req.params.userDate)
-    .then(activity => {
-      activity.activity = Number(req.body.activity) + activity.activity;
-      activity
-        .save()
-        .then(() => res.json("activity updated"))
-        .catch(err => res.status(400).json("Error: " + err));
-    })
-    .catch(err => {
-      const username = req.body.username;
-      const requiredAct = Number(req.body.requiredAct);
-      const activity = Number(req.body.activity);
-      const userDate = req.body.userDate;
-
-      const newActivity = new Activity({
-        username,
-        requiredAct,
-        activity,
-        userDate
-      });
-
-      newActivity
-        .save()
-        .then(() => res.json("Activity added!"))
-        .catch(err => res.status(400).json("Error: " + err));
-    });
+  newActivity
+    .save()
+    .then(() => res.json("Activity added!"))
+    .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.get("/show-activity/:userDate", (req, res) => {
+  Activity.find({ userDate: req.params.userDate })
+    .then(activity => {
+      if (activity) res.json(activity);
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+router.post("/activity-added/:userDate", (req, res) => {
+  Activity.findOneAndUpdate(
+    { userDate: req.params.userDate },
+    { activity: req.body }
+  )
+    .then(activity => {
+      if (activity) res.json(activity);
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
 module.exports = router;

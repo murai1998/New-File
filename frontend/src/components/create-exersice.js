@@ -11,6 +11,8 @@ import { getWeekYearWithOptions } from "date-fns/fp";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./changingprovider";
+let dateNow = Date.now();
+
 const percentage = 66;
 
 let options = [];
@@ -42,6 +44,9 @@ class CreateExercise extends Component {
   };
   async componentDidMount() {
     let res = await actions.list();
+    let res2 = await actions.showActivity(
+      this.state.user.email + dateNow.toString()
+    );
     // let res2 = await axios({
     //   method: "GET",
     //   url: "https://fitness-calculator.p.rapidapi.com/mets",
@@ -52,10 +57,12 @@ class CreateExercise extends Component {
     //     useQueryString: true
     //   }
     // });
-    console.log("RESSSSS", exs);
+
+    console.log("RESSSSS2", res2.data);
 
     this.setState({
-      list: res.data
+      list: res.data,
+      actv: res2.data.activity
     });
   }
   handleDate = date => {
@@ -66,11 +73,13 @@ class CreateExercise extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let exercise = { ...this.state };
+
     actions.createExs(exercise).then(res => {
       console.log(res.data);
     });
+    let res3 = actions.displayRes();
     // window.location = "/";
-    console.log("Exercise:", exercise);
+    console.log("res", res3);
     return <p>You have added a new exercise</p>;
   };
 

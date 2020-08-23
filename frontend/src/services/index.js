@@ -31,7 +31,13 @@ const actions = {
     return await service.post("/exercise/add", exs);
   },
   addActivity: async act => {
-    return await service.post(" /add-activity/:userDate", act);
+    return await service.post("/add-activity", act);
+  },
+  showActivity: async userDate => {
+    return await service.get(`/show-activity/${userDate}`);
+  },
+  displayRes: async (userDate, uptade) => {
+    return await service.get(`/activity-added/${userDate}`, uptade);
   }
 };
 

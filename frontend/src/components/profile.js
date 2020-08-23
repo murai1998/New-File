@@ -1,17 +1,36 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
 import axios from "axios";
+import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
+let value = 0;
+let dateNow = Date.now();
 class Profile extends Component {
   state = {
     user: { ...this.props.user },
     weight: "",
     levels: [],
-    button: true
+    button: true,
+    value: 0
   };
+
+  async componentDidMount() {
+    let res2 = await actions.showActivity(
+      this.state.user.email + dateNow.toString()
+    );
+    if (res2) {
+      this.setState({
+        value: res2.data
+      });
+    } else {
+      this.setState({
+        value: 0
+      });
+    }
+    console.log("RESSSSS2", res2);
+  }
 
   handleChange = e => {
     this.setState({
@@ -26,6 +45,18 @@ class Profile extends Component {
     this.setState({
       level: newValue.value
     });
+    if (this.state.value == 0) {
+      let activity = {
+        username: this.state.user.email,
+        requiredAct: newValue.value,
+        activity: this.state.value,
+        userDate: this.state.user.email + dateNow.toString()
+      };
+      console.log(activity);
+      actions.addActivity(activity).then(res => {
+        console.log(res.data);
+      });
+    }
   };
   handleInputChange = (inputValue: any, actionMeta: any) => {
     console.group("Input Changed");
@@ -96,6 +127,7 @@ class Profile extends Component {
     });
   };
   render() {
+    console.log(this.state.user.email + dateNow.toString());
     return (
       <div>
         <Navbar />
@@ -206,9 +238,10 @@ class Profile extends Component {
         </table>
         <div style={{ width: "400px" }}>
           <CircularProgressbar
-            value={500}
+            value={value}
             maxValue={this.state.level}
-            text={`${Math.round((500 * 100) / this.state.level)}%`}
+            text={`${this.state.value}`}
+            // text={`${Math.round((value * 100) / this.state.level)}%`}
           />
         </div>
       </div>
