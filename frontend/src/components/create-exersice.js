@@ -216,11 +216,13 @@ class CreateExercise extends Component {
           </div>
         </form>
         {/* [...Array(percentage).keys()] */}
-        <ChangingProgressProvider values={[...Array(percentage).keys()]}>
-          {percentage => (
-            <CircularProgressbar value={percentage} text={`${percentage}%`} />
-          )}
-        </ChangingProgressProvider>
+        <div style={{ width: "400px" }}>
+          <ChangingProgressProvider values={[...Array(percentage).keys()]}>
+            {percentage => (
+              <CircularProgressbar value={percentage} text={`${percentage}%`} />
+            )}
+          </ChangingProgressProvider>
+        </div>
       </div>
     );
   }
