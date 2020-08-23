@@ -8,10 +8,14 @@ const activitySchema = new Schema(
       required: true
     },
     requiredAct: {
-      type: String,
+      type: Number,
       required: true
     },
     activity: {
+      type: Number,
+      required: true
+    },
+    userDate: {
       type: String,
       required: true
     }

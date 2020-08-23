@@ -29,6 +29,9 @@ const actions = {
   },
   createExs: async exs => {
     return await service.post("/exercise/add", exs);
+  },
+  addActivity: async act => {
+    return await service.post(" /add-activity/:userDate", act);
   }
 };
 
