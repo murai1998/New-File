@@ -241,7 +241,7 @@ class Profile extends Component {
           <CircularProgressbar
             value={value}
             maxValue={this.state.level}
-            text={`${this.state.value}`}
+            text={`${this.state.value} callories`}
             // text={`${Math.round((value * 100) / this.state.level)}%`}
           />
         </div>

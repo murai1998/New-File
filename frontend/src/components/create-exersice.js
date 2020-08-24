@@ -12,8 +12,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./changingprovider";
 let dateNow = new Date().toDateString();
-
-const percentage = 66;
+let percentage = 0;
 
 let options = [];
 let options2 = [];
@@ -35,7 +34,9 @@ class CreateExercise extends Component {
     met: "",
     custom: true,
     selected: "",
-    weight: this.props.match.params.weight
+    weight: this.props.match.params.weight,
+    percentage: 0,
+    circle: false
   };
 
   handleChange = e => {
@@ -57,11 +58,11 @@ class CreateExercise extends Component {
     //   }
     // });
 
-    console.log("RESSSSS2", res2.data.activity);
+    console.log("RESSSSS2", res2.data[0].requiredAct.toFixed(1));
 
     this.setState({
       list: res.data,
-      actv: res2.data.activity
+      actv: res2.data[0].requiredAct.toFixed(1)
     });
   }
   handleDate = date => {
@@ -80,10 +81,17 @@ class CreateExercise extends Component {
     // window.location = "/";
     let hours = (Number(this.state.duration) / 60).toFixed(1);
     console.log("Hours", hours);
-    let cals = Number(this.state.met) * Number(this.state.weight) * hours;
-    console.log("cals", cals);
-    console.log("res", res3);
-    return <p>You have added a new exercise</p>;
+    let cals = (
+      Number(this.state.met) *
+      Number(this.state.weight) *
+      hours
+    ).toFixed(1);
+
+    let percentage = ((cals * 100) / this.state.actv).toFixed();
+    this.setState({
+      percentage: percentage,
+      circle: true
+    });
   };
 
   handleChange2 = (newValue: any, actionMeta: any) => {
@@ -230,11 +238,22 @@ class CreateExercise extends Component {
         </form>
         {/* [...Array(percentage).keys()] */}
         <div style={{ width: "400px" }}>
-          <ChangingProgressProvider values={[...Array(percentage).keys()]}>
-            {percentage => (
-              <CircularProgressbar value={percentage} text={`${percentage}%`} />
-            )}
-          </ChangingProgressProvider>
+          {(percentage = this.state.percentage)}
+          {console.log("PERCENTAGE", percentage)}
+          {this.state.circle ? (
+            <ChangingProgressProvider
+              values={[...Array(this.state.percentage).keys()]}
+            >
+              {percentage => (
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                />
+              )}
+            </ChangingProgressProvider>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
