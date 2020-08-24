@@ -11,7 +11,7 @@ import { getWeekYearWithOptions } from "date-fns/fp";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./changingprovider";
-let dateNow = Date.now();
+let dateNow = new Date().toDateString();
 
 const percentage = 66;
 
@@ -34,7 +34,8 @@ class CreateExercise extends Component {
     list: [],
     met: "",
     custom: true,
-    selected: ""
+    selected: "",
+    weight: this.props.match.params.weight
   };
 
   handleChange = e => {
@@ -44,9 +45,7 @@ class CreateExercise extends Component {
   };
   async componentDidMount() {
     let res = await actions.list();
-    let res2 = await actions.showActivity(
-      this.state.user.email + dateNow.toString()
-    );
+    let res2 = await actions.showActivity(this.state.user.email + dateNow);
     // let res2 = await axios({
     //   method: "GET",
     //   url: "https://fitness-calculator.p.rapidapi.com/mets",
@@ -58,7 +57,7 @@ class CreateExercise extends Component {
     //   }
     // });
 
-    console.log("RESSSSS2", res2.data);
+    console.log("RESSSSS2", res2.data.activity);
 
     this.setState({
       list: res.data,
@@ -79,6 +78,10 @@ class CreateExercise extends Component {
     });
     let res3 = actions.displayRes();
     // window.location = "/";
+    let hours = (Number(this.state.duration) / 60).toFixed(1);
+    console.log("Hours", hours);
+    let cals = Number(this.state.met) * Number(this.state.weight) * hours;
+    console.log("cals", cals);
     console.log("res", res3);
     return <p>You have added a new exercise</p>;
   };
@@ -110,6 +113,7 @@ class CreateExercise extends Component {
   };
   render() {
     console.log("MET", this.state.met);
+    console.log("Props", this.props.match.params.weight);
     return (
       <div>
         <Navbar />
@@ -198,7 +202,7 @@ class CreateExercise extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Your weight</label>
             <input
               id="typeinp"
@@ -210,7 +214,7 @@ class CreateExercise extends Component {
               step="1"
             />
             {this.state.weight} kg
-          </div>
+          </div> */}
           <div className="form-group">
             <label>Date</label>
             <div>

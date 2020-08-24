@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
+    console.log("NAVPROPs", this.props);
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">
@@ -16,7 +17,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to="/create">
+              <Link className="nav-link" to={`/create/${this.props.weight}`}>
                 {" "}
                 Create a new Exercise
               </Link>

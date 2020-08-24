@@ -6,7 +6,7 @@ import CreatableSelect from "react-select/creatable";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 let value = 0;
-let dateNow = Date.now();
+let dateNow = new Date().toDateString();
 class Profile extends Component {
   state = {
     user: { ...this.props.user },
@@ -50,7 +50,8 @@ class Profile extends Component {
         username: this.state.user.email,
         requiredAct: newValue.value,
         activity: this.state.value,
-        userDate: this.state.user.email + dateNow.toString()
+        userDate: this.state.user.email + dateNow,
+        weight: this.state.weight
       };
       console.log(activity);
       actions.addActivity(activity).then(res => {
@@ -127,10 +128,10 @@ class Profile extends Component {
     });
   };
   render() {
-    console.log(this.state.user.email + dateNow.toString());
+    console.log(this.state.user.email + dateNow);
     return (
       <div>
-        <Navbar />
+        <Navbar weight={this.state.weight} />
         <div className="form-group">
           <h2>Choose your Activity Level</h2>
           {console.log("LEV", this.state.levels)}

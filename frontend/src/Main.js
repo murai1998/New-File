@@ -59,7 +59,7 @@ class Main extends Component {
           /> */}
           <Route
             exact
-            path="/create"
+            path="/create/:weight"
             render={props => (
               <CreateExercise
                 setUser={this.setUser}

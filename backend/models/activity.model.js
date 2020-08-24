@@ -18,6 +18,10 @@ const activitySchema = new Schema(
     userDate: {
       type: String,
       required: true
+    },
+    weight: {
+      type: Number,
+      required: true
     }
   },
   {

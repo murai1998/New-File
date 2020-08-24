@@ -69,12 +69,14 @@ router.post("/add-activity", (req, res, next) => {
   const requiredAct = Number(req.body.requiredAct);
   const activity = Number(req.body.activity);
   const userDate = req.body.userDate;
+  const weight = Number(req.body.weight);
 
   const newActivity = new Activity({
     username,
     requiredAct,
     activity,
-    userDate
+    userDate,
+    weight
   });
 
   newActivity
