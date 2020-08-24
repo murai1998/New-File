@@ -12,7 +12,6 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./changingprovider";
 let dateNow = new Date().toDateString();
-let percentage = 10;
 
 let options = [];
 let options2 = [];
@@ -120,6 +119,7 @@ class CreateExercise extends Component {
     console.groupEnd();
   };
   render() {
+    let percentage = this.state.percentage;
     console.log("MET", this.state.met);
     console.log("Props", this.props.match.params.weight);
     return (
@@ -238,15 +238,14 @@ class CreateExercise extends Component {
         </form>
         {/* [...Array(percentage).keys()] */}
         <div style={{ width: "400px" }}>
-          {console.log("PERCENTAGE", this.state.percentage)}
-          {this.state.circle ? (
-            <ChangingProgressProvider
-              values={[...Array(this.state.percentage).keys()]}
-            >
+          {console.log("PERCENTAGE", percentage)}
+          {percentage > 0 ? (
+            <ChangingProgressProvider values={[0, 20, 40, 60, 80, 100]}>
+              {/* [...Array(this.state.percentage).keys()] */}
               {percentage => (
                 <CircularProgressbar
-                  value={this.state.percentage}
-                  text={`${this.state.percentage}%`}
+                  value={percentage}
+                  text={`${percentage}%`}
                 />
               )}
             </ChangingProgressProvider>
