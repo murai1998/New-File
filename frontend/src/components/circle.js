@@ -13,7 +13,8 @@ class Circle extends Component {
     // let perc = 78;
     return (
       <div>
-        <Link to={`/create/${this.props.match.params.weight}`}>Go Back</Link>
+        {/* <Link to={`/create/${this.props.match.params.weight}`}>Go Back</Link> */}
+        <Navbar />
         <div style={{ width: "400px" }}>
           <ChangingProgressProvider values={[...Array(perc).keys()]}>
             {perc => <CircularProgressbar value={perc} text={`${perc + 1}%`} />}

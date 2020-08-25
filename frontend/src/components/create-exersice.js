@@ -62,8 +62,10 @@ class CreateExercise extends Component {
 
     this.setState({
       list: res.data,
-      actv: res2.data[0].requiredAct.toFixed(1)
+      actv: res2.data[0].requiredAct.toFixed(1),
+      weight: res2.data[0].weight
     });
+    console.log("WEIGHT", res2.data[0].weight);
   }
   handleDate = date => {
     this.setState({
@@ -215,19 +217,7 @@ class CreateExercise extends Component {
               onChange={this.handleChange}
             />
           </div>
-          {/* <div className="form-group">
-            <label>Your weight</label>
-            <input
-              id="typeinp"
-              type="range"
-              min="20"
-              max="150"
-              name="weight"
-              onChange={this.handleChange}
-              step="1"
-            />
-            {this.state.weight} kg
-          </div> */}
+
           <div className="form-group">
             <label>Date</label>
             <div>

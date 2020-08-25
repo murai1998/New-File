@@ -17,7 +17,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link" to={`/create/${this.props.weight}`}>
+              <Link className="nav-link" to={`/create`}>
                 {" "}
                 Create a new Exercise
               </Link>
