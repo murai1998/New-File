@@ -241,8 +241,9 @@ class CreateExercise extends Component {
             <input type="submit" value="Create" className="btn btn-primary" />
           </div>
         </form>
-        <Link to={`/circle/${this.state.percentage}`}>Check your results</Link>
-        {/* {this.draw()} */}
+        <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
+          Check your results
+        </Link>
       </div>
     );
   }

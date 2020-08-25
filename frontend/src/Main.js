@@ -71,7 +71,7 @@ class Main extends Component {
           />
           <Route
             exact
-            path="/circle/:results"
+            path="/circle/:results/:weight"
             render={props => (
               <Circle
                 setUser={this.setUser}
