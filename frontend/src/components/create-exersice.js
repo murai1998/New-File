@@ -89,16 +89,16 @@ class CreateExercise extends Component {
       circle: true
     });
     let exercise = { ...this.state };
+    console.log("1", this.state.user.email + dateNow);
+    let newCal = {
+      cal: cals + this.state.todayAct
+    };
+    console.log("2", newCal.cal);
     actions.createExs(exercise).then(res => {
       console.log(res.data);
-      actions
-        .displayRes(
-          this.state.user.email + dateNow,
-          exercise + this.state.todayAct
-        )
-        .then(res => {
-          console.log("OUTPUT", res);
-        });
+      actions.displayRes(this.state.user.email + dateNow, newCal).then(res => {
+        console.log("OUTPUT", res);
+      });
     });
 
     // window.location = "/";
