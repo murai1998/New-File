@@ -11,7 +11,10 @@ import { getWeekYearWithOptions } from "date-fns/fp";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import ChangingProgressProvider from "./changingprovider";
+import Circle from "./circle";
+import { Link } from "react-router-dom";
 let dateNow = new Date().toDateString();
+let p = 20;
 
 let options = [];
 let options2 = [];
@@ -57,8 +60,6 @@ class CreateExercise extends Component {
     //   }
     // });
 
-    console.log("RESSSSS2", res2.data[0].requiredAct.toFixed(1));
-
     this.setState({
       list: res.data,
       actv: res2.data[0].requiredAct.toFixed(1)
@@ -87,6 +88,7 @@ class CreateExercise extends Component {
     ).toFixed(1);
 
     let percentage = ((cals * 100) / this.state.actv).toFixed();
+    console.log("percentage", percentage);
     this.setState({
       percentage: percentage,
       circle: true
@@ -117,6 +119,9 @@ class CreateExercise extends Component {
     console.log(inputValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
+  };
+  draw = () => {
+    return <Circle percentage={p} />;
   };
   render() {
     let percentage = this.state.percentage;
@@ -236,23 +241,8 @@ class CreateExercise extends Component {
             <input type="submit" value="Create" className="btn btn-primary" />
           </div>
         </form>
-        {/* [...Array(percentage).keys()] */}
-        <div style={{ width: "400px" }}>
-          {console.log("PERCENTAGE", percentage)}
-          {percentage > 0 ? (
-            <ChangingProgressProvider values={[0, 20, 40, 60, 80, 100]}>
-              {/* [...Array(this.state.percentage).keys()] */}
-              {percentage => (
-                <CircularProgressbar
-                  value={percentage}
-                  text={`${percentage}%`}
-                />
-              )}
-            </ChangingProgressProvider>
-          ) : (
-            ""
-          )}
-        </div>
+        <Link to={`/circle/${this.state.percentage}`}>Check your results</Link>
+        {/* {this.draw()} */}
       </div>
     );
   }

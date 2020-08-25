@@ -9,6 +9,7 @@ import EditExercise from "./components/edit-exercise";
 import CreateExercise from "./components/create-exersice";
 import Profile from "./components/profile";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Circle from "./components/circle";
 require("dotenv").config();
 
 class Main extends Component {
@@ -70,6 +71,17 @@ class Main extends Component {
           />
           <Route
             exact
+            path="/circle/:results"
+            render={props => (
+              <Circle
+                setUser={this.setUser}
+                user={this.state.user}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            exact
             path="/calculator"
             render={props => (
               <Health
@@ -79,6 +91,7 @@ class Main extends Component {
               />
             )}
           />
+
           <Route
             exact
             path="/profile"
