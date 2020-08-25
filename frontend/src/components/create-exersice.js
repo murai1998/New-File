@@ -63,9 +63,10 @@ class CreateExercise extends Component {
     this.setState({
       list: res.data,
       actv: res2.data[0].requiredAct.toFixed(1),
-      weight: res2.data[0].weight
+      weight: res2.data[0].weight,
+      todayAct: res2.data[0].activity
     });
-    console.log("WEIGHT", res2.data[0].weight);
+    console.log("Activity666", res2.data[0].activity);
   }
   handleDate = date => {
     this.setState({
@@ -74,13 +75,6 @@ class CreateExercise extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    let exercise = { ...this.state };
-
-    actions.createExs(exercise).then(res => {
-      console.log(res.data);
-    });
-    let res3 = actions.displayRes();
-    // window.location = "/";
     let hours = (Number(this.state.duration) / 60).toFixed(1);
     console.log("Hours", hours);
     let cals = (
@@ -88,13 +82,26 @@ class CreateExercise extends Component {
       Number(this.state.weight) *
       hours
     ).toFixed(1);
-
     let percentage = ((cals * 100) / this.state.actv).toFixed();
     console.log("percentage", percentage);
     this.setState({
       percentage: percentage,
       circle: true
     });
+    let exercise = { ...this.state };
+    actions.createExs(exercise).then(res => {
+      console.log(res.data);
+      actions
+        .displayRes(
+          this.state.user.email + dateNow,
+          exercise + this.state.todayAct
+        )
+        .then(res => {
+          console.log("OUTPUT", res);
+        });
+    });
+
+    // window.location = "/";
   };
 
   handleChange2 = (newValue: any, actionMeta: any) => {

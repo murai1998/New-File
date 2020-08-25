@@ -20,6 +20,7 @@ class Profile extends Component {
     let res2 = await actions.showActivity(
       this.state.user.email + dateNow.toString()
     );
+    console.log("ACTTTT", res2);
     if (res2) {
       this.setState({
         value: res2.data

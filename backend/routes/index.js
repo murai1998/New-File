@@ -93,12 +93,13 @@ router.get("/show-activity/:userDate", (req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 router.post("/activity-added/:userDate", (req, res) => {
+  console.log(req.body);
   Activity.findOneAndUpdate(
     { userDate: req.params.userDate },
     { activity: req.body }
   )
     .then(activity => {
-      if (activity) res.json(activity);
+      res.json(activity);
     })
     .catch(err => res.status(400).json("Error: " + err));
 });
