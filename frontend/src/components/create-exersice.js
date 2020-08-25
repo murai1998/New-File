@@ -82,8 +82,11 @@ class CreateExercise extends Component {
       Number(this.state.weight) *
       hours
     ).toFixed(1);
-    let percentage = ((cals * 100) / this.state.actv).toFixed();
-    console.log("percentage", percentage);
+    let percentage = (
+      ((Number(cals) + Number(this.state.todayAct)) * 100) /
+      this.state.actv
+    ).toFixed();
+    console.log("All", Number(cals) + Number(this.state.todayAct));
     this.setState({
       percentage: percentage,
       circle: true
@@ -91,7 +94,7 @@ class CreateExercise extends Component {
     let exercise = { ...this.state };
     console.log("1", this.state.user.email + dateNow);
     let newCal = {
-      cal: cals + this.state.todayAct
+      cal: Number(cals) + Number(this.state.todayAct)
     };
     console.log("2", newCal.cal);
     actions.createExs(exercise).then(res => {
