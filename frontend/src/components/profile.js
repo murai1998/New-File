@@ -23,11 +23,14 @@ class Profile extends Component {
     console.log("ACTTTT", res2);
     if (res2) {
       this.setState({
-        value: res2.data
+        perc: (
+          (Number(res2.data[0].activity) * 100) /
+          res2.data[0].requiredAct.toFixed(1)
+        ).toFixed()
       });
     } else {
       this.setState({
-        value: 0
+        perc: 0
       });
     }
     console.log("RESSSSS2", res2);
@@ -240,9 +243,8 @@ class Profile extends Component {
         </table>
         <div style={{ width: "400px" }}>
           <CircularProgressbar
-            value={value}
-            maxValue={this.state.level}
-            text={`${this.state.value} callories`}
+            value={this.state.perc}
+            text={`${Number(this.state.perc) + Number(1)}%`}
             // text={`${Math.round((value * 100) / this.state.level)}%`}
           />
         </div>
