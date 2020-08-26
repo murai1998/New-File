@@ -92,7 +92,7 @@ class CreateExercise extends Component {
       circle: true
     });
     let exercise = { ...this.state };
-    console.log("1", this.state.user.email + dateNow);
+    console.log("1", exercise);
     let newCal = {
       cal: Number(cals) + Number(this.state.todayAct)
     };

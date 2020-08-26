@@ -20,17 +20,17 @@ class Profile extends Component {
     let res2 = await actions.showActivity(
       this.state.user.email + dateNow.toString()
     );
-    console.log("ACTTTT", res2);
-    if (res2) {
+    console.log("ACTTTT", res2.data.lenght);
+    if (res2.data == 0) {
+      this.setState({
+        perc: 0
+      });
+    } else {
       this.setState({
         perc: (
           (Number(res2.data[0].activity) * 100) /
           res2.data[0].requiredAct.toFixed(1)
         ).toFixed()
-      });
-    } else {
-      this.setState({
-        perc: 0
       });
     }
     console.log("RESSSSS2", res2);
@@ -139,42 +139,49 @@ class Profile extends Component {
         <div className="form-group">
           <h2>Choose your Activity Level</h2>
           {console.log("LEV", this.state.levels)}
-          <form onSubmit={this.getInfo}>
-            <label>Your weight</label>
-            <input
-              id="typeinp"
-              type="range"
-              min="20"
-              max="150"
-              name="weight"
-              onChange={this.handleChange}
-              step="1"
-            />
-            {this.state.weight} kg
-            {this.state.button ? (
-              <div className="form-group">
+          {this.state.perc == 0 ? (
+            <div>
+              <form onSubmit={this.getInfo}>
+                <label>Your weight</label>
                 <input
-                  type="submit"
-                  value="Submit"
-                  className="btn btn-primary"
+                  id="typeinp"
+                  type="range"
+                  min="20"
+                  max="150"
+                  name="weight"
+                  onChange={this.handleChange}
+                  step="1"
+                />
+                {this.state.weight} kg
+                {this.state.button ? (
+                  <div className="form-group">
+                    <input
+                      type="submit"
+                      value="Submit"
+                      className="btn btn-primary"
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </form>
+
+              <div>
+                <CreatableSelect
+                  isClearable
+                  onChange={this.handleChange3}
+                  onInputChange={this.handleInputChange}
+                  //   defaultValue={{
+                  //     label: `Moderately active`,
+                  //     value: this.state.default
+                  //   }}
+                  options={this.state.levels}
                 />
               </div>
-            ) : (
-              ""
-            )}
-          </form>
-          <div>
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange3}
-              onInputChange={this.handleInputChange}
-              //   defaultValue={{
-              //     label: `Moderately active`,
-              //     value: this.state.default
-              //   }}
-              options={this.state.levels}
-            />
-          </div>
+            </div>
+          ) : (
+            <p>Your current weight: </p>
+          )}
         </div>
         <table class="table">
           <thead>
@@ -244,7 +251,7 @@ class Profile extends Component {
         <div style={{ width: "400px" }}>
           <CircularProgressbar
             value={this.state.perc}
-            text={`${Number(this.state.perc) + Number(1)}%`}
+            text={`${Number(this.state.perc)}%`}
             // text={`${Math.round((value * 100) / this.state.level)}%`}
           />
         </div>

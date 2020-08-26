@@ -17,7 +17,7 @@ class Circle extends Component {
         <Navbar />
         <div style={{ width: "400px" }}>
           <ChangingProgressProvider values={[...Array(perc).keys()]}>
-            {perc => <CircularProgressbar value={perc} text={`${perc + 1}%`} />}
+            {perc => <CircularProgressbar value={perc} text={`${perc}%`} />}
           </ChangingProgressProvider>
         </div>
       </div>

@@ -40,16 +40,15 @@ class SignUp extends Component {
     e.preventDefault();
     actions
       .signUp(this.state)
-      .then(user => {
+      .then(async user => {
         console.log("Gender", this.state.gender);
         console.log("USER", user);
-        this.props.setUser({ ...user.data });
+        await this.props.setUser({ ...user.data });
         this.props.history.push("/profile");
         console.log();
       })
       .catch(response => {
         console.log(response);
-        console.log("Gender", this.state.gender);
 
         // alert("Looks like you already have an account with us!");
 
