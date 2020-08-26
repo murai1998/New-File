@@ -38,7 +38,8 @@ class CreateExercise extends Component {
     selected: "",
     weight: this.props.match.params.weight,
     percentage: 0,
-    circle: false
+    circle: false,
+    seeForm: true
   };
 
   handleChange = e => {
@@ -89,7 +90,8 @@ class CreateExercise extends Component {
     console.log("All", Number(cals) + Number(this.state.todayAct));
     this.setState({
       percentage: percentage,
-      circle: true
+      circle: true,
+      seeForm: false
     });
     let exercise = { ...this.state };
     console.log("1", exercise);
@@ -163,87 +165,96 @@ class CreateExercise extends Component {
           Let us help you to calculate how many calories you burn doing various
           physical tasks.{" "}
         </h4>
-        <p>
-          Enter your weight, then describe the duration and intensity of each
-          activity
-        </p>
-        CreateExercise
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Description:</label>
-            {this.state.list.map(item => {
-              options.push({
-                value: item.description,
-                label: item.description
-              });
-            })}
-            {console.log(keys)}
-            {keys.filter(item => {
-              {
-                options2.push({
-                  value: item[0],
-                  label: item[0]
-                });
-              }
-            })}
+        {this.state.seeForm ? (
+          <div>
+            <p>
+              Enter your weight, then describe the duration and intensity of
+              each activity
+            </p>
 
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange2}
-              onInputChange={this.handleInputChange}
-              options={options2}
-            />
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label>Description:</label>
+                {this.state.list.map(item => {
+                  options.push({
+                    value: item.description,
+                    label: item.description
+                  });
+                })}
+                {console.log(keys)}
+                {keys.filter(item => {
+                  {
+                    options2.push({
+                      value: item[0],
+                      label: item[0]
+                    });
+                  }
+                })}
 
-            {keys.filter(item => {
-              if (item[0] == this.state.description2) arr = item[1];
-            })}
-            {(options2 = [])}
+                <CreatableSelect
+                  isClearable
+                  onChange={this.handleChange2}
+                  onInputChange={this.handleInputChange}
+                  options={options2}
+                />
 
-            {Object.values(arr).filter(item => {
-              {
-                options3.push({
-                  value: item.specific,
-                  label: item.specific,
-                  met: item.MET
-                });
-              }
-            })}
-            {console.log("Arr", Object.values(arr))}
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange3}
-              onInputChange={this.handleInputChange}
-              options={options3}
-            />
-            {(options3 = [])}
-          </div>
-          <div className="form-group">
-            <label>Duration in minutes</label>
-            <input
-              type="number"
-              name="duration"
-              required
-              className="form-control"
-              onChange={this.handleChange}
-            />
-          </div>
+                {keys.filter(item => {
+                  if (item[0] == this.state.description2) arr = item[1];
+                })}
+                {(options2 = [])}
 
-          <div className="form-group">
-            <label>Date</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onSelect={this.handleDate}
-              />
-            </div>
+                {Object.values(arr).filter(item => {
+                  {
+                    options3.push({
+                      value: item.specific,
+                      label: item.specific,
+                      met: item.MET
+                    });
+                  }
+                })}
+                {console.log("Arr", Object.values(arr))}
+                <CreatableSelect
+                  isClearable
+                  onChange={this.handleChange3}
+                  onInputChange={this.handleInputChange}
+                  options={options3}
+                />
+                {(options3 = [])}
+              </div>
+              <div className="form-group">
+                <label>Duration in minutes</label>
+                <input
+                  type="number"
+                  name="duration"
+                  required
+                  className="form-control"
+                  onChange={this.handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Date</label>
+                <div>
+                  <DatePicker
+                    selected={this.state.date}
+                    onSelect={this.handleDate}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <input
+                  type="submit"
+                  value="Create"
+                  className="btn btn-primary"
+                />
+              </div>
+            </form>
           </div>
-          <div className="form-group">
-            <input type="submit" value="Create" className="btn btn-primary" />
-          </div>
-        </form>
-        <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
-          Check your results
-        </Link>
+        ) : (
+          <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
+            Check your results
+          </Link>
+        )}
       </div>
     );
   }

@@ -10,7 +10,7 @@ let dateNow = new Date().toDateString();
 class Profile extends Component {
   state = {
     user: { ...this.props.user },
-    weight: "",
+
     levels: [],
     button: true,
     value: 0
@@ -30,7 +30,10 @@ class Profile extends Component {
         perc: (
           (Number(res2.data[0].activity) * 100) /
           res2.data[0].requiredAct.toFixed(1)
-        ).toFixed()
+        ).toFixed(),
+        weight: res2.data[0].weight,
+        reqAct: res2.data[0].requiredAct.toFixed(1),
+        remain: (res2.data[0].requiredAct - res2.data[0].activity).toFixed(1)
       });
     }
     console.log("RESSSSS2", res2);
@@ -141,10 +144,10 @@ class Profile extends Component {
           weight={this.state.weight}
         />
         <div className="form-group">
-          <h2>Choose your Activity Level</h2>
           {console.log("LEV", this.state.levels)}
           {this.state.perc == 0 ? (
             <div>
+              <h2>Choose your Activity Level</h2>
               <form onSubmit={this.getInfo}>
                 <label>Your weight</label>
                 <input
@@ -184,7 +187,12 @@ class Profile extends Component {
               </div>
             </div>
           ) : (
-            <p>Your current weight: </p>
+            <div>
+              {console.log("Username", this.state.user.username)}
+              <h2>Welcome back, {this.state.user.username}!</h2>
+
+              <p>Today's goal: {this.state.reqAct} calories</p>
+            </div>
           )}
         </div>
         <table class="table">
