@@ -40,10 +40,10 @@ class SignUp extends Component {
     e.preventDefault();
     actions
       .signUp(this.state)
-      .then(async user => {
+      .then(user => {
         console.log("Gender", this.state.gender);
         console.log("USER", user);
-        await this.props.setUser({ ...user.data });
+        this.props.setUser({ ...user.data });
         this.props.history.push("/profile");
         console.log();
       })

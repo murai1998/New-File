@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import actions from "../services/index";
 
 class Navbar extends Component {
+  logOut = async () => {
+    let res = await actions.logOut();
+    console.log("Rs", res);
+    this.props.setUser({
+      email: null,
+      createdAt: null,
+      updatedAt: null,
+      _id: null
+    }); //FIX
+  };
   render() {
     console.log("NAVPROPs", this.props);
     return (
@@ -26,6 +37,11 @@ class Navbar extends Component {
               <Link className="nav-link" to="/profile">
                 {" "}
                 Profile
+              </Link>
+            </li>
+            <li className="nav-item active">
+              <Link onClick={this.logOut} className="nav-link" to="/">
+                Log Out
               </Link>
             </li>
           </ul>

@@ -135,7 +135,11 @@ class Profile extends Component {
     console.log(this.state.user.email + dateNow);
     return (
       <div>
-        <Navbar weight={this.state.weight} />
+        <Navbar
+          setUser={this.props.setUser}
+          user={this.state.user}
+          weight={this.state.weight}
+        />
         <div className="form-group">
           <h2>Choose your Activity Level</h2>
           {console.log("LEV", this.state.levels)}
