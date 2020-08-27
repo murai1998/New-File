@@ -190,7 +190,6 @@ class Profile extends Component {
             <div>
               {console.log("Username", this.state.user.username)}
               <h2>Welcome back, {this.state.user.username}!</h2>
-
               <p>Today's goal: {this.state.reqAct} calories</p>
             </div>
           )}
