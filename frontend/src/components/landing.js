@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
     return (
@@ -11,7 +11,7 @@ class Landing extends Component {
           >
             <div class="container">
               <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                Start Bootstrap
+                Cardinal
               </a>
               <button
                 class="navbar-toggler navbar-toggler-right"
@@ -34,7 +34,7 @@ class Landing extends Component {
                   </li>
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#projects">
-                      Projects
+                      Details
                     </a>
                   </li>
                   <li class="nav-item">
@@ -49,14 +49,31 @@ class Landing extends Component {
           <header class="masthead">
             <div class="container d-flex h-100 align-items-center">
               <div class="mx-auto text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
+                <h1 class="mx-auto my-0 text-uppercase">Cardinal</h1>
                 <h2 class="text-white-50 mx-auto mt-2 mb-5">
-                  A free, responsive, one page Bootstrap theme created by Start
-                  Bootstrap.
+                  Your road to better health starts here. Cardinal can help you
+                  meet your well-being goals
                 </h2>
-                <a class="btn btn-primary js-scroll-trigger" href="#about">
-                  Get Started
-                </a>
+                <div>
+                  <a href="#about">
+                    <Link
+                      className="btn btn-primary js-scroll-trigger"
+                      id="logButtons"
+                      to="/sign-up"
+                    >
+                      Sign Up
+                    </Link>
+                  </a>
+                  <a href="#about">
+                    <Link
+                      className="btn btn-light js-scroll-trigger"
+                      id="logButtons"
+                      to="/log-in"
+                    >
+                      Log In
+                    </Link>
+                  </a>
+                </div>
               </div>
             </div>
           </header>
@@ -67,9 +84,8 @@ class Landing extends Component {
                 <div class="col-lg-8 mx-auto">
                   <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
                   <p class="text-white-50">
-                    Grayscale is a free Bootstrap theme created by Start
-                    Bootstrap. It can be yours right now, simply download the
-                    template on
+                    Whether you're hoping to start a new fitness routine, reduce
+                    stress or improve your eating habits,
                     <a href="https://startbootstrap.com/template-overviews/grayscale/">
                       the preview page
                     </a>
@@ -80,7 +96,7 @@ class Landing extends Component {
               </div>
               <img
                 class="img-fluid"
-                src={require("../images/ipad.png")}
+                src={require("../images/weight.jpg")}
                 alt=""
               />
             </div>
@@ -91,7 +107,7 @@ class Landing extends Component {
                 <div class="col-xl-8 col-lg-7">
                   <img
                     class="img-fluid mb-3 mb-lg-0"
-                    src={require("../images/land-main.jpg")}
+                    src={require("../images/footer.jpg")}
                     alt=""
                   />
                 </div>
@@ -99,9 +115,11 @@ class Landing extends Component {
                   <div class="featured-text text-center text-lg-left">
                     <h4>Shoreline</h4>
                     <p class="text-black-50 mb-0">
-                      Grayscale is open source and MIT licensed. This means you
-                      can use it for any project - even commercial projects!
-                      Download it, customize it, and publish your website!
+                      And getting started is easier than ever before. With a
+                      variety of programs, tools and resources to improve your
+                      health and reduce long-term health risks, you'll be on
+                      your way to a better you. Need a little extra nudge? You
+                      could even get rewarded for your efforts.
                     </p>
                   </div>
                 </div>

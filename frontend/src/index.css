@@ -1,3 +1,8 @@
+#logButtons{
+    margin-left: 20px;
+}
+
+
 
 .form1 {
   display: flex;
@@ -3540,6 +3545,10 @@ input[type=button].btn-block {
 .input-group-lg > .custom-select {
   height: calc(1.5em + 1rem + 2px);
 }
+
+
+
+
 
 .input-group-lg > .form-control,
 .input-group-lg > .custom-select,
@@ -10335,7 +10344,7 @@ body {
 
 .signup-section {
   padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("../src/images/bg-signup.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("../src/images/footer2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
