@@ -82,15 +82,14 @@ class Landing extends Component {
             <div class="container">
               <div class="row">
                 <div class="col-lg-8 mx-auto">
-                  <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
+                  <h2 class="text-white mb-4">About</h2>
                   <p class="text-white-50">
-                    Whether you're hoping to start a new fitness routine, reduce
-                    stress or improve your eating habits,
-                    <a href="https://startbootstrap.com/template-overviews/grayscale/">
-                      the preview page
-                    </a>
-                    . The theme is open source, and you can use it for any
-                    purpose, personal or commercial.
+                    Train, eat and live better with just one click. Simple to
+                    use and easy to stay on track. Cardinal is created to build
+                    a helthier and more productive routine for every day.
+                    Whether you're hoping to start a new fitness activity,
+                    reduce stress or improve your eating habits, we are here for
+                    you!
                   </p>
                 </div>
               </div>
@@ -113,7 +112,7 @@ class Landing extends Component {
                 </div>
                 <div class="col-xl-4 col-lg-5">
                   <div class="featured-text text-center text-lg-left">
-                    <h4>Shoreline</h4>
+                    <h4>Details</h4>
                     <p class="text-black-50 mb-0">
                       And getting started is easier than ever before. With a
                       variety of programs, tools and resources to improve your
@@ -137,10 +136,10 @@ class Landing extends Component {
                   <div class="bg-black text-center h-100 project">
                     <div class="d-flex h-100">
                       <div class="project-text w-100 my-auto text-center text-lg-left">
-                        <h4 class="text-white">Misty</h4>
+                        <h4 class="text-white">How to start?</h4>
                         <p class="mb-0 text-white-50">
-                          An example of where you can put an image of a project,
-                          or anything else, along with a description.
+                          Simply create an account, add your parameters, choose
+                          an activity level. And you are good to go!
                         </p>
                         <hr class="d-none d-lg-block mb-0 ml-0" />
                       </div>
@@ -161,11 +160,10 @@ class Landing extends Component {
                   <div class="bg-black text-center h-100 project">
                     <div class="d-flex h-100">
                       <div class="project-text w-100 my-auto text-center text-lg-right">
-                        <h4 class="text-white">Mountains</h4>
+                        <h4 class="text-white">Still esitating</h4>
                         <p class="mb-0 text-white-50">
-                          Another example of a project with its respective
-                          description. These sections work well responsively as
-                          well, try this theme on a small screen!
+                          We could help so many people to achieve their dream
+                          bodies, we will definitely help you as well
                         </p>
                         <hr class="d-none d-lg-block mb-0 mr-0" />
                       </div>
