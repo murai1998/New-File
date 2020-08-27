@@ -78,7 +78,11 @@ class Landing extends Component {
                   </p>
                 </div>
               </div>
-              <img class="img-fluid" src="../images/ipad.png" alt="" />
+              <img
+                class="img-fluid"
+                src={require("../images/ipad.png")}
+                alt=""
+              />
             </div>
           </section>
           <section class="projects-section bg-light" id="projects">
@@ -87,7 +91,7 @@ class Landing extends Component {
                 <div class="col-xl-8 col-lg-7">
                   <img
                     class="img-fluid mb-3 mb-lg-0"
-                    src="../images/bg-masthead.jpg"
+                    src={require("../images/land-main.jpg")}
                     alt=""
                   />
                 </div>
@@ -107,7 +111,7 @@ class Landing extends Component {
                 <div class="col-lg-6">
                   <img
                     class="img-fluid"
-                    src="../images/demo-image-01.jpg"
+                    src={require("../images/sec1.jpg")}
                     alt=""
                   />
                 </div>
@@ -131,7 +135,7 @@ class Landing extends Component {
                 <div class="col-lg-6">
                   <img
                     class="img-fluid"
-                    src="../images/demo-image-02.jpg"
+                    src={require("../images/sec2.jpg")}
                     alt=""
                   />
                 </div>
