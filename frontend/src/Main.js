@@ -10,6 +10,7 @@ import CreateExercise from "./components/create-exersice";
 import Profile from "./components/profile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Circle from "./components/circle";
+import Landing from "./components/landing";
 require("dotenv").config();
 
 class Main extends Component {
@@ -43,6 +44,7 @@ class Main extends Component {
             path="/sign-up"
             render={props => <SignUp {...props} setUser={this.setUser} />}
           />
+          <Route exact path="/" render={props => <Landing {...props} />} />
           <Route
             exact
             path="/log-in"
