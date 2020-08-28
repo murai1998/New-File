@@ -3,6 +3,10 @@
 }
 
 
+#resource{
+    width: 40px;
+    height: 40px;
+}
 
 .form1 {
   display: flex;
@@ -10401,3 +10405,4 @@ body {
 .footer {
   padding: 5rem 0;
 }
+

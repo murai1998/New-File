@@ -179,18 +179,15 @@ class Landing extends Component {
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                  <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-                  <form class="form-inline d-flex">
-                    <input
-                      class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
-                      id="inputEmail"
-                      type="email"
-                      placeholder="Enter email address..."
-                    />
-                    <button class="btn btn-primary mx-auto" type="submit">
-                      Subscribe
-                    </button>
-                  </form>
+                  <h2 class="text-white mb-5">
+                    Do you have any questions? Contact us
+                  </h2>
+                  {/* <p class="text-white-50">
+                    More than anything, we want you to be thrilled with your
+                    Cardinal experience. If you have any questions or need help
+                    with selecting the best activity for you, we’re always here
+                    to help!
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -202,23 +199,11 @@ class Landing extends Component {
                 <div class="col-md-4 mb-3 mb-md-0">
                   <div class="card py-4 h-100">
                     <div class="card-body text-center">
-                      <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                      <h4 class="text-uppercase m-0">Address</h4>
-                      <hr class="my-4" />
-                      <div class="small text-black-50">
-                        4923 Market Street, Orlando FL
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                  <div class="card py-4 h-100">
-                    <div class="card-body text-center">
                       <i class="fas fa-envelope text-primary mb-2"></i>
                       <h4 class="text-uppercase m-0">Email</h4>
                       <hr class="my-4" />
                       <div class="small text-black-50">
-                        <a href="#!">hello@yourdomain.com</a>
+                        <a href="#!">annmuray@gmail.com</a>
                       </div>
                     </div>
                   </div>
@@ -229,27 +214,45 @@ class Landing extends Component {
                       <i class="fas fa-mobile-alt text-primary mb-2"></i>
                       <h4 class="text-uppercase m-0">Phone</h4>
                       <hr class="my-4" />
-                      <div class="small text-black-50">+1 (555) 902-8832</div>
+                      <div class="small text-black-50">+1 (608) 504-6409</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div class="card py-4 h-100">
+                    <div class="card-body text-center">
+                      <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                      <h4 class="text-uppercase m-0">Address</h4>
+                      <hr class="my-4" />
+                      <div class="small text-black-50">Dallas, TX</div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="social d-flex justify-content-center">
-                <a class="mx-2" href="#!">
-                  <i class="fab fa-twitter"></i>
+                <a class="mx-2" href="https://github.com/murai1998">
+                  {/* <i>Git</i> */}
+                  <img
+                    id="resource"
+                    class="fab fa-github"
+                    src={require("../images/github.png")}
+                    alt="github"
+                  />
                 </a>
-                <a class="mx-2" href="#!">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="mx-2" href="#!">
-                  <i class="fab fa-github"></i>
+                <a class="mx-2" href="https://www.linkedin.com/in/hmurai/">
+                  <img
+                    id="resource"
+                    class="fab fa-github"
+                    src={require("../images/clipart953748.png")}
+                    alt="LinkedIn"
+                  />
                 </a>
               </div>
             </div>
           </section>
 
           <footer class="footer bg-black small text-center text-white-50">
-            <div class="container">Copyright © Your Website 2020</div>
+            <div class="container">Cardinal 2020</div>
           </footer>
         </body>
       </div>
