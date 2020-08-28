@@ -179,7 +179,7 @@ class Landing extends Component {
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                  <h2 class="text-white mb-5">
+                  <h2 id='quest' class="text-white mb-5">
                     Do you have any questions? Contact us
                   </h2>
                   {/* <p class="text-white-50">
@@ -202,9 +202,8 @@ class Landing extends Component {
                       <i class="fas fa-envelope text-primary mb-2"></i>
                       <h4 class="text-uppercase m-0">Email</h4>
                       <hr class="my-4" />
-                      <div class="small text-black-50">
-                        <a href="#!">annmuray@gmail.com</a>
-                      </div>
+
+                      <div class="small text-black-50">annmuray@gmail.com</div>
                     </div>
                   </div>
                 </div>
@@ -235,7 +234,7 @@ class Landing extends Component {
                   <img
                     id="resource"
                     class="fab fa-github"
-                    src={require("../images/github.png")}
+                    src={require("../images/Octocat.png")}
                     alt="github"
                   />
                 </a>
