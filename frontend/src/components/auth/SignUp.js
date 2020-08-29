@@ -97,7 +97,7 @@ class SignUp extends Component {
                     name="email"
                     type="emai"
                     onChange={this.handleChange}
-                    class="form-control"
+                    className="form-control"
                   />
                 </div>
                 <div class="form-group">

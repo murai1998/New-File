@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import actions from "../../services/index";
+import { Link } from "react-router-dom";
 
 class LogIn extends Component {
   state = {};
@@ -24,33 +25,64 @@ class LogIn extends Component {
   render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <p>It's been a long time since we've heard from you</p>
-        </div>
+        </div> */}
 
-        <div>
-          <h3>Log In </h3>
-          <form onSubmit={this.handleSubmit}>
-            <label for="email">Email Address</label>
-            <br />
-            <input
-              id="email"
-              name="email"
-              type="email"
-              onChange={this.handleChange}
-            />
-            <br />
-            <label for="Password">Password</label>
-            <br />
-            <input
-              id="password"
-              name="password"
-              type="password"
-              onChange={this.handleChange}
-            />
-            <br />
-            <input type="submit" value="Log In" />
-          </form>
+        <div className="container3">
+          <div class="panel panel-primary">
+            <h3>Log In </h3>
+            <form
+              onSubmit={this.handleSubmit}
+              method="POST"
+              action="#"
+              role="form3"
+            >
+              <div class="form-group">
+                <label className="control-label" for="email">
+                  Email Address
+                </label>
+                <br />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  onChange={this.handleChange}
+                  className="form-control"
+                />
+              </div>
+              <br />
+              <div class="form-group">
+                <label class="control-label" for="Password">
+                  Password
+                </label>
+                <br />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  onChange={this.handleChange}
+                  className="form-control"
+                />
+              </div>
+              <br />
+              <div class="form-group">
+                <input
+                  class="btn  btn-block btn-primary"
+                  type="submit"
+                  value="Log In"
+                />
+              </div>
+              <p class="form-group" id="ptag">
+                By creating an account, you agree to our Terms of Use and our
+                Privacy Policy
+              </p>
+
+              <p class="form-group" id="ptag">
+                Already have an account? <Link to="/log-in">Log In</Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     );
