@@ -63,111 +63,114 @@ class SignUp extends Component {
   };
   render() {
     return (
-      <Fragment className='fragment'>
-        <div className="container3">
-          <div class="panel panel-primary">
-            <form
-              method="POST"
-              action="#"
-              role="form3"
-              onSubmit={this.handleSubmit}
-            >
-              <div class="form-group">
-                <h2 className='hTwo'>Create account</h2>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="signupName">
-                  Username
-                </label>
-                <input
-                  id="signupName"
-                  name="username"
-                  type="text"
-                  onChange={this.handleChange}
-                  class="form-control"
-                />
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="signupEmail">
-                  Email
-                </label>
-                <input
-                  id="signupEmail"
-                  name="email"
-                  type="emai"
-                  onChange={this.handleChange}
-                  class="form-control"
-                />
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="signupPassword">
-                  Password
-                </label>
-                <input
-                  id="signupPassword"
-                  name="password"
-                  type="password"
-                  onChange={this.handleChange}
-                  class="form-control"
-                />
-              </div>
-              <div class="form-group">
-                <label class="control-label">Height</label>
-                <input
-                  id="typeinp"
-                  type="range"
-                  min="100"
-                  max="250"
-                  name="height"
-                  onChange={this.handleChange}
-                  step="1"
-                  class="form-control"
-                />
-                {this.state.height} cm
-              </div>
-
-              <div>
-                <label class="control-label">Gender</label>
-                <CreatableSelect
-                  isClearable
-                  onChange={this.handleChange2}
-                  onInputChange={this.handleInputChange}
-                  options={opts}
-                />
-              </div>
-
-              <div className="form-group">
-                <label class="control-label">Date of birth</label>
-                <div>
-                  {/* <input name="email" type="email" onChange={this.handleChange} /> */}
-                  <input
-                    type="date"
-                    id="start"
-                    name="birth"
-                    min="1920-01-01"
-                    onChange={this.handleChange3}
-                  ></input>
+      <div id="fragment">
+        <Fragment>
+          <div className="container3">
+            <div class="panel panel-primary">
+              <form
+                method="POST"
+                action="#"
+                role="form3"
+                onSubmit={this.handleSubmit}
+              >
+                <div class="form-group">
+                  <h2 className="hTwo">Create account</h2>
                 </div>
-              </div>
-              <div class="form-group">
-                <input
-                  class="btn btn-info btn-block"
-                  type="submit"
-                  value="Sign Up"
-                />
-              </div>
-              <p class="form-group">
-                By creating an account, you agree to our Terms of Use and our
-                Privacy Policy
-              </p>
+                <div class="form-group">
+                  <label class="control-label" for="signupName">
+                    Username
+                  </label>
+                  <input
+                    id="signupName"
+                    name="username"
+                    type="text"
+                    onChange={this.handleChange}
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="signupEmail">
+                    Email
+                  </label>
+                  <input
+                    id="signupEmail"
+                    name="email"
+                    type="emai"
+                    onChange={this.handleChange}
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="signupPassword">
+                    Password
+                  </label>
+                  <input
+                    id="signupPassword"
+                    name="password"
+                    type="password"
+                    onChange={this.handleChange}
+                    className="form-control"
+                  />
+                </div>
+                <div class="form-group" id="height">
+                  <label id="height" class="control-label">
+                    Height
+                  </label>
+                  <input
+                    id="typeinp"
+                    type="range"
+                    min="100"
+                    max="250"
+                    name="height"
+                    onChange={this.handleChange}
+                    step="1"
+                  />
+                  <label id="height2">{this.state.height} cm</label>
+                </div>
 
-              <p>
-                Already have an account? <Link to="/log-in">Sign in</Link>
-              </p>
-            </form>
+                <div class="form-group">
+                  <label class="control-label">Gender</label>
+                  <CreatableSelect
+                    isClearable
+                    onChange={this.handleChange2}
+                    onInputChange={this.handleInputChange}
+                    options={opts}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label class="control-label">Date of birth</label>
+                  <div>
+                    <input
+                      type="date"
+                      id="start"
+                      name="birth"
+                      min="1920-01-01"
+                      onChange={this.handleChange3}
+                      className="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    class="btn  btn-block btn-primary"
+                    type="submit"
+                    value="Sign Up"
+                  />
+                </div>
+                <p class="form-group" id="ptag">
+                  By creating an account, you agree to our Terms of Use and our
+                  Privacy Policy
+                </p>
+
+                <p class="form-group" id="ptag">
+                  Already have an account? <Link to="/log-in">Log In</Link>
+                </p>
+              </form>
+            </div>
           </div>
-        </div>
-      </Fragment>
+        </Fragment>
+      </div>
     );
   }
 }
