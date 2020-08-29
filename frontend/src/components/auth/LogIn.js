@@ -31,6 +31,10 @@ class LogIn extends Component {
 
         <div className="container3">
           <div class="panel panel-primary">
+            <Link style={{ textDecoration: "none" }} to="/">
+              {" "}
+              <h1 id="cross">☒</h1>
+            </Link>
             <h3>Log In </h3>
             <form
               onSubmit={this.handleSubmit}
@@ -73,13 +77,10 @@ class LogIn extends Component {
                   value="Log In"
                 />
               </div>
-              <p class="form-group" id="ptag">
-                By creating an account, you agree to our Terms of Use and our
-                Privacy Policy
-              </p>
 
               <p class="form-group" id="ptag">
-                Already have an account? <Link to="/log-in">Log In</Link>
+                Do not Have an account yet?<br></br> Create it now!
+                <Link to="/sign-up"> Sign Up</Link>
               </p>
             </form>
           </div>

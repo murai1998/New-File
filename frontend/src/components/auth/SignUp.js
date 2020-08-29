@@ -73,8 +73,12 @@ class SignUp extends Component {
                 role="form3"
                 onSubmit={this.handleSubmit}
               >
+                <Link style={{ textDecoration: "none" }} to="/">
+                  {" "}
+                  <h1 id="cross">☒</h1>
+                </Link>
                 <div class="form-group">
-                  <h2 className="hTwo">Create account</h2>
+                  <h2 className="hTwo">Sign Up</h2>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="signupName">
