@@ -79,7 +79,7 @@ class LogIn extends Component {
               </div>
 
               <p class="form-group" id="ptag">
-                Do not Have an account yet?<br></br> Create it now!
+                Do not have an account yet?<br></br> Create it now!
                 <Link to="/sign-up"> Sign Up</Link>
               </p>
             </form>

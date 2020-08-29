@@ -9,7 +9,7 @@ let value = 0;
 let dateNow = new Date().toDateString();
 class Profile extends Component {
   state = {
-    user: { ...this.props.user },
+    user: { ...this.props.user.user },
 
     levels: [],
     button: true,
@@ -135,6 +135,7 @@ class Profile extends Component {
     });
   };
   render() {
+    console.log("PROPS", this.props);
     console.log(this.state.user.email + dateNow);
     return (
       <div>

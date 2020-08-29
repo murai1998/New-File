@@ -40,7 +40,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item active">
-              <Link onClick={this.logOut} className="nav-link" to="/">
+              <Link className="nav-link" to="/">
                 Log Out
               </Link>
             </li>
