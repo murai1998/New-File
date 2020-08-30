@@ -10523,7 +10523,15 @@ width: 400px;
 .level{
     padding: 10px 0 0;
 }
+#levelA{
+    background: #ffeeba;
+}
 @media only screen and (max-width: 600px) {
+    .weightP{
+        text-align: center;
+    justify-content: center;
+
+    }
 .circle2{
 width: 250px;
 }
@@ -10544,7 +10552,8 @@ width: 250px;
     padding: 4px 0 4px;
     border: 1px solid rgb(197, 197, 197);
     width: 100%;
-     font-size: 1.1em;
+     font-size: 0.6em;
      background: rgb(227, 224, 224);
+    
 }
 }

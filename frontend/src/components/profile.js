@@ -21,7 +21,8 @@ class Profile extends Component {
     levels: [],
     button: true,
     value: 0,
-    input2: true
+    input2: true,
+    lev: false
   };
 
   async componentDidMount() {
@@ -70,12 +71,14 @@ class Profile extends Component {
         userDate: this.state.user.email + dateNow,
         weight: this.state.weight
       };
-      console.log(activity);
+      console.log("LABEl", newValue.label);
       actions.addActivity(activity).then(res => {
         console.log(res.data);
       });
       this.setState({
-        selectShow: false
+        selectShow: false,
+        lev: true,
+        labelL: newValue.label
       });
     }
   };
@@ -111,33 +114,23 @@ class Profile extends Component {
     let levels = [
       {
         value: res1.data.data["Sedentary: little or no exercise"],
-        label: `Sedentary, ${res1.data.data[
-          "Sedentary: little or no exercise"
-        ].toFixed(1)}cals`
+        label: `Sedentary`
       },
       {
         value: res1.data.data["Exercise 1-3 times/week"],
-        label: `Lightly active, ${res1.data.data[
-          "Exercise 1-3 times/week"
-        ].toFixed(1)}cals`
+        label: `Lightly active`
       },
       {
         value: res1.data.data["Exercise 4-5 times/week"],
-        label: `Moderately active, ${res1.data.data[
-          "Exercise 4-5 times/week"
-        ].toFixed(1)}cals`
+        label: `Moderately active`
       },
       {
         value: res1.data.data["Intense exercise 6-7 times/week"],
-        label: `Very active, ${res1.data.data[
-          "Intense exercise 6-7 times/week"
-        ].toFixed(1)}cals`
+        label: `Very active`
       },
       {
         value: res1.data.data["Very intense exercise daily, or physical job"],
-        label: `Extra active, ${res1.data.data[
-          "Very intense exercise daily, or physical job"
-        ].toFixed(1)}cals`
+        label: `Extra active`
       }
     ];
 
@@ -187,11 +180,11 @@ class Profile extends Component {
                   )}
                 </form>
               ) : (
-                <p className='weightP'>Your weight:  {this.state.weight} kg</p>
+                <p className="weightP">Your weight: {this.state.weight} kg</p>
               )}
               {this.state.selectShow ? (
-                <div className='selectDes'>
-                  <p className='level'>Choose your Activity Level</p>
+                <div className="selectDes">
+                  <p className="level">Choose your Activity Level</p>
                   <CreatableSelect
                     className="selectStyle"
                     isClearable
@@ -203,6 +196,13 @@ class Profile extends Component {
                     //   }}
                     options={this.state.levels}
                   />
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.lev ? (
+                <div className="weightP" id='levelA'>
+                  <p>Acivity level: {this.state.labelL}</p>
                 </div>
               ) : (
                 ""
