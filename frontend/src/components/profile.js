@@ -201,7 +201,7 @@ class Profile extends Component {
                 ""
               )}
               {this.state.lev ? (
-                <div className="weightP" id='levelA'>
+                <div className="weightP" id="levelA">
                   <p>Acivity level: {this.state.labelL}</p>
                 </div>
               ) : (
@@ -218,15 +218,17 @@ class Profile extends Component {
         </div>
         <div className="circleLayout">
           <div className="circle2">
+            <div className="caption1">
+              <h3 id="nameH">Calories in Progress</h3>
+              {/* <h3>{this.state.burned} calories</h3> */}
+            </div>
             <CircularProgressbar
               value={this.state.perc}
               text={`${Number(this.state.perc)}%`}
               // text={`${Math.round((value * 100) / this.state.level)}%`}
             />
           </div>
-          <div className="caption1">
-            <h3>Calories in Progress</h3> <h3>{this.state.burned} calories</h3>
-          </div>
+
           <div id="trBorder" className="tableDiv">
             <table class="table table-bordered">
               <thead>
