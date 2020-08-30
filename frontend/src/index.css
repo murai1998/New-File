@@ -1,7 +1,9 @@
 #logButtons{
     margin-left: 20px;
 }
-
+body{
+    font-family: "Roboto", sans-serif;
+}
 
 #resource{
     width: 40px;
@@ -10460,9 +10462,10 @@ align-items: center;
     color:  #658fbb;
 }
 #cross2{
-    text-align: right;
+    margin-top: 10px;
     color:  #658fbb;
     border: 5px solid #658fbb;
+
 }
 .circle2{
 width: 400px;
@@ -10493,7 +10496,32 @@ width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    width: fit-content;
+    font-size: 1.2em;
+     border: 1px solid rgb(197, 197, 197);
+    width: 370px;
+ padding: 5px 15px;
+     font-size: 1.1em;
+     background: rgb(227, 224, 224);
+}
+.weightP{
+     border: 1px solid rgb(197, 197, 197);
+    width: 370px;
+ padding: 5px 15px;
+     font-size: 1.5em;
+     background: #b8daff;
+     margin: 0;
+}
+.selectDes{
+     border: 1px solid rgb(197, 197, 197);
+     background: rgb(227, 224, 224);
+     width: 370px;
+ padding: 5px 15px;
+ 
+ font-size: 1.2em;
+}
+.level{
+    padding: 10px 0 0;
 }
 @media only screen and (max-width: 600px) {
 .circle2{
@@ -10513,6 +10541,10 @@ width: 250px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 4px 0 4px;
+    border: 1px solid rgb(197, 197, 197);
     width: 100%;
+     font-size: 1.1em;
+     background: rgb(227, 224, 224);
 }
 }

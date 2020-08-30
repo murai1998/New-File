@@ -165,9 +165,9 @@ class Profile extends Component {
             <div>
               <h1>Profile</h1>
 
-              <form className="weightForm" onSubmit={this.getInfo}>
-                <label>Your weight</label>
-                {this.state.input2 ? (
+              {this.state.input2 ? (
+                <form className="weightForm" onSubmit={this.getInfo}>
+                  <label>Your weight</label>
                   <input
                     id="typeinp"
                     type="range"
@@ -177,21 +177,21 @@ class Profile extends Component {
                     onChange={this.handleChange}
                     step="1"
                   />
-                ) : (
-                  ": "
-                )}
-                {this.state.weight} kg
-                {this.state.button ? (
-                  <div className="form-group">
-                    <input type="submit" value="✔" id="cross2" />
-                  </div>
-                ) : (
-                  ""
-                )}
-              </form>
+                  <strong>{this.state.weight}</strong> kg
+                  {this.state.button ? (
+                    <div className="form-group">
+                      <input type="submit" value="✔" id="cross2" />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </form>
+              ) : (
+                <p className='weightP'>Your weight:  {this.state.weight} kg</p>
+              )}
               {this.state.selectShow ? (
-                <div>
-                  <h4>Choose your Activity Level</h4>
+                <div className='selectDes'>
+                  <p className='level'>Choose your Activity Level</p>
                   <CreatableSelect
                     className="selectStyle"
                     isClearable
