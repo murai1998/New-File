@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 class Landing extends Component {
+  hamburgerDrop = () => {
+    var x = document.getElementById("navbarResponsive");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  };
   render() {
     return (
       <div>
@@ -21,8 +29,9 @@ class Landing extends Component {
                 aria-controls="navbarResponsive"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
+                onClick={this.hamburgerDrop}
               >
-                Menu
+                <span class="navbar-toggler-icon"></span>
                 <i class="fas fa-bars"></i>
               </button>
               <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -179,7 +188,7 @@ class Landing extends Component {
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                  <h2 id='quest' class="text-white mb-5">
+                  <h2 id="quest" class="text-white mb-5">
                     Do you have any questions? Contact us
                   </h2>
                   {/* <p class="text-white-50">
