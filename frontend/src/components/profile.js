@@ -23,7 +23,8 @@ class Profile extends Component {
     console.log("ACTTTT", res2.data.lenght);
     if (res2.data == 0) {
       this.setState({
-        perc: 0
+        perc: 0,
+        burned: 0
       });
     } else {
       this.setState({
@@ -32,6 +33,7 @@ class Profile extends Component {
           res2.data[0].requiredAct.toFixed(1)
         ).toFixed(),
         weight: res2.data[0].weight,
+        burned: res2.data[0].activity.toFiexed(1),
         reqAct: res2.data[0].requiredAct.toFixed(1),
         remain: (res2.data[0].requiredAct - res2.data[0].activity).toFixed(1)
       });
@@ -195,77 +197,83 @@ class Profile extends Component {
             </div>
           )}
         </div>
-        <table class="table">
-          <thead>
-            <tr className="table-default">
-              <th scope="col" scope="col">
-                #
-              </th>
-              <th scope="col" scope="col">
-                Activity Level
-              </th>
-              <th scope="col" scope="col">
-                Number
-              </th>
-              <th scope="col" scope="col">
-                Description
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-primary">
-              <th scope="row">1</th>
-              <td scope="row">Sedentary</td>
-              <td scope="row">1.2</td>
-              <td scope="row">
-                People who work desk jobs and engage in very little exercise or
-                chores.
-              </td>
-            </tr>
-            <tr class="table-success">
-              <th scope="row">2</th>
-              <td scope="row">Lightly active</td>
-              <td scope="row">1.375</td>
-              <td scope="row">
-                People who do chores and go on long walks/engage in exercise at
-                least 1 to 3 days in a week.
-              </td>
-            </tr>
-            <tr class="table-danger">
-              <th scope="row">3</th>
-              <td scope="row">Moderately active</td>
-              <td scope="row">1.55</td>
-              <td scope="row">
-                People who move a lot during the day and workout (moderate
-                effort) at least 3 to 5 days in a week.
-              </td>
-            </tr>
-            <tr class="table-warning">
-              <th scope="row">4</th>
-              <td scope="row">Very active</td>
-              <td scope="row">1.725</td>
-              <td scope="row">
-                People who play sports or engage in vigorous exercise on most
-                days.
-              </td>
-            </tr>
-            <tr class="table-info">
-              <th scope="row">5</th>
-              <td scope="row">Extra active</td>
-              <td scope="row">1.9</td>
-              <td scope="row">
-                People who do intense workouts 6 to 7 days a week with work that
-                demands physical activity.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div style={{ width: "400px" }}>
-          <CircularProgressbar
-            value={this.state.perc}
-            text={`${Number(this.state.perc)}%`}
-            // text={`${Math.round((value * 100) / this.state.level)}%`}
-          />
+        <div className="circleLayout">
+          <div className="circle2">
+            <CircularProgressbar
+              value={this.state.perc}
+              text={`${Number(this.state.perc)}%`}
+              // text={`${Math.round((value * 100) / this.state.level)}%`}
+            />
+          </div>
+          <h3>Calories in Progress</h3>
+          <h3>{this.state.burned} calories</h3>
+          <div id="trBorder" className="tableDiv">
+            <table class="table table-bordered">
+              <thead>
+                <tr className="table-light table-bordered">
+                  <th scope="col" scope="col">
+                    #
+                  </th>
+                  <th scope="col" scope="col">
+                    Activity Level
+                  </th>
+                  <th scope="col" scope="col">
+                    Number
+                  </th>
+                  <th scope="col" scope="col">
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-primary">
+                  <th scope="row">1</th>
+                  <td scope="row">Sedentary</td>
+                  <td scope="row">1.2</td>
+                  <td scope="row">
+                    People who work desk jobs and engage in very little exercise
+                    or chores.
+                  </td>
+                </tr>
+                <tr class="table-success">
+                  <th scope="row">2</th>
+                  <td scope="row">Lightly active</td>
+                  <td scope="row">1.375</td>
+                  <td scope="row">
+                    People who do chores and go on long walks/engage in exercise
+                    at least 1 to 3 days in a week.
+                  </td>
+                </tr>
+                <tr class="table-danger">
+                  <th scope="row">3</th>
+                  <td scope="row">Moderately active</td>
+                  <td scope="row">1.55</td>
+                  <td scope="row">
+                    People who move a lot during the day and workout (moderate
+                    effort) at least 3 to 5 days in a week.
+                  </td>
+                </tr>
+                <tr class="table-warning">
+                  <th scope="row">4</th>
+                  <td scope="row">Very active</td>
+                  <td scope="row">1.725</td>
+                  <td scope="row">
+                    People who play sports or engage in vigorous exercise on
+                    most days.
+                  </td>
+                </tr>
+                <tr class="table-info">
+                  <th scope="row">5</th>
+                  <td scope="row">Extra active</td>
+                  <td scope="row">1.9</td>
+                  <td scope="row">
+                    People who do intense workouts 6 to 7 days a week with work
+                    that demands physical activity.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
