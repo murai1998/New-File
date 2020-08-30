@@ -10459,7 +10459,11 @@ align-items: center;
     text-align: right;
     color:  #658fbb;
 }
-
+#cross2{
+    text-align: right;
+    color:  #658fbb;
+    border: 5px solid #658fbb;
+}
 .circle2{
 width: 400px;
 }
@@ -10471,7 +10475,7 @@ width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(238, 238, 238);
+  
 }
 #trBorder{
    border: 1px solid rgb(184, 181, 181);
@@ -10481,6 +10485,15 @@ width: 400px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.selectStyle{
+    width: 300px;
+}
+.weightForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
 }
 @media only screen and (max-width: 600px) {
 .circle2{
@@ -10495,5 +10508,11 @@ width: 250px;
 .tableDiv{
     width: fit-content
     
+}
+.weightForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
 }
 }

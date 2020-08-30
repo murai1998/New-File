@@ -5,12 +5,12 @@ import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import styled, { keyframes } from "styled-components";
-import { bounce } from "react-animations";
+// import styled, { keyframes } from "styled-components";
+// import { bounce } from "react-animations";
 
-const Bounce = styled.div`
-  animation: 2s ${keyframes`${bounce}`} infinite;
-`;
+// const Bounce = styled.div`
+//   animation: 2s ${keyframes`${bounce}`} infinite;
+// `;
 
 let value = 0;
 let dateNow = new Date().toDateString();
@@ -73,6 +73,9 @@ class Profile extends Component {
       console.log(activity);
       actions.addActivity(activity).then(res => {
         console.log(res.data);
+      });
+      this.setState({
+        selectShow: false
       });
     }
   };
@@ -160,8 +163,9 @@ class Profile extends Component {
           {console.log("LEV", this.state.levels)}
           {this.state.perc == 0 ? (
             <div>
-              <h2>Choose your Activity Level</h2>
-              <form onSubmit={this.getInfo}>
+              <h1>Profile</h1>
+
+              <form className="weightForm" onSubmit={this.getInfo}>
                 <label>Your weight</label>
                 {this.state.input2 ? (
                   <input
@@ -174,16 +178,12 @@ class Profile extends Component {
                     step="1"
                   />
                 ) : (
-                  ""
+                  ": "
                 )}
                 {this.state.weight} kg
                 {this.state.button ? (
                   <div className="form-group">
-                    <input
-                      type="submit"
-                      value="Submit"
-                      className="btn btn-primary"
-                    />
+                    <input type="submit" value="✔" id="cross2" />
                   </div>
                 ) : (
                   ""
@@ -191,7 +191,9 @@ class Profile extends Component {
               </form>
               {this.state.selectShow ? (
                 <div>
+                  <h4>Choose your Activity Level</h4>
                   <CreatableSelect
+                    className="selectStyle"
                     isClearable
                     onChange={this.handleChange3}
                     onInputChange={this.handleInputChange}
