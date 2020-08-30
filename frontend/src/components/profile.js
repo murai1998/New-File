@@ -5,15 +5,23 @@ import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import styled, { keyframes } from "styled-components";
+import { bounce } from "react-animations";
+
+const Bounce = styled.div`
+  animation: 2s ${keyframes`${bounce}`} infinite;
+`;
+
 let value = 0;
 let dateNow = new Date().toDateString();
 class Profile extends Component {
   state = {
     user: { ...this.props.user.user },
-
+    selectShow: false,
     levels: [],
     button: true,
-    value: 0
+    value: 0,
+    input2: true
   };
 
   async componentDidMount() {
@@ -33,7 +41,7 @@ class Profile extends Component {
           res2.data[0].requiredAct.toFixed(1)
         ).toFixed(),
         weight: res2.data[0].weight,
-        burned: res2.data[0].activity.toFiexed(1),
+        burned: res2.data[0].activity.toFixed(1),
         reqAct: res2.data[0].requiredAct.toFixed(1),
         remain: (res2.data[0].requiredAct - res2.data[0].activity).toFixed(1)
       });
@@ -133,7 +141,9 @@ class Profile extends Component {
     this.setState({
       levels: levels,
       default: res1.data.data["Exercise 4-5 times/week"],
-      button: false
+      button: false,
+      selectShow: true,
+      input2: false
     });
   };
   render() {
@@ -153,15 +163,19 @@ class Profile extends Component {
               <h2>Choose your Activity Level</h2>
               <form onSubmit={this.getInfo}>
                 <label>Your weight</label>
-                <input
-                  id="typeinp"
-                  type="range"
-                  min="20"
-                  max="150"
-                  name="weight"
-                  onChange={this.handleChange}
-                  step="1"
-                />
+                {this.state.input2 ? (
+                  <input
+                    id="typeinp"
+                    type="range"
+                    min="20"
+                    max="150"
+                    name="weight"
+                    onChange={this.handleChange}
+                    step="1"
+                  />
+                ) : (
+                  ""
+                )}
                 {this.state.weight} kg
                 {this.state.button ? (
                   <div className="form-group">
@@ -175,19 +189,22 @@ class Profile extends Component {
                   ""
                 )}
               </form>
-
-              <div>
-                <CreatableSelect
-                  isClearable
-                  onChange={this.handleChange3}
-                  onInputChange={this.handleInputChange}
-                  //   defaultValue={{
-                  //     label: `Moderately active`,
-                  //     value: this.state.default
-                  //   }}
-                  options={this.state.levels}
-                />
-              </div>
+              {this.state.selectShow ? (
+                <div>
+                  <CreatableSelect
+                    isClearable
+                    onChange={this.handleChange3}
+                    onInputChange={this.handleInputChange}
+                    //   defaultValue={{
+                    //     label: `Moderately active`,
+                    //     value: this.state.default
+                    //   }}
+                    options={this.state.levels}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
             <div>
@@ -205,8 +222,9 @@ class Profile extends Component {
               // text={`${Math.round((value * 100) / this.state.level)}%`}
             />
           </div>
-          <h3>Calories in Progress</h3>
-          <h3>{this.state.burned} calories</h3>
+          <div className="caption1">
+            <h3>Calories in Progress</h3> <h3>{this.state.burned} calories</h3>
+          </div>
           <div id="trBorder" className="tableDiv">
             <table class="table table-bordered">
               <thead>
