@@ -146,155 +146,164 @@ class Profile extends Component {
     console.log("PROPS", this.props);
     console.log(this.state.user.email + dateNow);
     return (
-      <div>
+      <div >
         <Navbar
           setUser={this.props.setUser}
           user={this.state.user}
           weight={this.state.weight}
         />
-        <div className="form-group">
-          {console.log("LEV", this.state.levels)}
-          {this.state.perc == 0 ? (
-            <div>
-              <h1>Profile</h1>
-
-              {this.state.input2 ? (
-                <form className="weightForm" onSubmit={this.getInfo}>
-                  <label>Your weight</label>
-                  <input
-                    id="typeinp"
-                    type="range"
-                    min="20"
-                    max="150"
-                    name="weight"
-                    onChange={this.handleChange}
-                    step="1"
-                  />
-                  <strong>{this.state.weight}</strong> kg
-                  {this.state.button ? (
-                    <div className="form-group">
-                      <input type="submit" value="✔" id="cross2" />
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </form>
-              ) : (
-                <p className="weightP">Your weight: {this.state.weight} kg</p>
-              )}
-              {this.state.selectShow ? (
-                <div className="selectDes">
-                  <p className="level">Choose your Activity Level</p>
-                  <CreatableSelect
-                    className="selectStyle"
-                    isClearable
-                    onChange={this.handleChange3}
-                    onInputChange={this.handleInputChange}
-                    //   defaultValue={{
-                    //     label: `Moderately active`,
-                    //     value: this.state.default
-                    //   }}
-                    options={this.state.levels}
-                  />
+        <div className="profile">
+          <div id="groupFF" className="form-group">
+            {console.log("LEV", this.state.levels)}
+            {this.state.perc == 0 ? (
+              <div className="inputProfile">
+                <h1 className='h1P'>Profile</h1>
+                <div className="allInput">
+                  <div>
+                    {this.state.input2 ? (
+                      <form className="weightForm" onSubmit={this.getInfo}>
+                        <label>Your weight</label>
+                        <input
+                          id="typeinp"
+                          type="range"
+                          min="20"
+                          max="150"
+                          name="weight"
+                          onChange={this.handleChange}
+                          step="1"
+                        />
+                        <strong>{this.state.weight}</strong> kg
+                        {this.state.button ? (
+                          <div className="form-group">
+                            <input type="submit" value="✔" id="cross2" />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </form>
+                    ) : (
+                      <p className="weightP">
+                        Your weight: {this.state.weight} kg
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    {this.state.selectShow ? (
+                      <div className="selectDes">
+                        <p className="level">Choose your Activity Level</p>
+                        <CreatableSelect
+                          className="selectStyle"
+                          isClearable
+                          onChange={this.handleChange3}
+                          onInputChange={this.handleInputChange}
+                          //   defaultValue={{
+                          //     label: `Moderately active`,
+                          //     value: this.state.default
+                          //   }}
+                          options={this.state.levels}
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    {this.state.lev ? (
+                      <div className="weightP" id="levelA">
+                        <p>Acivity level: {this.state.labelL}</p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              ) : (
-                ""
-              )}
-              {this.state.lev ? (
-                <div className="weightP" id="levelA">
-                  <p>Acivity level: {this.state.labelL}</p>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          ) : (
-            <div>
-              {console.log("Username", this.state.user.username)}
-              <h2>Welcome back, {this.state.user.username}!</h2>
-              <p>Today's goal: {this.state.reqAct} calories</p>
-            </div>
-          )}
-        </div>
-        <div className="circleLayout">
-          <div className="circle2">
-            <div className="caption1">
-              <h3 id="nameH">Calories in Progress</h3>
-              {/* <h3>{this.state.burned} calories</h3> */}
-            </div>
-            <CircularProgressbar
-              value={this.state.perc}
-              text={`${Number(this.state.perc)}%`}
-              // text={`${Math.round((value * 100) / this.state.level)}%`}
-            />
+              </div>
+            ) : (
+              <div>
+                {console.log("Username", this.state.user.username)}
+                <h2>Welcome back, {this.state.user.username}!</h2>
+                <p>Today's goal: {this.state.reqAct} calories</p>
+              </div>
+            )}
           </div>
+          <div className="circleLayout">
+            <div className="circle2">
+              <div className="caption1">
+                <h3 id="nameH">Calories in Progress</h3>
+                {/* <h3>{this.state.burned} calories</h3> */}
+              </div>
+              <CircularProgressbar
+                value={this.state.perc}
+                text={`${Number(this.state.perc)}%`}
+                // text={`${Math.round((value * 100) / this.state.level)}%`}
+              />
+            </div>
 
-          <div id="trBorder" className="tableDiv">
-            <table class="table table-bordered">
-              <thead>
-                <tr className="table-light table-bordered">
-                  <th scope="col" scope="col">
-                    #
-                  </th>
-                  <th scope="col" scope="col">
-                    Activity Level
-                  </th>
-                  <th scope="col" scope="col">
-                    Number
-                  </th>
-                  <th scope="col" scope="col">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-primary">
-                  <th scope="row">1</th>
-                  <td scope="row">Sedentary</td>
-                  <td scope="row">1.2</td>
-                  <td scope="row">
-                    People who work desk jobs and engage in very little exercise
-                    or chores.
-                  </td>
-                </tr>
-                <tr class="table-success">
-                  <th scope="row">2</th>
-                  <td scope="row">Lightly active</td>
-                  <td scope="row">1.375</td>
-                  <td scope="row">
-                    People who do chores and go on long walks/engage in exercise
-                    at least 1 to 3 days in a week.
-                  </td>
-                </tr>
-                <tr class="table-danger">
-                  <th scope="row">3</th>
-                  <td scope="row">Moderately active</td>
-                  <td scope="row">1.55</td>
-                  <td scope="row">
-                    People who move a lot during the day and workout (moderate
-                    effort) at least 3 to 5 days in a week.
-                  </td>
-                </tr>
-                <tr class="table-warning">
-                  <th scope="row">4</th>
-                  <td scope="row">Very active</td>
-                  <td scope="row">1.725</td>
-                  <td scope="row">
-                    People who play sports or engage in vigorous exercise on
-                    most days.
-                  </td>
-                </tr>
-                <tr class="table-info">
-                  <th scope="row">5</th>
-                  <td scope="row">Extra active</td>
-                  <td scope="row">1.9</td>
-                  <td scope="row">
-                    People who do intense workouts 6 to 7 days a week with work
-                    that demands physical activity.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div id="trBorder" className="tableDiv">
+              <table class="table table-bordered">
+                <thead>
+                  <tr className="table-light table-bordered">
+                    <th scope="col" scope="col">
+                      #
+                    </th>
+                    <th scope="col" scope="col">
+                      Activity Level
+                    </th>
+                    <th scope="col" scope="col">
+                      Number
+                    </th>
+                    <th scope="col" scope="col">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-primary">
+                    <th scope="row">1</th>
+                    <td scope="row">Sedentary</td>
+                    <td scope="row">1.2</td>
+                    <td scope="row">
+                      People who work desk jobs and engage in very little
+                      exercise or chores.
+                    </td>
+                  </tr>
+                  <tr class="table-success">
+                    <th scope="row">2</th>
+                    <td scope="row">Lightly active</td>
+                    <td scope="row">1.375</td>
+                    <td scope="row">
+                      People who do chores and go on long walks/engage in
+                      exercise at least 1 to 3 days in a week.
+                    </td>
+                  </tr>
+                  <tr class="table-danger">
+                    <th scope="row">3</th>
+                    <td scope="row">Moderately active</td>
+                    <td scope="row">1.55</td>
+                    <td scope="row">
+                      People who move a lot during the day and workout (moderate
+                      effort) at least 3 to 5 days in a week.
+                    </td>
+                  </tr>
+                  <tr class="table-warning">
+                    <th scope="row">4</th>
+                    <td scope="row">Very active</td>
+                    <td scope="row">1.725</td>
+                    <td scope="row">
+                      People who play sports or engage in vigorous exercise on
+                      most days.
+                    </td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">5</th>
+                    <td scope="row">Extra active</td>
+                    <td scope="row">1.9</td>
+                    <td scope="row">
+                      People who do intense workouts 6 to 7 days a week with
+                      work that demands physical activity.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
