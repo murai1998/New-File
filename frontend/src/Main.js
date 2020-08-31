@@ -11,6 +11,7 @@ import Profile from "./components/profile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Circle from "./components/circle";
 import Landing from "./components/landing";
+import Socket from "./components/Socket";
 require("dotenv").config();
 
 class Main extends Component {
@@ -99,6 +100,13 @@ class Main extends Component {
             path="/profile"
             render={props => (
               <Profile {...props} setUser={this.setUser} user={this.state} />
+            )}
+          />
+          <Route
+            exact
+            path="/socket"
+            render={props => (
+              <Socket {...props} setUser={this.setUser} user={this.state} />
             )}
           />
         </Switch>

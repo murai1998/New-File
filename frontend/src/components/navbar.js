@@ -65,6 +65,11 @@ class Navbar extends Component {
                     </Link>
                   </li>
                   <li className="nav-item active">
+                    <Link className="nav-link" to="/socket">
+                      Socket
+                    </Link>
+                  </li>
+                  <li className="nav-item active">
                     <Link className="nav-link" to="/">
                       Log Out
                     </Link>
