@@ -146,7 +146,7 @@ class Profile extends Component {
     console.log("PROPS", this.props);
     console.log(this.state.user.email + dateNow);
     return (
-      <div >
+      <div>
         <Navbar
           setUser={this.props.setUser}
           user={this.state.user}
@@ -156,69 +156,76 @@ class Profile extends Component {
           <div id="groupFF" className="form-group">
             {console.log("LEV", this.state.levels)}
             {this.state.perc == 0 ? (
-              <div className="inputProfile">
-                <h1 className='h1P'>Profile</h1>
-                <div className="allInput">
-                  <div>
-                    {this.state.input2 ? (
-                      <form className="weightForm" onSubmit={this.getInfo}>
-                        <label>Your weight</label>
-                        <input
-                          id="typeinp"
-                          type="range"
-                          min="20"
-                          max="150"
-                          name="weight"
-                          onChange={this.handleChange}
-                          step="1"
-                        />
-                        <strong>{this.state.weight}</strong> kg
-                        {this.state.button ? (
-                          <div className="form-group">
-                            <input type="submit" value="✔" id="cross2" />
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </form>
-                    ) : (
-                      <p className="weightP">
-                        Your weight: {this.state.weight} kg
-                      </p>
-                    )}
+              <div className="profilePic1">
+                <div className="inputProfile">
+                  <h1 className="h1P">Profile</h1>
+                  <div className="allInput">
+                    <div>
+                      {this.state.input2 ? (
+                        <form className="weightForm" onSubmit={this.getInfo}>
+                          <label>Your weight</label>
+                          <input
+                            id="typeinp"
+                            type="range"
+                            min="20"
+                            max="150"
+                            name="weight"
+                            onChange={this.handleChange}
+                            step="1"
+                          />
+                          <strong>{this.state.weight}</strong> kg
+                          {this.state.button ? (
+                            <div className="form-group">
+                              <input type="submit" value="✔" id="cross2" />
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </form>
+                      ) : (
+                        <p className="weightP">
+                          Your weight: {this.state.weight} kg
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      {this.state.selectShow ? (
+                        <div className="selectDes">
+                          <p className="level">Choose your Activity Level</p>
+                          <CreatableSelect
+                            className="selectStyle"
+                            isClearable
+                            onChange={this.handleChange3}
+                            onInputChange={this.handleInputChange}
+                            //   defaultValue={{
+                            //     label: `Moderately active`,
+                            //     value: this.state.default
+                            //   }}
+                            options={this.state.levels}
+                          />
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                      {this.state.lev ? (
+                        <div className="weightP" id="levelA">
+                          <p>Acivity level: {this.state.labelL}</p>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    {this.state.selectShow ? (
-                      <div className="selectDes">
-                        <p className="level">Choose your Activity Level</p>
-                        <CreatableSelect
-                          className="selectStyle"
-                          isClearable
-                          onChange={this.handleChange3}
-                          onInputChange={this.handleInputChange}
-                          //   defaultValue={{
-                          //     label: `Moderately active`,
-                          //     value: this.state.default
-                          //   }}
-                          options={this.state.levels}
-                        />
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {this.state.lev ? (
-                      <div className="weightP" id="levelA">
-                        <p>Acivity level: {this.state.labelL}</p>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                </div>
+                <div id="trBorder" className="tableDiv">
+                  People who do intense workouts 6 to 7 days a week with work
+                  that demands physical activity.
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="inputProfile">
                 {console.log("Username", this.state.user.username)}
+                <h1 className="h1P">Profile</h1>
                 <h2>Welcome back, {this.state.user.username}!</h2>
                 <p>Today's goal: {this.state.reqAct} calories</p>
               </div>

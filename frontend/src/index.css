@@ -10932,6 +10932,8 @@ body {
 }
 .tableDiv {
   width: 800px;
+  max-width: 800px;
+  width: 800px;
 }
 .circleLayout {
   display: flex;
@@ -11008,16 +11010,27 @@ body {
   margin-right: auto;
   margin: 10em 18em 0;
 }
+.profilePic1{
+    display: flex;
+    
+}
+.profilePic2 {
+ 
+  width: 800px;
+  border: 1px solid rgb(197, 197, 197);
+}
 @media only screen and (max-width: 1024px) {
   .weightP {
     text-align: center;
     justify-content: center;
   }
+  .profilePic {
+    width: fit-content;
+  }
   .profile {
- 
-  margin:  0;
-}
-  .inputProfile {
+    margin: 0;
+  }
+  .inputProfile2 {
     display: flex;
     flex-direction: column;
   }
