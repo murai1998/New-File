@@ -105,9 +105,7 @@ class Main extends Component {
           <Route
             exact
             path="/socket"
-            render={props => (
-              <Socket {...props} setUser={this.setUser} user={this.state} />
-            )}
+            render={props => <Socket {...props} user={this.state} />}
           />
         </Switch>
       </div>

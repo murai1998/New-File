@@ -5,16 +5,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
-const username = prompt("what is your username", "");
+// const username = prompt("what is your username", "");
 
 const socket = io("http://localhost:3000", {
   transports: ["websocket", "polling"]
 });
 
-const Socket = ({}) => {
+const Socket = props => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const username = props.user.user.email;
 
   useEffect(() => {
     socket.on("connect", () => {
