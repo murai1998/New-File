@@ -14,7 +14,10 @@ let List = require("./models/list.model");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log("Connecting DB to ", MONGODB_URI);
-
+const server = require("http").createServer();
+const io = require("socket.io")(server, {
+  transports: ["websocket", "polling"]
+});
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(async x => {
