@@ -223,11 +223,15 @@ class Profile extends Component {
                 </div>
               </div>
             ) : (
-              <div className="inputProfile">
+              <div className="profilePic1">
                 {console.log("Username", this.state.user.username)}
-                <h1 className="h1P">Profile</h1>
-                <h2>Welcome back, {this.state.user.username}!</h2>
-                <p>Today's goal: {this.state.reqAct} calories</p>
+                <div className="inputProfile">
+                  <h1 className="h1P">Profile</h1>
+                  <p>Today's goal: {this.state.reqAct} calories</p>
+                </div>
+                <div id="trBorder" className="tableDiv">
+                  <p>Welcome back, {this.state.user.username}!</p>
+                </div>
               </div>
             )}
           </div>

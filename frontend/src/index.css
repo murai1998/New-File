@@ -11009,6 +11009,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin: 10em 18em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .profilePic1{
     display: flex;
