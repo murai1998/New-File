@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:000");
+const socket = io.connect("http://localhost:6000");
 
 function Socket() {
   const [state, setState] = useState({ message: "", name: "" });
@@ -21,6 +21,7 @@ function Socket() {
     e.preventDefault();
     const { name, message } = state;
     socket.emit("message", { name, message });
+    console.log(name, message);
     setState({ message: "", name });
   };
 
