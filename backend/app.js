@@ -12,9 +12,9 @@ const passport = require("./config/passport");
 let list = require("./models/list");
 let List = require("./models/list.model");
 const http = require("http");
-var app2 = express();
-var server2 = http.createServer(app2);
-var io = require("socket.io").listen(server2);
+const app2 = require("express")();
+const http2 = require("http").createServer(app2);
+const io = require("socket.io")(http2);
 
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log("Connecting DB to ", MONGODB_URI);
@@ -79,18 +79,20 @@ app.get("*", (req, res, next) => {
 /*****/
 
 // const server = http.createServer(app);
-server2.listen(6000, function() {
-  console.log("Listen on port 6000");
-});
+
+// io.on("connection", function(socket) {
+//   console.log(`${socket.id} is connected`);
+// });
+
 io.on("connection", socket => {
   socket.on("message", ({ name, message }) => {
     io.emit("message", { name, message });
   });
 });
-// io.on("connection", function(socket) {
-//   console.log(`${socket.id} is connected`);
-// });
 
+http2.listen(4000, function() {
+  console.log("listening on port 4000");
+});
 const getApiAndEmit = "TODO";
 
 module.exports = app;
