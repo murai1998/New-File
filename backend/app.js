@@ -11,13 +11,12 @@ const session = require("express-session");
 const passport = require("./config/passport");
 let list = require("./models/list");
 let List = require("./models/list.model");
+const http = require("http");
+const socketIo = require("socket.io");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log("Connecting DB to ", MONGODB_URI);
-const server = require("http").createServer();
-const io = require("socket.io")(server, {
-  transports: ["websocket", "polling"]
-});
+
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(async x => {
@@ -76,5 +75,11 @@ app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 /*****/
+
+const server = http.createServer(app);
+
+const io = socketIo(server); // < Interesting!
+
+const getApiAndEmit = "TODO";
 
 module.exports = app;

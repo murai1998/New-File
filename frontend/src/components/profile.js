@@ -218,8 +218,7 @@ class Profile extends Component {
                   </div>
                 </div>
                 <div id="trBorder" className="tableDiv">
-                  People who do intense workouts 6 to 7 days a week with work
-                  that demands physical activity.
+                  Hi, {this.state.user.username}
                 </div>
               </div>
             ) : (

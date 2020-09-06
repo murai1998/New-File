@@ -18,7 +18,7 @@ const Socket = props => {
   const username = props.user.user.email;
 
   useEffect(() => {
-    socket.on("connect", () => {
+    socket.on("connect", username => {
       socket.emit("username", username);
     });
 
