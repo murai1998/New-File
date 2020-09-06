@@ -26,6 +26,7 @@ function Socket() {
   };
 
   const renderChat = () => {
+    console.log("Chat", chat);
     return chat.map(({ name, message }, index) => (
       <div key={index}>
         <h3>
