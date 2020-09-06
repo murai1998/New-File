@@ -144,8 +144,8 @@ class CreateExercise extends Component {
     return (
       <div>
         <Navbar />
-        <div className='createExs'>
-          <p className='tags'>
+        <div className="createExs">
+          <p className="tags">
             Physical activity has a large effect on total human energy
             expenditure, and contributes 20-30% to the body's total energy
             output. The amount of energy expended for different activities will
@@ -154,7 +154,7 @@ class CreateExercise extends Component {
             depends on many factors, including: activity level, age, gender,
             size, weight and body composition.
           </p>
-          <p className='tags'>
+          <p className="tags">
             One of the easiest methods for recording of the intensity of a
             physical activity is the Metabolic Equivalent Task (MET) method. The
             energy cost of many activities has been determined, usually by
@@ -173,7 +173,7 @@ class CreateExercise extends Component {
                 each activity
               </p>
 
-              <form onSubmit={this.handleSubmit}>
+              <form id="form6" onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label>Description:</label>
                   {this.state.list.map(item => {

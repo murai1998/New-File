@@ -1,100 +1,69 @@
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-import React from "react";
+const socket = io.connect("http://localhost:000");
 
-import { useEffect, useState } from "react";
-import moment from "moment";
-
-// const username = prompt("what is your username", "");
-
-const socket = io("http://localhost:3000", {
-  transports: ["websocket", "polling"]
-});
-
-const Socket = props => {
-  const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const username = props.user.user.email;
+function Socket() {
+  const [state, setState] = useState({ message: "", name: "" });
+  const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    socket.on("connect", username => {
-      socket.emit("username", username);
+    socket.on("message", ({ name, message }) => {
+      setChat([...chat, { name, message }]);
     });
+  });
 
-    socket.on("users", users => {
-      setUsers(users);
-    });
+  const onTextChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
-    socket.on("message", message => {
-      setMessages(messages => [...messages, message]);
-    });
+  const onMessageSubmit = e => {
+    e.preventDefault();
+    const { name, message } = state;
+    socket.emit("message", { name, message });
+    setState({ message: "", name });
+  };
 
-    socket.on("connected", user => {
-      setUsers(users => [...users, user]);
-    });
-
-    socket.on("disconnected", id => {
-      setUsers(users => {
-        return users.filter(user => user.id !== id);
-      });
-    });
-  }, []);
-
-  const submit = event => {
-    event.preventDefault();
-    socket.emit("send", message);
-    setMessage("");
+  const renderChat = () => {
+    return chat.map(({ name, message }, index) => (
+      <div key={index}>
+        <h3>
+          {name}: <span>{message}</span>
+        </h3>
+      </div>
+    ));
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12 mt-4 mb-4">
-          <h6>Hello {username}</h6>
+    <div className="card">
+      <form onSubmit={onMessageSubmit}>
+        <h1>Messanger</h1>
+        <div className="name-field">
+          <textarea
+            name="name"
+            onChange={e => onTextChange(e)}
+            value={state.name}
+            label="Name"
+          />
         </div>
-      </div>
-      <div className="row">
-        <div className="col-md-8">
-          <h6>Messages</h6>
-          <div id="messages">
-            {messages.map(({ user, date, text }, index) => (
-              <div key={index} className="row mb-2">
-                <div className="col-md-3">
-                  {moment(date).format("h:mm:ss a")}
-                </div>
-                <div className="col-md-2">{user.name}</div>
-                <div className="col-md-2">{text}</div>
-              </div>
-            ))}
-          </div>
-          <form onSubmit={submit} id="form">
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                onChange={e => setMessage(e.currentTarget.value)}
-                value={message}
-                id="text"
-              />
-              <span className="input-group-btn">
-                <button id="submit" type="submit" className="btn btn-primary">
-                  Send
-                </button>
-              </span>
-            </div>
-          </form>
+        <div>
+          <textarea
+            name="message"
+            onChange={e => onTextChange(e)}
+            value={state.message}
+            id="outlined-multiline-static"
+            variant="outlined"
+            label="Message"
+          />
         </div>
-        <div className="col-md-4">
-          <h6>Users</h6>
-          <ul id="users">
-            {users.map(({ name, id }) => (
-              <li key={id}>{name}</li>
-            ))}
-          </ul>
-        </div>
+        <button>Send Message</button>
+      </form>
+      <div className="render-chat">
+        <h1>Chat Log</h1>
+        {renderChat()}
       </div>
     </div>
   );
-};
+}
+
 export default Socket;
