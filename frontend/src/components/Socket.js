@@ -5,10 +5,9 @@ import Navbar from "./navbar";
 import moment from "moment";
 
 const socket = io.connect("http://localhost:4000");
-
 function Socket(props) {
   const username = props.user.user.username;
-
+  console.log("userName", username);
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -44,51 +43,63 @@ function Socket(props) {
   };
   console.log("MESS", messages);
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12 mt-4 mb-4">
-          <h6>Hello {username}</h6>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-8">
-          <h6>Messages</h6>
-
-          <div id="messages">
-            {messages.map(({ user, date, text }, index) => (
-              <div key={index} className="row mb-2">
-                <div className="col-md-3">
-                  {moment(date).format("h:mm:ss a")}
-                </div>
-                <div className="col-md-2">{user.name}</div>
-                <div className="col-md-2">{text}</div>
-              </div>
-            ))}
+    <div>
+      {" "}
+      <Navbar />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12 mt-4 mb-4">
+            <h6>Hello {username}</h6>
           </div>
-          <form onSubmit={submit} id="form">
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control"
-                onChange={e => setMessage(e.currentTarget.value)}
-                value={message}
-                id="text"
-              />
-              <span className="input-group-btn">
-                <button id="submit" type="submit" className="btn btn-primary">
-                  Send
-                </button>
-              </span>
-            </div>
-          </form>
         </div>
-        <div className="col-md-4">
-          <h6>Users</h6>
-          <ul id="users">
-            {users.map(({ name, id }) => (
-              <li key={id}>{name}</li>
-            ))}
-          </ul>
+        <div className="row">
+          <div className="col-md-8">
+            <h6>Messages</h6>
+
+            <div id="messages">
+              {messages.map(({ user, date, text }, index) => (
+                <div key={index} className="row mb-2">
+                  <div className="col-md-3">
+                    {moment(date).format("h:mm:ss a")}
+                  </div>
+                  {user !== undefined ? (
+                    <div className="col-md-2">{user.name}</div>
+                  ) : (
+                    ""
+                  )}
+
+                  <div className="col-md-2">{text}</div>
+                </div>
+              ))}
+            </div>
+            <form onSubmit={submit} id="form">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={e => setMessage(e.currentTarget.value)}
+                  value={message}
+                  id="text"
+                />
+                <span className="input-group-btn">
+                  <button id="submit" type="submit" className="btn btn-primary">
+                    Send
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+          <div className="col-md-4">
+            <h6>Users</h6>
+            <ul id="users">
+              {/* {users.map(({ name, id }) => (
+                <li key={id}>{name}</li>
+              ))} */}
+              {messages.map(({ user, date, text }, index) => (
+                <li key={user}>{user}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

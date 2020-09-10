@@ -97,6 +97,7 @@ io.on("connection", client => {
       name: username,
       id: client.id
     };
+    console.log("Users", user);
     users[client.id] = user;
     io.emit("connected", user);
     io.emit("users", Object.values(users));
@@ -108,6 +109,7 @@ io.on("connection", client => {
       date: new Date().toISOString(),
       user: users[client.id]
     });
+    console.log("Users", users[client.id]);
   });
 
   client.on("disconnect", () => {
