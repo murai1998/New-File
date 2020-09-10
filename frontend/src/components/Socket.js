@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+import Navbar from "./navbar";
 
 const socket = io.connect("http://localhost:4000");
 
-function Socket() {
-  const [state, setState] = useState({ message: "", name: "" });
+function Socket(props) {
+  const [state, setState] = useState({
+    message: "",
+    name: props.user.username
+  });
   const [chat, setChat] = useState([]);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ function Socket() {
   };
 
   const renderChat = () => {
-    console.log("Chat", chat);
+    console.log("Name", props.user.username);
     return chat.map(({ name, message }, index) => (
       <div key={index}>
         <h3>
@@ -37,32 +41,29 @@ function Socket() {
   };
 
   return (
-    <div className="card">
-      <form onSubmit={onMessageSubmit}>
-        <h1>Messanger</h1>
-        <div className="name-field">
-          <textarea
-            name="name"
-            onChange={e => onTextChange(e)}
-            value={state.name}
-            label="Name"
-          />
+    <div>
+      <Navbar />
+
+      <div className="card">
+        <form onSubmit={onMessageSubmit}>
+          <h1>Messanger</h1>
+
+          <div>
+            <textarea
+              name="message"
+              onChange={e => onTextChange(e)}
+              value={state.message}
+              id="outlined-multiline-static"
+              variant="outlined"
+              label="Message"
+            />
+          </div>
+          <button>Send Message</button>
+        </form>
+        <div className="render-chat">
+          <h1>Chat Log</h1>
+          {renderChat()}
         </div>
-        <div>
-          <textarea
-            name="message"
-            onChange={e => onTextChange(e)}
-            value={state.message}
-            id="outlined-multiline-static"
-            variant="outlined"
-            label="Message"
-          />
-        </div>
-        <button>Send Message</button>
-      </form>
-      <div className="render-chat">
-        <h1>Chat Log</h1>
-        {renderChat()}
       </div>
     </div>
   );
