@@ -84,12 +84,38 @@ app.get("*", (req, res, next) => {
 //   console.log(`${socket.id} is connected`);
 // });
 
-io.on("connection", socket => {
-  socket.on("message", ({ name, message }) => {
-    io.emit("message", { name, message });
+// io.on("connection", socket => {
+//   socket.on("message", ({ name, message }) => {
+//     io.emit("message", { name, message });
+//   });
+// });
+
+const users = {};
+io.on("connection", client => {
+  client.on("username", username => {
+    const user = {
+      name: username,
+      id: client.id
+    };
+    users[client.id] = user;
+    io.emit("connected", user);
+    io.emit("users", Object.values(users));
+  });
+
+  client.on("send", message => {
+    io.emit("message", {
+      text: message,
+      date: new Date().toISOString(),
+      user: users[client.id]
+    });
+  });
+
+  client.on("disconnect", () => {
+    const username = users[client.id];
+    delete users[client.id];
+    io.emit("disconnected", client.id);
   });
 });
-
 http2.listen(4000, function() {
   console.log("listening on port 4000");
 });
