@@ -4,7 +4,9 @@ import Navbar from "./navbar";
 
 import moment from "moment";
 
-const socket = io.connect("http://localhost:4000");
+const socket = io("http://localhost:4000", {
+  transports: ["websocket", "polling"]
+});
 function Socket(props) {
   const username = props.user.user.username;
 
@@ -20,6 +22,7 @@ function Socket(props) {
 
     socket.on("users", users => {
       setUsers(users);
+      console.log("All users", users);
     });
 
     socket.on("message", message => {
@@ -92,12 +95,10 @@ function Socket(props) {
           </div>
           <div className="col-md-4">
             <h6>Users</h6>
+            {console.log(users)}
             <ul id="users">
-              {/* {users.map(({ name, id }) => (
+              {users.map(({ name, id }) => (
                 <li key={id}>{name}</li>
-              ))} */}
-              {messages.map(({ user, date, text }, index) => (
-                <li key={user}>{user}</li>
               ))}
             </ul>
           </div>

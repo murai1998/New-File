@@ -12,9 +12,14 @@ const passport = require("./config/passport");
 let list = require("./models/list");
 let List = require("./models/list.model");
 const http = require("http");
-const app2 = require("express")();
-const http2 = require("http").createServer(app2);
-const io = require("socket.io")(http2);
+// const app2 = require("express")();
+// const http2 = require("http").createServer(app2);
+// const io = require("socket.io")(http2);
+
+const server2 = require("http").createServer();
+const io = require("socket.io")(server2, {
+  transports: ["websocket", "polling"]
+});
 
 const MONGODB_URI = process.env.MONGODB_URI;
 console.log("Connecting DB to ", MONGODB_URI);
@@ -94,33 +99,30 @@ const users = {};
 io.on("connection", client => {
   client.on("username", username => {
     const user = {
-      name: username
+      name: username,
+      id: client.id
     };
-
-    users[client.name] = user;
+    users[client.id] = user;
+    console.log("USER ID", users[client.id]);
     io.emit("connected", user);
     io.emit("users", Object.values(users));
   });
 
   client.on("send", message => {
-    console.log("User", client.name);
     io.emit("message", {
       text: message,
       date: new Date().toISOString(),
-      user: users[client.name]
+      user: users[client.id]
     });
-    console.log("Users", users);
   });
 
   client.on("disconnect", () => {
-    const username = users[client.name];
-    delete users[client.name];
-    io.emit("disconnected", client.name);
+    const username = users[client.id];
+    delete users[client.id];
+    io.emit("disconnected", client.id);
   });
 });
-http2.listen(4000, function() {
-  console.log("listening on port 4000");
-});
+server2.listen(4000);
 const getApiAndEmit = "TODO";
 
 module.exports = app;

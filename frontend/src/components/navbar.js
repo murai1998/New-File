@@ -23,7 +23,6 @@ class Navbar extends Component {
   };
 
   render() {
-    console.log("NAVPROPs", this.props);
     return (
       <body id="page-top">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
