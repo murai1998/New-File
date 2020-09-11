@@ -7,6 +7,7 @@ import moment from "moment";
 const socket = io.connect("http://localhost:4000");
 function Socket(props) {
   const username = props.user.user.username;
+
   console.log("userName", username);
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -29,9 +30,9 @@ function Socket(props) {
       setUsers(users => [...users, user]);
     });
 
-    socket.on("disconnected", id => {
+    socket.on("disconnected", name => {
       setUsers(users => {
-        return users.filter(user => user.id !== id);
+        return users.filter(user => user.name !== name);
       });
     });
   }, []);

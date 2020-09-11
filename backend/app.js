@@ -94,28 +94,28 @@ const users = {};
 io.on("connection", client => {
   client.on("username", username => {
     const user = {
-      name: username,
-      id: client.id
+      name: username
     };
-    console.log("Users", user);
-    users[client.id] = user;
+
+    users[client.name] = user;
     io.emit("connected", user);
     io.emit("users", Object.values(users));
   });
 
   client.on("send", message => {
+    console.log("User", client.name);
     io.emit("message", {
       text: message,
       date: new Date().toISOString(),
-      user: users[client.id]
+      user: users[client.name]
     });
-    console.log("Users", users[client.id]);
+    console.log("Users", users);
   });
 
   client.on("disconnect", () => {
-    const username = users[client.id];
-    delete users[client.id];
-    io.emit("disconnected", client.id);
+    const username = users[client.name];
+    delete users[client.name];
+    io.emit("disconnected", client.name);
   });
 });
 http2.listen(4000, function() {
