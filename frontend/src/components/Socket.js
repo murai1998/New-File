@@ -91,7 +91,7 @@ function Socket(props) {
 
   useEffect(() => {
     // subscribe a new user
-  
+
     socket.emit("login", props.user.user.username);
     // list of connected users
     socket.on("users", data => {
@@ -109,11 +109,16 @@ function Socket(props) {
       setRecMsg({ listMsg: listMessages });
     });
   }, []);
-
+  const disconect = e => {
+    e.preventDefault();
+    console.log(e.target.value);
+    socket.disconnect();
+  };
   // to send a message
   const sendMessage = () => {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
   };
+
   return (
     <div>
       <Navbar />
@@ -177,6 +182,7 @@ function Socket(props) {
           Send{" "}
         </Button>
       </div>
+      <button onClick={disconect}>Disconect</button>
     </div>
   );
 }

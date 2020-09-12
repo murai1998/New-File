@@ -117,6 +117,7 @@ io.on("connection", socket => {
 
     // socket.emit("connecteduser", JSON.stringify(users[users.length - 1]));
     let arr2 = users.filter(x => x.userName == userName);
+    arr2[0].connectionTime = new moment().format("YYYY-MM-DD HH:mm:ss");
     socket.emit("connecteduser", JSON.stringify(arr2[0]));
     io.emit("users", JSON.stringify(users));
   });
