@@ -112,6 +112,8 @@ function Socket(props) {
   const disconect = e => {
     e.preventDefault();
     console.log(e.target.value);
+    socket.emit("disconect", socket.disconnect());
+
     socket.disconnect();
   };
   // to send a message
@@ -121,7 +123,7 @@ function Socket(props) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar disconect={disconect}/>
       <h3 className="d-flex justify-content-center">
         {" "}
         Connected users : {user.usersList?.length}{" "}
@@ -182,7 +184,7 @@ function Socket(props) {
           Send{" "}
         </Button>
       </div>
-      <button onClick={disconect}>Disconect</button>
+      {/* <button onClick={disconect}>Disconect</button> */}
     </div>
   );
 }
