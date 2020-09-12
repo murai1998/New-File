@@ -15,7 +15,7 @@ const http = require("http");
 const app2 = require("express")();
 const http2 = require("http").createServer(app2);
 const io = require("socket.io")(http2);
-
+const moment = require("moment");
 // const server2 = require("http").createServer();
 // const io = require("socket.io")(server2, {
 //   transports: ["websocket", "polling"]
@@ -85,45 +85,52 @@ app.get("*", (req, res, next) => {
 
 // const server = http.createServer(app);
 
-io.on("connection", function(socket) {
-  console.log(`${socket.id} is connected`);
-});
+// io.on("connection", function(socket) {
+//   console.log(`${socket.id} is connected`);
+// });
 
-io.on("connection", socket => {
-  socket.on("message", ({ name, message }) => {
-    io.emit("message", { name, message });
-  });
-});
-
-// const users = {};
-// io.on("connection", client => {
-//   client.on("username", username => {
-//     console.log("username", username);
-//     const user = {
-//       name: username,
-//       id: client.id
-//     };
-//     users[client.id] = user;
-//     console.log("USER ID", users[client.id]);
-//     io.emit("connected", user);
-//     io.emit("users", Object.values(users));
-//   });
-
-//   client.on("send", message => {
-//     io.emit("message", {
-//       text: message,
-//       date: new Date().toISOString(),
-//       user: users[client.id]
-//     });
-//   });
-
-//   client.on("disconnect", () => {
-//     const username = users[client.id];
-//     delete users[client.id];
-//     io.emit("disconnected", client.id);
+// io.on("connection", socket => {
+//   socket.on("message", ({ name, message }) => {
+//     io.emit("message", { name, message });
 //   });
 // });
-// server2.listen(4000);
+
+let users = [];
+io.on("connection", socket => {
+  socket.on("login", userName => {
+    users.push({
+      id: socket.id,
+      userName: userName,
+      connectionTime: new moment().format("YYYY-MM-DD HH:mm:ss")
+    });
+    socket.emit("connecteduser", JSON.stringify(users[users.length - 1]));
+    io.emit("users", JSON.stringify(users));
+  });
+
+  socket.on("sendMsg", msgTo => {
+    msgTo = JSON.parse(msgTo);
+    const minutes = new Date().getMinutes();
+    io.emit(
+      "getMsg",
+      JSON.stringify({
+        id: socket.id,
+        userName: users.find(e => e.id == msgTo.id).userName,
+        msg: msgTo.msg,
+        time:
+          new Date().getHours() + ":" + (minutes < 10 ? "0" + minutes : minutes)
+      })
+    );
+  });
+
+  socket.once("disconnect", () => {
+    let index = -1;
+    if (users.length >= 0) {
+      index = users.findIndex(e => e.id == socket.id);
+    }
+    if (index >= 0) users.splice(index, 1);
+    io.emit("users", JSON.stringify(users));
+  });
+});
 
 http2.listen(4000, function() {
   console.log("listening on port 4000");

@@ -1,174 +1,179 @@
 import React, { useState, useEffect } from "react";
-import io from "socket.io-client";
+// import io from "socket.io-client";
+import socketIOClient from "socket.io-client";
 import Navbar from "./navbar";
 
 import moment from "moment";
-
-const socket = io("http://localhost:4000", {
-  transports: ["websocket", "polling"]
-});
+import userGen from "username-generator";
+import { Button, Input } from "reactstrap";
+// const socket = io("http://localhost:4000", {
+//   transports: ["websocket", "polling"]
+// });
+const ENDPOINT = "http://127.0.0.1:4000";
+const socket = socketIOClient(ENDPOINT);
 function Socket(props) {
-  //   const username = props.user.user.username;
-
-  //   const [users, setUsers] = useState([]);
-  //   const [message, setMessage] = useState("");
-  //   const [messages, setMessages] = useState([]);
+  //   const [state, setState] = useState({
+  //     message: "",
+  //     name: props.user.user.username,
+  //     users: []
+  //   });
+  //   const [chat, setChat] = useState([]);
 
   //   useEffect(() => {
-  //     socket.on("connect", async () => {
-  //       await socket.emit("username", username);
-  //       console.log("userName", username);
+  //     socket.on("message", ({ name, message }) => {
+  //       setChat([...chat, { name, message }]);
   //     });
+  //   });
 
-  //     socket.on("users", async users => {
-  //       await setUsers(users);
-  //       console.log("All users", users);
-  //     });
-
-  //     socket.on("message", async message => {
-  //       await setMessages(messages => [...messages, message]);
-  //     });
-
-  //     socket.on("connected", async user => {
-  //       await setUsers(users => [...users, user]);
-  //     });
-
-  //     socket.on("disconnected", async name => {
-  //       await setUsers(users => {
-  //         return users.filter(user => user.name !== name);
-  //       });
-  //     });
-  //   }, []);
-
-  //   const submit = event => {
-  //     event.preventDefault();
-  //     socket.emit("send", message);
-  //     setMessage("");
+  //   const onTextChange = e => {
+  //     setState({ ...state, [e.target.name]: e.target.value });
   //   };
-  //   console.log("MESS", messages);
+
+  //   const onMessageSubmit = e => {
+  //     e.preventDefault();
+  //     const { name, message, users } = state;
+  //     socket.emit("message", { name, message });
+  //     users.push(name);
+  //     console.log("users", name);
+  //     setState({ message: "", name });
+  //   };
+
+  //   const renderChat = () => {
+  //     console.log("Name", props.user.user.username);
+  //     return chat.map(({ name, message }, index) => (
+  //       <div key={index}>
+  //         <h3>
+  //           {name}: <span>{message}</span>
+  //         </h3>
+  //       </div>
+  //     ));
+  //   };
+
   //   return (
   //     <div>
-  //       {" "}
   //       <Navbar />
-  //       <div className="container">
-  //         <div className="row">
-  //           <div className="col-md-12 mt-4 mb-4">
-  //             <h6>Hello {username}</h6>
+  //       {props.user.user.username}
+  //       <div className="card">
+  //         <form onSubmit={onMessageSubmit}>
+  //           <h1>Messanger</h1>
+  //           <div className="render-chat">
+  //             <h1>Chat Log</h1>
+  //             {renderChat()}
   //           </div>
-  //         </div>
-  //         <div className="row">
-  //           <div className="col-md-8">
-  //             <h6>Messages</h6>
 
-  //             <div id="messages">
-  //               {messages.map(({ user, date, text }, index) => (
-  //                 <div key={index} className="row mb-2">
-  //                   <div className="col-md-3">
-  //                     {moment(date).format("h:mm:ss a")}
-  //                   </div>
-  //                   {user !== undefined ? (
-  //                     <div className="col-md-2">{user.name}</div>
-  //                   ) : (
-  //                     ""
-  //                   )}
-
-  //                   <div className="col-md-2">{text}</div>
-  //                 </div>
-  //               ))}
-  //             </div>
-  //             <form onSubmit={submit} id="form">
-  //               <div className="input-group">
-  //                 <input
-  //                   type="text"
-  //                   className="form-control"
-  //                   onChange={e => setMessage(e.currentTarget.value)}
-  //                   value={message}
-  //                   id="text"
-  //                 />
-  //                 <span className="input-group-btn">
-  //                   <button id="submit" type="submit" className="btn btn-primary">
-  //                     Send
-  //                   </button>
-  //                 </span>
-  //               </div>
-  //             </form>
+  //           <div>
+  //             <h2>Active users</h2>
+  //             <p></p>
   //           </div>
-  //           <div className="col-md-4">
-  //             <h6>Users</h6>
-  //             {console.log(users)}
-  //             <ul id="users">
-  //               {users.map(({ name, id }) => (
-  //                 <li key={id}>{name}</li>
-  //               ))}
-  //             </ul>
+  //           <div>
+  //             <textarea
+  //               name="message"
+  //               onChange={e => onTextChange(e)}
+  //               value={state.message}
+  //               variant="outlined"
+  //               label="Message"
+  //             />
   //           </div>
-  //         </div>
+  //           <button>Send Message</button>
+  //         </form>
   //       </div>
   //     </div>
   //   );
 
-  const [state, setState] = useState({
-    message: "",
-    name: props.user.user.username
+  const [user, setUser] = useState({
+    usersList: null
   });
-  const [chat, setChat] = useState([]);
+  const [msg, setMsg] = useState("");
+  const [recMsg, setRecMsg] = useState({
+    listMsg: []
+  });
+  const [loggedUser, setLoggedUser] = useState();
 
   useEffect(() => {
-    socket.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
+    // subscribe a new user
+    socket.emit("login", userGen.generateUsername());
+    // list of connected users
+    socket.on("users", data => {
+      setUser({ usersList: JSON.parse(data) });
     });
-  });
+    // get the logged user
+    socket.on("connecteduser", data => {
+      setLoggedUser(JSON.parse(data));
+    });
 
-  const onTextChange = e => {
-    setState({ ...state, [e.target.name]: e.target.value });
+    // we get the messages
+    socket.on("getMsg", data => {
+      let listMessages = recMsg.listMsg;
+      listMessages.push(JSON.parse(data));
+      setRecMsg({ listMsg: listMessages });
+    });
+  }, []);
+
+  // to send a message
+  const sendMessage = () => {
+    socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
   };
-
-  const onMessageSubmit = e => {
-    e.preventDefault();
-    const { name, message } = state;
-    socket.emit("message", { name, message });
-    console.log(name, message);
-    setState({ message: "", name });
-  };
-
-  const renderChat = () => {
-    console.log("Name", props.user.user.username);
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ));
-  };
-
   return (
     <div>
-      <Navbar />
-
-      <div className="card">
-        <form onSubmit={onMessageSubmit}>
-          <h1>Messanger</h1>
-          <div className="render-chat">
-            <h1>Chat Log</h1>
-            {renderChat()}
-          </div>
-
-          <div>
-            <h2>Active users</h2>
-            <p></p>
-          </div>
-          <div>
-            <textarea
-              name="message"
-              onChange={e => onTextChange(e)}
-              value={state.message}
-              variant="outlined"
-              label="Message"
-            />
-          </div>
-          <button>Send Message</button>
-        </form>
+      <h3 className="d-flex justify-content-center">
+        {" "}
+        Connected users : {user.usersList?.length}{" "}
+      </h3>
+      <table className="table">
+        <thead>
+          <tr>
+            <th> User name </th>
+            <th> Connection Date </th>
+          </tr>
+        </thead>
+        <tbody>
+          {user.usersList?.map(user => {
+            return (
+              <tr key={user.id}>
+                <td> {user.userName} </td>
+                <td> {user.connectionTime} </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <h3 className="d-flex justify-content-center">
+        {" "}
+        User : {loggedUser?.userName}{" "}
+      </h3>
+      <div style={{ borderStyle: "inset" }}>
+        <h2 className="d-flex justify-content-center"> Chat </h2>
+        {recMsg.listMsg?.map((msgInfo, index) => {
+          return (
+            <div className="d-flex justify-content-center" key={index}>
+              {" "}
+              <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
+              <small
+                style={{ marginLeft: "18px", color: "blue", marginTop: "5px" }}
+              >
+                {" "}
+                {msgInfo.time}{" "}
+              </small>{" "}
+            </div>
+          );
+        })}
+      </div>
+      <div className="d-flex justify-content-center">
+        <Input
+          style={{ width: "300px", display: "inline" }}
+          id="inputmsg"
+          onChange={event => setMsg(event.target.value)}
+        />
+        <Button
+          className="btn btn-info"
+          id="btnmsg"
+          onClick={() => {
+            sendMessage();
+          }}
+        >
+          {" "}
+          Send{" "}
+        </Button>
       </div>
     </div>
   );
