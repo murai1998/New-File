@@ -98,12 +98,26 @@ app.get("*", (req, res, next) => {
 let users = [];
 io.on("connection", socket => {
   socket.on("login", userName => {
-    users.push({
-      id: socket.id,
-      userName: userName,
-      connectionTime: new moment().format("YYYY-MM-DD HH:mm:ss")
-    });
-    socket.emit("connecteduser", JSON.stringify(users[users.length - 1]));
+    if (users.length == 0)
+      users.push({
+        id: socket.id,
+        userName: userName,
+        connectionTime: new moment().format("YYYY-MM-DD HH:mm:ss")
+      });
+
+    let arr = users.filter(x => x.userName == userName);
+    if (arr.length == 0) {
+      users.push({
+        id: socket.id,
+        userName: userName,
+        connectionTime: new moment().format("YYYY-MM-DD HH:mm:ss")
+      });
+    }
+    console.log("users", users);
+
+    // socket.emit("connecteduser", JSON.stringify(users[users.length - 1]));
+    let arr2 = users.filter(x => x.userName == userName);
+    socket.emit("connecteduser", JSON.stringify(arr2[0]));
     io.emit("users", JSON.stringify(users));
   });
 

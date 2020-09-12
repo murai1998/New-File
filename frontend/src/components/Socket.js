@@ -4,7 +4,7 @@ import socketIOClient from "socket.io-client";
 import Navbar from "./navbar";
 
 import moment from "moment";
-import userGen from "username-generator";
+// import userGen from "username-generator";
 import { Button, Input } from "reactstrap";
 // const socket = io("http://localhost:4000", {
 //   transports: ["websocket", "polling"]
@@ -91,7 +91,8 @@ function Socket(props) {
 
   useEffect(() => {
     // subscribe a new user
-    socket.emit("login", userGen.generateUsername());
+  
+    socket.emit("login", props.user.user.username);
     // list of connected users
     socket.on("users", data => {
       setUser({ usersList: JSON.parse(data) });
@@ -115,6 +116,7 @@ function Socket(props) {
   };
   return (
     <div>
+      <Navbar />
       <h3 className="d-flex justify-content-center">
         {" "}
         Connected users : {user.usersList?.length}{" "}
