@@ -77,46 +77,53 @@ function Socket(props) {
           </tbody>
         </table>
       </div>
-      <h3 className="d-flex justify-content-center">
-        {" "}
-        Hi, {loggedUser?.userName}! Start a new conversation
-      </h3>
-      <div id="chat" className="d-flex justify-content-center">
-        <h3 className="d-flex justify-content-center"> Chat </h3>
-        {recMsg.listMsg?.map((msgInfo, index) => {
-          return (
-            <div
-              id="chat"
-              className="d-flex justify-content-center"
-              key={index}
+      <div className="messageChat2">
+        <h3 className="d-flex justify-content-center">
+          {" "}
+          Hi, {loggedUser?.userName}! Start a new conversation
+        </h3>
+        <div className="messageChat">
+          <div id="chat" className="d-flex justify-content-center">
+            <h3 id="chatH" className="d-flex justify-content-center">
+              {" "}
+              Chat{" "}
+            </h3>
+            {recMsg.listMsg?.map((msgInfo, index) => {
+              return (
+                <div className="d-flex justify-content-center" key={index}>
+                  {" "}
+                  <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
+                  <small
+                    style={{
+                      marginLeft: "18px",
+                      color: "blue",
+                      marginTop: "5px"
+                    }}
+                  >
+                    {" "}
+                    {msgInfo.time}{" "}
+                  </small>{" "}
+                </div>
+              );
+            })}
+          </div>
+          <div className="d-flex justify-content-center">
+            <textarea
+              style={{ width: "250px", display: "inline", height: "90px" }}
+              id="inputmsg"
+              onChange={event => setMsg(event.target.value)}
+            />
+            <Button
+              className="btn"
+              id="btnmsg"
+              onClick={() => {
+                sendMessage();
+              }}
             >
               {" "}
-              <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
-              <small
-                style={{ marginLeft: "18px", color: "blue", marginTop: "5px" }}
-              >
-                {" "}
-                {msgInfo.time}{" "}
-              </small>{" "}
-            </div>
-          );
-        })}
-        <div>
-          <Input
-            style={{ width: "300px", display: "inline" }}
-            id="inputmsg"
-            onChange={event => setMsg(event.target.value)}
-          />
-          <Button
-            className="btn btn-info"
-            id="btnmsg"
-            onClick={() => {
-              sendMessage();
-            }}
-          >
-            {" "}
-            Send{" "}
-          </Button>
+              Send{" "}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
