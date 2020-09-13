@@ -98,13 +98,17 @@ app.get("*", (req, res, next) => {
 let users = [];
 io.on("connection", socket => {
   socket.on("login", userName => {
-    if (users.length == 0)
+    if (users.length == 0 && userName !== null) {
       users.push({
         id: socket.id,
         userName: userName,
         connectionTime: new moment().format("YYYY-MM-DD HH:mm:ss")
       });
-
+    }
+    let undf = users.findIndex(x => x.userName === null);
+    if (undf !== -1) {
+      users.splice(undf, 1);
+    }
     let arr = users.filter(x => x.userName == userName);
     if (arr.length == 0) {
       users.push({

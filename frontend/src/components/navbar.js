@@ -70,7 +70,7 @@ class Navbar extends Component {
                   </li>
                   <li className="nav-item active">
                     <Link
-                      onClick={this.props.disconect}
+                      //   onClick={this.props.disconect}
                       className="nav-link"
                       to="/"
                     >

@@ -109,10 +109,10 @@ function Socket(props) {
       setRecMsg({ listMsg: listMessages });
     });
   }, []);
-  const disconect = e => {
-    e.preventDefault();
-    console.log(e.target.value);
-    socket.emit("disconect", socket.disconnect());
+  const disconect = name => {
+    // e.preventDefault();
+
+    socket.emit("disconect", name);
 
     socket.disconnect();
   };
@@ -123,7 +123,7 @@ function Socket(props) {
 
   return (
     <div>
-      <Navbar disconect={disconect}/>
+      <Navbar disconect={disconect} />
       <h3 className="d-flex justify-content-center">
         {" "}
         Connected users : {user.usersList?.length}{" "}
@@ -184,7 +184,9 @@ function Socket(props) {
           Send{" "}
         </Button>
       </div>
-      {/* <button onClick={disconect}>Disconect</button> */}
+      {/* <button onClick={() => disconect(props.user.user.username)}>
+        Disconect
+      </button> */}
     </div>
   );
 }
