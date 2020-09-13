@@ -56,19 +56,16 @@ function Socket(props) {
   return (
     <div>
       <Navbar disconect={disconect} />
-      <div className="tableNames">
-        <h3 className="d-flex justify-content-center table-primary">
-          {" "}
-          Connected users : {user.usersList?.length}{" "}
-        </h3>
-        <table className="table table-striped">
-          <thead>
+      <div className="tableNames ">
+        <h3> Active users: {user.usersList?.length} </h3>
+        <table className="table table-striped ">
+          <thead className="d-flex justify-content-center">
             <tr>
               <th> User name </th>
               <th> Connection Date </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="d-flex justify-content-center">
             {user.usersList?.map(user => {
               return (
                 <tr key={user.id}>
@@ -82,13 +79,17 @@ function Socket(props) {
       </div>
       <h3 className="d-flex justify-content-center">
         {" "}
-        User : {loggedUser?.userName}{" "}
+        Hi, {loggedUser?.userName}! Start a new conversation
       </h3>
-      <div>
-        <h2 className="d-flex justify-content-center"> Chat </h2>
+      <div id="chat" className="d-flex justify-content-center">
+        <h3 className="d-flex justify-content-center"> Chat </h3>
         {recMsg.listMsg?.map((msgInfo, index) => {
           return (
-            <div className="d-flex justify-content-center" key={index}>
+            <div
+              id="chat"
+              className="d-flex justify-content-center"
+              key={index}
+            >
               {" "}
               <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
               <small
@@ -100,23 +101,23 @@ function Socket(props) {
             </div>
           );
         })}
-      </div>
-      <div className="d-flex justify-content-center">
-        <Input
-          style={{ width: "300px", display: "inline" }}
-          id="inputmsg"
-          onChange={event => setMsg(event.target.value)}
-        />
-        <Button
-          className="btn btn-info"
-          id="btnmsg"
-          onClick={() => {
-            sendMessage();
-          }}
-        >
-          {" "}
-          Send{" "}
-        </Button>
+        <div>
+          <Input
+            style={{ width: "300px", display: "inline" }}
+            id="inputmsg"
+            onChange={event => setMsg(event.target.value)}
+          />
+          <Button
+            className="btn btn-info"
+            id="btnmsg"
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            {" "}
+            Send{" "}
+          </Button>
+        </div>
       </div>
     </div>
   );
