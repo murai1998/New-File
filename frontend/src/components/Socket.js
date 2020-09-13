@@ -187,6 +187,7 @@ function Socket(props) {
       {/* <button onClick={() => disconect(props.user.user.username)}>
         Disconect
       </button> */}
+      <p></p>
     </div>
   );
 }
