@@ -51,6 +51,9 @@ function Socket(props) {
   // to send a message
   const sendMessage = () => {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
+    setMsg("");
+
+    setMsg("");
   };
 
   return (
@@ -78,23 +81,19 @@ function Socket(props) {
         </table>
       </div>
       <div className="messageChat2">
-        <h3 className="d-flex justify-content-center">
+        {/* <h3 className="d-flex justify-content-center">
           {" "}
-          Hi, {loggedUser?.userName}! Start a new conversation
-        </h3>
+          Hi, ! Start a new conversation
+        </h3> */}
         <div className="messageChat">
           <h3 id="chatH" className="d-flex justify-content-center">
             {" "}
-            Chat{" "}
+            {loggedUser?.userName}`s CHAT{" "}
           </h3>
-          <div id="chat" className="d-flex justify-content-center">
+          <div id="chat">
             {recMsg.listMsg?.map((msgInfo, index) => {
               return (
-                <div
-                  id="newCh"
-                  className="d-flex justify-content-center"
-                  key={index}
-                >
+                <div id="newCh" key={index}>
                   {" "}
                   <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
                   <small
@@ -119,9 +118,11 @@ function Socket(props) {
               width: "800px",
               height: "80px",
               padding: "10px",
-              textAlign: "left"
+              textAlign: "left",
+              width: "100%"
             }}
             id="inputmsg"
+            value={msg}
             onChange={event => setMsg(event.target.value)}
           />
           <Button

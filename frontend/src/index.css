@@ -23,7 +23,7 @@
   padding: 0 20px;
 }
 .messageChat {
-  border: 3px solid rgb(237, 235, 235);
+   border: 1px solid grey;
   width: 800px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
 }
 @media (max-width: 700px) {
   .messageChat {
-    border: 3px solid rgb(237, 235, 235);
+    border: 1px solid grey;
     width: 300px;
   }
   #messText {
@@ -51,7 +51,11 @@
   align-items: center;
 }
 #chatH {
-  text-decoration: underline;
+ border: 1px solid grey;
+  min-width: 800px;
+  max-width: 800px;
+  background:  #b8daff;
+  padding: 15px 0;
 }
 #btnmsg {
   background-color: #007bff;
