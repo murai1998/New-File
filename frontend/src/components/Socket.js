@@ -83,14 +83,18 @@ function Socket(props) {
           Hi, {loggedUser?.userName}! Start a new conversation
         </h3>
         <div className="messageChat">
+          <h3 id="chatH" className="d-flex justify-content-center">
+            {" "}
+            Chat{" "}
+          </h3>
           <div id="chat" className="d-flex justify-content-center">
-            <h3 id="chatH" className="d-flex justify-content-center">
-              {" "}
-              Chat{" "}
-            </h3>
             {recMsg.listMsg?.map((msgInfo, index) => {
               return (
-                <div className="d-flex justify-content-center" key={index}>
+                <div
+                  id="newCh"
+                  className="d-flex justify-content-center"
+                  key={index}
+                >
                   {" "}
                   <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
                   <small
@@ -107,23 +111,29 @@ function Socket(props) {
               );
             })}
           </div>
-          <div className="d-flex justify-content-center">
-            <textarea
-              style={{ width: "250px", display: "inline", height: "90px" }}
-              id="inputmsg"
-              onChange={event => setMsg(event.target.value)}
-            />
-            <Button
-              className="btn"
-              id="btnmsg"
-              onClick={() => {
-                sendMessage();
-              }}
-            >
-              {" "}
-              Send{" "}
-            </Button>
-          </div>
+        </div>
+        <div id="messText" className="d-flex justify-content-center">
+          <textarea
+            style={{
+              display: "inline",
+              width: "800px",
+              height: "80px",
+              padding: "10px",
+              textAlign: "left"
+            }}
+            id="inputmsg"
+            onChange={event => setMsg(event.target.value)}
+          />
+          <Button
+            className="btn"
+            id="btnmsg"
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            {" "}
+            Send{" "}
+          </Button>
         </div>
       </div>
     </div>
