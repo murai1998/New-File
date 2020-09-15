@@ -1,37 +1,88 @@
 #logButtons {
   margin-left: 20px;
 }
-.tags{
+.tableNames {
+  /* width: 60%; */
+  border: 3px solid rgb(237, 235, 235);
+}
+.tags {
   max-width: 60%;
-    text-align: justify;
-    border: 1px solid rgb(237, 235, 235);
-    padding: 20px;
+  text-align: justify;
+  border: 1px solid rgb(237, 235, 235);
+  padding: 20px;
 }
-.createExs{
-      
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    
+#chat {
+  max-height: 400px;
+  min-height: 400px;
+  padding: 10px 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+#newCh {
+  padding: 0 20px;
+}
+.messageChat {
+   border: 1px solid grey;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#messText {
+  width: 800px;
+}
+@media (max-width: 700px) {
+  .messageChat {
+    border: 1px solid grey;
+    width: 300px;
+  }
+  #messText {
+  max-width: 300px;
+ 
+}
+}
 
+.messageChat2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-#form6{
-    padding: 20px;
-    border: 3px solid #658fbb;
+#chatH {
+ border: 1px solid grey;
+  min-width: 800px;
+  max-width: 800px;
+  background:  #b8daff;
+  padding: 15px 0;
+}
+#btnmsg {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.createExs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+#form6 {
+  padding: 20px;
+  border: 3px solid #658fbb;
 }
 @media (max-width: 1200px) {
-    .createExs{
-        padding: 20px;
-width: 100%;
- max-width: 100%;
-    }
-    .tags{
-  max-width: 100%;
-   
+  .createExs {
     padding: 20px;
-}
+    width: 100%;
+    max-width: 100%;
+  }
+  .tags {
+    max-width: 100%;
+
+    padding: 20px;
+  }
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -11046,12 +11097,10 @@ body {
   justify-content: center;
   align-items: center;
 }
-.profilePic1{
-    display: flex;
-    
+.profilePic1 {
+  display: flex;
 }
 .profilePic2 {
- 
   width: 800px;
   border: 1px solid rgb(197, 197, 197);
 }

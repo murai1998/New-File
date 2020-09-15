@@ -12,74 +12,6 @@ import { Button, Input } from "reactstrap";
 const ENDPOINT = "http://127.0.0.1:4000";
 const socket = socketIOClient(ENDPOINT);
 function Socket(props) {
-  //   const [state, setState] = useState({
-  //     message: "",
-  //     name: props.user.user.username,
-  //     users: []
-  //   });
-  //   const [chat, setChat] = useState([]);
-
-  //   useEffect(() => {
-  //     socket.on("message", ({ name, message }) => {
-  //       setChat([...chat, { name, message }]);
-  //     });
-  //   });
-
-  //   const onTextChange = e => {
-  //     setState({ ...state, [e.target.name]: e.target.value });
-  //   };
-
-  //   const onMessageSubmit = e => {
-  //     e.preventDefault();
-  //     const { name, message, users } = state;
-  //     socket.emit("message", { name, message });
-  //     users.push(name);
-  //     console.log("users", name);
-  //     setState({ message: "", name });
-  //   };
-
-  //   const renderChat = () => {
-  //     console.log("Name", props.user.user.username);
-  //     return chat.map(({ name, message }, index) => (
-  //       <div key={index}>
-  //         <h3>
-  //           {name}: <span>{message}</span>
-  //         </h3>
-  //       </div>
-  //     ));
-  //   };
-
-  //   return (
-  //     <div>
-  //       <Navbar />
-  //       {props.user.user.username}
-  //       <div className="card">
-  //         <form onSubmit={onMessageSubmit}>
-  //           <h1>Messanger</h1>
-  //           <div className="render-chat">
-  //             <h1>Chat Log</h1>
-  //             {renderChat()}
-  //           </div>
-
-  //           <div>
-  //             <h2>Active users</h2>
-  //             <p></p>
-  //           </div>
-  //           <div>
-  //             <textarea
-  //               name="message"
-  //               onChange={e => onTextChange(e)}
-  //               value={state.message}
-  //               variant="outlined"
-  //               label="Message"
-  //             />
-  //           </div>
-  //           <button>Send Message</button>
-  //         </form>
-  //       </div>
-  //     </div>
-  //   );
-
   const [user, setUser] = useState({
     usersList: null
   });
@@ -119,74 +51,92 @@ function Socket(props) {
   // to send a message
   const sendMessage = () => {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
+    setMsg("");
+
+    setMsg("");
   };
 
   return (
     <div>
       <Navbar disconect={disconect} />
-      <h3 className="d-flex justify-content-center">
-        {" "}
-        Connected users : {user.usersList?.length}{" "}
-      </h3>
-      <table className="table">
-        <thead>
-          <tr>
-            <th> User name </th>
-            <th> Connection Date </th>
-          </tr>
-        </thead>
-        <tbody>
-          {user.usersList?.map(user => {
-            return (
-              <tr key={user.id}>
-                <td> {user.userName} </td>
-                <td> {user.connectionTime} </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <h3 className="d-flex justify-content-center">
-        {" "}
-        User : {loggedUser?.userName}{" "}
-      </h3>
-      <div style={{ borderStyle: "inset" }}>
-        <h2 className="d-flex justify-content-center"> Chat </h2>
-        {recMsg.listMsg?.map((msgInfo, index) => {
-          return (
-            <div className="d-flex justify-content-center" key={index}>
-              {" "}
-              <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
-              <small
-                style={{ marginLeft: "18px", color: "blue", marginTop: "5px" }}
-              >
-                {" "}
-                {msgInfo.time}{" "}
-              </small>{" "}
-            </div>
-          );
-        })}
+      <div className="tableNames ">
+        <h3> Active users: {user.usersList?.length} </h3>
+        <table className="table table-striped ">
+          <thead className="d-flex justify-content-center">
+            <tr>
+              <th> User name </th>
+              <th> Connection Date </th>
+            </tr>
+          </thead>
+          <tbody className="d-flex justify-content-center">
+            {user.usersList?.map(user => {
+              return (
+                <tr key={user.id}>
+                  <td> {user.userName} </td>
+                  <td> {user.connectionTime} </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      <div className="d-flex justify-content-center">
-        <Input
-          style={{ width: "300px", display: "inline" }}
-          id="inputmsg"
-          onChange={event => setMsg(event.target.value)}
-        />
-        <Button
-          className="btn btn-info"
-          id="btnmsg"
-          onClick={() => {
-            sendMessage();
-          }}
-        >
+      <div className="messageChat2">
+        {/* <h3 className="d-flex justify-content-center">
           {" "}
-          Send{" "}
-        </Button>
+          Hi, ! Start a new conversation
+        </h3> */}
+        <div className="messageChat">
+          <h3 id="chatH" className="d-flex justify-content-center">
+            {" "}
+            {loggedUser?.userName}`s CHAT{" "}
+          </h3>
+          <div id="chat">
+            {recMsg.listMsg?.map((msgInfo, index) => {
+              return (
+                <div id="newCh" key={index}>
+                  {" "}
+                  <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
+                  <small
+                    style={{
+                      marginLeft: "18px",
+                      color: "blue",
+                      marginTop: "5px"
+                    }}
+                  >
+                    {" "}
+                    {msgInfo.time}{" "}
+                  </small>{" "}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div id="messText" className="d-flex justify-content-center">
+          <textarea
+            style={{
+              display: "inline",
+              width: "800px",
+              height: "80px",
+              padding: "10px",
+              textAlign: "left",
+              width: "100%"
+            }}
+            id="inputmsg"
+            value={msg}
+            onChange={event => setMsg(event.target.value)}
+          />
+          <Button
+            className="btn"
+            id="btnmsg"
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            {" "}
+            Send{" "}
+          </Button>
+        </div>
       </div>
-      {/* <button onClick={() => disconect(props.user.user.username)}>
-        Disconect
-      </button> */}
     </div>
   );
 }
