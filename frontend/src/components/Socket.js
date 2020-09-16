@@ -91,24 +91,28 @@ function Socket(props) {
             {loggedUser?.userName}`s CHAT{" "}
           </h3>
           <div id="chat">
-            {recMsg.listMsg?.map((msgInfo, index) => {
-              return (
-                <div id="newCh" key={index}>
-                  {" "}
-                  <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
-                  <small
-                    style={{
-                      marginLeft: "18px",
-                      color: "blue",
-                      marginTop: "5px"
-                    }}
-                  >
+            {recMsg.listMsg ? (
+              recMsg.listMsg?.map((msgInfo, index) => {
+                return (
+                  <div id="newCh" key={index}>
                     {" "}
-                    {msgInfo.time}{" "}
-                  </small>{" "}
-                </div>
-              );
-            })}
+                    <b>{msgInfo.userName} </b> : {msgInfo.msg}{" "}
+                    <small
+                      style={{
+                        marginLeft: "18px",
+                        color: "blue",
+                        marginTop: "5px"
+                      }}
+                    >
+                      {" "}
+                      {msgInfo.time}{" "}
+                    </small>{" "}
+                  </div>
+                );
+              })
+            ) : (
+              <div>No new messages yet</div>
+            )}
           </div>
         </div>
         <div id="messText" className="d-flex justify-content-center">
