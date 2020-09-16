@@ -29,6 +29,32 @@ class Profile extends Component {
     let res2 = await actions.showActivity(
       this.state.user.email + dateNow.toString()
     );
+    axios({
+      method: "GET",
+      url:
+        "https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote",
+      headers: {
+        "content-type": "application/octet-stream",
+        "x-rapidapi-host":
+          "quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com",
+        "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+        useQueryString: true
+      },
+      params: {
+        token: "ipworld.info"
+      }
+    })
+      .then(response => {
+        console.log("IIIIIIIIIIIIIIIIIIIII", response.data);
+        this.setState({
+          author: response.data.author,
+          quote: response.data.text
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
     console.log("ACTTTT", res2.data.lenght);
     if (res2.data == 0) {
       this.setState({
@@ -218,7 +244,12 @@ class Profile extends Component {
                   </div>
                 </div>
                 <div id="trBorder" className="tableDiv">
-                  Hi, {this.state.user.username}
+                  <h4> Hi, {this.state.user.username}</h4>
+                  <h3>Quote of the day</h3>
+                  <p>
+                    <i>{this.state.quote}</i>
+                  </p>
+                  <p>{this.state.author}</p>
                 </div>
               </div>
             ) : (
@@ -230,6 +261,11 @@ class Profile extends Component {
                 </div>
                 <div id="trBorder" className="tableDiv">
                   <p>Welcome back, {this.state.user.username}!</p>
+                  <h3>Quote of the day</h3>
+                  <p>
+                    <i>{this.state.quote}</i>
+                  </p>
+                  <p>{this.state.author}</p>
                 </div>
               </div>
             )}
