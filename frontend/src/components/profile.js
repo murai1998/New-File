@@ -22,7 +22,8 @@ class Profile extends Component {
     button: true,
     value: 0,
     input2: true,
-    lev: false
+    lev: false,
+    quote: ""
   };
 
   async componentDidMount() {
@@ -247,7 +248,7 @@ class Profile extends Component {
                   <h4> Hi, {this.state.user.username}</h4>
                   <h3>Quote of the day</h3>
                   <p>
-                    <i>{this.state.quote}</i>
+                    <i>"{this.state.quote.slice(1)}"</i>
                   </p>
                   <p>{this.state.author}</p>
                 </div>
@@ -263,7 +264,7 @@ class Profile extends Component {
                   <p>Welcome back, {this.state.user.username}!</p>
                   <h3>Quote of the day</h3>
                   <p>
-                    <i>{this.state.quote}</i>
+                    <i>"{this.state.quote.slice(1)}"</i>
                   </p>
                   <p>{this.state.author}</p>
                 </div>
