@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
+import actions from "../services";
 const pd = require("paralleldots");
+let dateNow = new Date().toDateString();
 
-pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
+pd.apiKey = process.env.API_KEY;
 class Mood extends Component {
   state = {
     user: { ...this.props.user },
-    formShow: true
+    formShow: true,
+    username: "",
+    text: ""
   };
   handleChange = e => {
     this.setState({
@@ -46,10 +50,18 @@ class Mood extends Component {
         Excited: 0.0125003927
       }
     });
+    let text = {
+      username: this.state.user.email,
+      userDate: this.state.user.email + dateNow,
+      text: this.state.text
+    };
+    actions.addDiary(text).then(res => {
+      console.log(res.data);
+    });
   };
   render() {
     {
-      console.log(this.state.mood);
+      console.log("Email", this.state.user.email + dateNow);
     }
     return (
       <div>

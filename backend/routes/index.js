@@ -2,6 +2,7 @@ const router = require("express").Router();
 let Exercise = require("../models/exercise.model");
 let List = require("../models/list.model");
 let Activity = require("../models/activity.model");
+let Diary = require("../models/diary.model");
 
 router.get("/", (req, res, next) => {
   res.status(200).json({ msg: "Working" });
@@ -85,6 +86,23 @@ router.post("/add-activity", (req, res, next) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.post("/add-to-diary", (req, res, next) => {
+  const username = req.body.username;
+
+  const userDate = req.body.userDate;
+  const text = req.body.text;
+
+  const newText = new Diary({
+    username,
+    userDate,
+    text
+  });
+
+  newText
+    .save()
+    .then(() => res.json("Text added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
 router.get("/show-activity/:userDate", (req, res) => {
   Activity.find({ userDate: req.params.userDate })
     .then(activity => {
@@ -104,14 +122,4 @@ router.post("/activity-added/:userDate", (req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-// router.post("/activity-added/:userDate", (req, res) => {
-//   console.log(req.body);
-//   Activity.find(
-//     { userDate: req.params.userDate }
-//   )
-//     .then(activity => {
-//       res.json(activity);
-//     })
-//     .catch(err => res.status(400).json("Error: " + err));
-// });
 module.exports = router;
