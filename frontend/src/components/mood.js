@@ -71,6 +71,7 @@ class Mood extends Component {
       <div>
         <Navbar />
         <div>
+          Memories for
           <DatePicker selected={this.state.date} onSelect={this.handleDate} />
           {this.state.formShow ? (
             <form id="form6" onSubmit={this.handleSubmit}>
