@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
 import actions from "../services";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 const pd = require("paralleldots");
 let dateNow = new Date().toDateString();
-
 pd.apiKey = process.env.API_KEY;
 class Mood extends Component {
   state = {
     user: { ...this.props.user },
     formShow: true,
     username: "",
-    text: ""
+    text: "",
+    date: new Date()
   };
   handleChange = e => {
     this.setState({
@@ -67,6 +71,7 @@ class Mood extends Component {
       <div>
         <Navbar />
         <div>
+          <DatePicker selected={this.state.date} onSelect={this.handleDate} />
           {this.state.formShow ? (
             <form id="form6" onSubmit={this.handleSubmit}>
               <textarea
