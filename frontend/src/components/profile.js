@@ -358,3 +358,7 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+// {"emotion":{"Happy":0.2548460924,"Angry":0.1050678074,"Bored":0.0965419239,"Fear":0.1576167083,"Sad":0.2750594121,"Excited":0.1108680559}}
+
+// {"emotion":{"Happy":0.0286004865,"Angry":0.0304055973,"Bored":0.0060389347,"Fear":0.1790783869,"Sad":0.7433762018,"Excited":0.0125003927}}

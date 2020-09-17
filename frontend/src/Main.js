@@ -12,6 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Circle from "./components/circle";
 import Landing from "./components/landing";
 import Socket from "./components/Socket";
+import Mood from "./components/mood";
+
 require("dotenv").config();
 
 class Main extends Component {
@@ -70,6 +72,13 @@ class Main extends Component {
                 user={this.state.user}
                 {...props}
               />
+            )}
+          />
+          <Route
+            exact
+            path="/mood-analyzer"
+            render={props => (
+              <Mood setUser={this.setUser} user={this.state.user} {...props} />
             )}
           />
           <Route
