@@ -11,20 +11,6 @@ import "react-circular-progressbar/dist/styles.css";
 // const Bounce = styled.div`
 //   animation: 2s ${keyframes`${bounce}`} infinite;
 // `;
-const pd = require("paralleldots");
-
-pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
-// pd.emotion(
-//   "I have gone through this before, and I didn't know that my baby dog, Buddy, who died when he was 14, died until a week after, on accident. I'm bawling right now, i miss him.",
-//   "en"
-// )
-//   .then(response => {
-//     let res = response;
-//     console.log(res);
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
 
 let value = 0;
 let dateNow = new Date().toDateString();

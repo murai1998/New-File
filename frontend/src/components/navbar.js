@@ -70,7 +70,7 @@ class Navbar extends Component {
                   </li>
                   <li className="nav-item active">
                     <Link className="nav-link" to="/mood-analyzer">
-                      Mood analyzer
+                      Diary
                     </Link>
                   </li>
                   <li className="nav-item active">
