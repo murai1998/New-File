@@ -11,6 +11,20 @@ import "react-circular-progressbar/dist/styles.css";
 // const Bounce = styled.div`
 //   animation: 2s ${keyframes`${bounce}`} infinite;
 // `;
+const pd = require("paralleldots");
+
+pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
+// pd.emotion(
+//   "I have gone through this before, and I didn't know that my baby dog, Buddy, who died when he was 14, died until a week after, on accident. I'm bawling right now, i miss him.",
+//   "en"
+// )
+//   .then(response => {
+//     let res = response;
+//     console.log(res);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
 
 let value = 0;
 let dateNow = new Date().toDateString();
@@ -358,3 +372,7 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+// {"emotion":{"Happy":0.2548460924,"Angry":0.1050678074,"Bored":0.0965419239,"Fear":0.1576167083,"Sad":0.2750594121,"Excited":0.1108680559}}
+
+// {"emotion":{"Happy":0.0286004865,"Angry":0.0304055973,"Bored":0.0060389347,"Fear":0.1790783869,"Sad":0.7433762018,"Excited":0.0125003927}}
