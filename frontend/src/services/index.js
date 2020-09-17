@@ -33,6 +33,9 @@ const actions = {
   addActivity: async act => {
     return await service.post("/add-activity", act);
   },
+  addDiary: async text => {
+    return await service.post("/add-to-diary", text);
+  },
   showActivity: async userDate => {
     return await service.get(`/show-activity/${userDate}`);
   },
