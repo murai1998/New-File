@@ -63,9 +63,16 @@ class Mood extends Component {
       console.log(res.data);
     });
   };
+  handleDate = date => {
+    let time = new Date(date).toDateString();
+    this.setState({
+      date: date,
+      userDate2: this.state.user.email + time
+    });
+  };
   render() {
     {
-      console.log("Email", this.state.user.email + dateNow);
+      console.log("date", this.state.userDate2);
     }
     return (
       <div>
