@@ -65,10 +65,29 @@ class Mood extends Component {
   };
   handleDate = date => {
     let time = new Date(date).toDateString();
-    this.setState({
-      date: date,
-      userDate2: this.state.user.email + time
+    actions.showMemory(this.state.user.email + time).then(res => {
+      console.log("OUTPUT", res.data);
+      this.setState({
+        date: date,
+        memories: res.data
+      });
     });
+  };
+  showResults = () => {
+    if (this.state.memories !== undefined) {
+      return this.state.memories.map((text, i) => {
+        return (
+          <div key={i}>
+            <div>
+              <strong>{i}.</strong>
+              {text.text}
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return <div>No entries on this day</div>;
+    }
   };
   render() {
     {
@@ -78,8 +97,15 @@ class Mood extends Component {
       <div>
         <Navbar />
         <div>
-          Memories for
-          <DatePicker selected={this.state.date} onSelect={this.handleDate} />
+          <div>
+            Memories for
+            <DatePicker selected={this.state.date} onSelect={this.handleDate} />
+            <div>
+              <h3>List of entries</h3>
+              {this.showResults()}
+            </div>
+          </div>
+
           {this.state.formShow ? (
             <form id="form6" onSubmit={this.handleSubmit}>
               <textarea
