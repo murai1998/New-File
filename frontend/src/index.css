@@ -19,6 +19,15 @@
   display: flex;
   flex-direction: column;
 }
+.memoryHead{
+    background-image: url("./images/frame.png");
+  background-position: center;
+  background-size: cover;
+  height: fit-content;
+  width: fit-content;
+  padding-top: 50px;
+  position: relative;
+}
 #newCh {
   padding: 0 20px;
 }
@@ -10893,6 +10902,20 @@ body {
   background-attachment: scroll;
   background-size: cover;
 }
+.signup-section2{
+    padding: 1rem 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.112) 75%,
+      #000000 100%
+    ),
+    url("../src/images/frame.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
 .signup-section .form-inline input {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
   padding: 1.25rem 2rem;
@@ -10955,7 +10978,9 @@ body {
 #signup {
   padding: 10em 5em 2em;
 }
-
+#signup2 {
+  padding: 5em 5em 2em;
+}
 .form3 {
   margin: 0px 10px;
 }
