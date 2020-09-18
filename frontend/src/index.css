@@ -19,6 +19,15 @@
   display: flex;
   flex-direction: column;
 }
+.memoryHead{
+    background-image: url("./images/frame.png");
+  background-position: center;
+  background-size: cover;
+  height: fit-content;
+  width: fit-content;
+  padding-top: 50px;
+  position: relative;
+}
 #newCh {
   padding: 0 20px;
 }
@@ -10888,6 +10897,20 @@ body {
       #000000 100%
     ),
     url("../src/images/footer2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+.signup-section2{
+    padding: 1rem 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.166) 75%,
+      #000000 100%
+    ),
+    url("../src/images/frame.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
