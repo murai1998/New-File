@@ -97,7 +97,7 @@ class Mood extends Component {
       <div>
         <Navbar />
         <div>
-          <section class="signup-section2" id="signup">
+          <section class="signup-section2" id="signup2">
             <div class="container">
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
@@ -109,12 +109,7 @@ class Mood extends Component {
                       onSelect={this.handleDate}
                     />
                   </h2>
-                  {/* <p class="text-white-50">
-                    More than anything, we want you to be thrilled with your
-                    Cardinal experience. If you have any questions or need help
-                    with selecting the best activity for you, we’re always here
-                    to help!
-                  </p> */}
+                  
                 </div>
               </div>
             </div>
