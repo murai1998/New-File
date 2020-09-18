@@ -88,7 +88,6 @@ router.post("/add-activity", (req, res, next) => {
 
 router.post("/add-to-diary", (req, res, next) => {
   const username = req.body.username;
-
   const userDate = req.body.userDate;
   const text = req.body.text;
 
@@ -101,6 +100,13 @@ router.post("/add-to-diary", (req, res, next) => {
   newText
     .save()
     .then(() => res.json("Text added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+router.get("/show-memory/:userDate", (req, res) => {
+  Diary.find({ userDate: req.params.userDate })
+    .then(text => {
+      res.json(text);
+    })
     .catch(err => res.status(400).json("Error: " + err));
 });
 router.get("/show-activity/:userDate", (req, res) => {
