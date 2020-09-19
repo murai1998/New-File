@@ -77,10 +77,11 @@ class Mood extends Component {
     if (this.state.memories !== undefined) {
       return this.state.memories.map((text, i) => {
         return (
-          <div key={i}>
+          <div className="article1" key={i}>
             <div>
-              <strong>{i}.</strong>
+              &#10077;
               {text.text}
+              &#10078;
             </div>
           </div>
         );
@@ -102,21 +103,21 @@ class Mood extends Component {
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                  <h2 id="quest" class="text-white mb-5">
-                    Memories for
+                  <h2 id="quest2">Memories for</h2>
+                  <i>
                     <DatePicker
+                      id="calendar3"
                       selected={this.state.date}
                       onSelect={this.handleDate}
                     />
-                  </h2>
-                  
+                  </i>
                 </div>
               </div>
             </div>
           </section>
-          <div>
-            <div>
-              <h3>List of entries</h3>
+          <div className="calendarSect">
+            <div className="entries">
+              <h3>LIST OF ENTRIES</h3>
               {this.showResults()}
             </div>
           </div>
