@@ -30,6 +30,34 @@ font-size: 2.2em;
 }
 
 }
+.entries{
+    max-height: 500px;
+    height: 300px;
+    overflow: auto;
+    width: 90%;
+    padding: 10px 20px;
+    text-align: center;
+}
+.entries h3{
+    text-align: center;
+    letter-spacing: 0.4rem;
+    color:  #658fbb;
+    font-weight: 700;
+}
+.article1{
+    margin-top: 0.9em;
+    font-family: fantasy;
+    font-size: 1.2em;
+}
+.calendarSect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    
+}
+
 #chat {
   max-height: 400px;
   min-height: 400px;
