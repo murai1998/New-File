@@ -102,14 +102,16 @@ class Mood extends Component {
               <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                  <h2 id="quest" class="text-white mb-5">
+                  <h2 id="quest2" class=" mb-5">
                     Memories for
-                    <DatePicker
-                      selected={this.state.date}
-                      onSelect={this.handleDate}
-                    />
+                    <i>
+                      <DatePicker
+                        id="calendar3"
+                        selected={this.state.date}
+                        onSelect={this.handleDate}
+                      />
+                    </i>
                   </h2>
-                  
                 </div>
               </div>
             </div>

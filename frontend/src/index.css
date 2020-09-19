@@ -11,6 +11,13 @@
   border: 1px solid rgb(237, 235, 235);
   padding: 20px;
 }
+                    
+#calendar3{
+    border: none;
+   background: none;
+ text-align: center;
+  font-family: fantasy;
+}
 #chat {
   max-height: 400px;
   min-height: 400px;
@@ -10974,6 +10981,14 @@ body {
 
 #quest {
   margin-bottom: 0;
+
+}
+#quest2 {
+  margin-bottom: 0;
+  font-family: fantasy;
+  color: black;
+  font-weight: 500;
+  font-size: 3.5em;
 }
 #signup {
   padding: 10em 5em 2em;
