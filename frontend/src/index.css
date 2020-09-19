@@ -22,6 +22,7 @@ margin: 0;
 font-size: 2.2em;
   font-family: fantasy;
 }
+
 @media (min-width: 992px) {
 #calendar3{
   font-size: 3.5em;
@@ -38,11 +39,28 @@ font-size: 2.2em;
     padding: 10px 20px;
     text-align: center;
 }
+#textaar{
+    padding: 10px;
+   height: 100px;
+   width: 90%;
+   font-size: 1.2em;
+  
+}
+#pen{
+    width: 15em;
+    margin-bottom: 1.2em;
+}
+#signup4{
+        padding: 1em 5em 1em;
+}
 .entries h3{
     text-align: center;
     letter-spacing: 0.4rem;
     color:  #658fbb;
     font-weight: 700;
+}
+#btnColor{
+     background-color:  #658fbb;
 }
 .article1{
     margin-top: 0.9em;
@@ -10958,6 +10976,20 @@ body {
       #000000 100%
     ),
     url("../src/images/frame.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+.signup-section3{
+    padding: 1rem 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.112) 75%,
+      #000000 100%
+    ),
+    url("../src/images/wall3.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

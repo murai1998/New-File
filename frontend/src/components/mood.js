@@ -74,7 +74,8 @@ class Mood extends Component {
     });
   };
   showResults = () => {
-    if (this.state.memories !== undefined) {
+    console.log("Memory", this.state.memories);
+    if (this.state.memories !== undefined && this.state.memories.length !== 0) {
       return this.state.memories.map((text, i) => {
         return (
           <div className="article1" key={i}>
@@ -87,7 +88,7 @@ class Mood extends Component {
         );
       });
     } else {
-      return <div>No entries on this day</div>;
+      return <div className="article1">No entries on this day</div>;
     }
   };
   render() {
@@ -123,21 +124,38 @@ class Mood extends Component {
           </div>
 
           {this.state.formShow ? (
-            <form id="form6" onSubmit={this.handleSubmit}>
-              <textarea
-                type="text"
-                name="text"
-                required
-                onChange={this.handleChange}
-              />
-              <div className="form-group">
-                <input
-                  type="submit"
-                  value="Create"
-                  className="btn btn-primary"
-                />
+            <section class="signup-section3" id="signup4">
+              <div>
+                <div class="row">
+                  <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                    <img
+                    id='pen'
+                      class="img-fluid"
+                      src={require("../images/pen.png")}
+                      alt=""
+                    />
+                    <form onSubmit={this.handleSubmit}>
+                      <textarea
+                        id="textaar"
+                        type="text"
+                        name="text"
+                        required
+                        onChange={this.handleChange}
+                      />
+                      <div className="form-group">
+                        <input
+                          type="submit"
+                          value="Create"
+                          id="btnColor"
+                          className="btn btn-primary"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
-            </form>
+            </section>
           ) : (
             <div>
               <p>This story has been added to your diary</p>
