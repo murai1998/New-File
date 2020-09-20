@@ -12,6 +12,7 @@ class Mood extends Component {
   state = {
     user: { ...this.props.user },
     formShow: true,
+    formShow2: false,
     username: "",
     text: "",
     date: new Date()
@@ -23,7 +24,14 @@ class Mood extends Component {
   };
   toggleForm = () => {
     this.setState({
-      formShow: true
+      formShow: true,
+      formShow2: false
+    });
+  };
+  toggleForm2 = () => {
+    console.log("Toggle", this.state.formShow2);
+    this.setState({
+      formShow2: true
     });
   };
   handleSubmit = e => {
@@ -146,7 +154,7 @@ class Mood extends Component {
                       <div className="form-group">
                         <input
                           type="submit"
-                          value="New thoughts"
+                          value="Add more"
                           id="btnColor"
                           className="btn btn-primary"
                         />
@@ -169,67 +177,84 @@ class Mood extends Component {
                         src={require("../images/pen.png")}
                         alt=""
                       />
-                      <h3>This story has been added to your diary</h3>
-<div className='buttonsMood'>
-                      <button
-                        id="btnColor"
-                        className="btn btn-primary"
-                        onClick={this.toggleForm}
-                      >
-                        Analyze your emotions
-                      </button>
-                      <button
-                        id="btnColor"
-                        className="btn btn-primary"
-                        onClick={this.toggleForm}
-                      >
-                        New thoughts
-                      </button>
-                      </div>
-                      <div className="moodanalyser">
-                        <div>
-                          <div>&#128512;</div>
-                          <p>Happy</p>
-                          <p>
-                            {(Number(this.state.mood.Happy) * 100).toFixed(2)}%
-                          </p>
-                        </div>
-                        <div>
-                          <div>&#128544;</div>
-                          <p>Angry</p>
-                          <p>
-                            {(Number(this.state.mood.Angry) * 100).toFixed(2)}%
-                          </p>
-                        </div>
-                        <div>
-                          <div>&#128564;</div>
-                          <p>Bored</p>
-                          <p>
-                            {(Number(this.state.mood.Bored) * 100).toFixed(2)}%
-                          </p>
-                        </div>
-                        <div>
-                          <div>&#128561;</div>
-                          <p>Fear</p>
-                          <p>
-                            {(Number(this.state.mood.Fear) * 100).toFixed(2)}%
-                          </p>
-                        </div>
-                        <div>
-                          <div>&#128542;</div>
-                          <p>Sad</p>
-                          <p>
-                            {(Number(this.state.mood.Sad) * 100).toFixed(2)}%
-                          </p>
-                        </div>
-                        <div>
-                          <div>&#129321;</div>
-                          <p>Excited</p>
-                          <p>
-                            {(Number(this.state.mood.Excited) * 100).toFixed(2)}
-                            %
-                          </p>
-                        </div>
+                      <div className="buttonsMood">
+                        {this.state.formShow2 ? (
+                          <div className="moodanalyser">
+                            <div>
+                              <div>&#128512;</div>
+                              <p>Happy</p>
+                              <p>
+                                {(Number(this.state.mood.Happy) * 100).toFixed(
+                                  2
+                                )}
+                                %
+                              </p>
+                            </div>
+                            <div>
+                              <div>&#128544;</div>
+                              <p>Angry</p>
+                              <p>
+                                {(Number(this.state.mood.Angry) * 100).toFixed(
+                                  2
+                                )}
+                                %
+                              </p>
+                            </div>
+                            <div>
+                              <div>&#128564;</div>
+                              <p>Bored</p>
+                              <p>
+                                {(Number(this.state.mood.Bored) * 100).toFixed(
+                                  2
+                                )}
+                                %
+                              </p>
+                            </div>
+                            <div>
+                              <div>&#128561;</div>
+                              <p>Fear</p>
+                              <p>
+                                {(Number(this.state.mood.Fear) * 100).toFixed(
+                                  2
+                                )}
+                                %
+                              </p>
+                            </div>
+                            <div>
+                              <div>&#128542;</div>
+                              <p>Sad</p>
+                              <p>
+                                {(Number(this.state.mood.Sad) * 100).toFixed(2)}
+                                %
+                              </p>
+                            </div>
+                            <div>
+                              <div>&#129321;</div>
+                              <p>Excited</p>
+                              <p>
+                                {(
+                                  Number(this.state.mood.Excited) * 100
+                                ).toFixed(2)}
+                                %
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            id="btnColor"
+                            className="btn btn-primary"
+                            onClick={this.toggleForm2}
+                          >
+                            Analyze your emotions
+                          </button>
+                        )}
+                        <button
+                          id="btnColor"
+                          className="btn btn-primary"
+                          onClick={this.toggleForm}
+                        >
+                          New thoughts
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -16,8 +16,9 @@
       flex-direction:column;
       justify-content: center;
       align-items: center;
-  
-  }    
+
+  } 
+ 
   .buttonsMood button{
       margin-top: 25px;
   }              
@@ -60,7 +61,7 @@ font-size: 2.2em;
     margin-bottom: 1.2em;
 }
 #signup4{
-        padding: 1em 5em 1em;
+        padding: 1em 5em 6em;
 }
 .moodanalyser{
     display: flex;
