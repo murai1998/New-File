@@ -74,7 +74,8 @@ class Mood extends Component {
     });
   };
   showResults = () => {
-    if (this.state.memories !== undefined) {
+    console.log("Memory", this.state.memories);
+    if (this.state.memories !== undefined && this.state.memories.length !== 0) {
       return this.state.memories.map((text, i) => {
         return (
           <div className="article1" key={i}>
@@ -87,7 +88,7 @@ class Mood extends Component {
         );
       });
     } else {
-      return <div>No entries on this day</div>;
+      return <div className="article1">No entries on this day</div>;
     }
   };
   render() {
@@ -123,57 +124,117 @@ class Mood extends Component {
           </div>
 
           {this.state.formShow ? (
-            <form id="form6" onSubmit={this.handleSubmit}>
-              <textarea
-                type="text"
-                name="text"
-                required
-                onChange={this.handleChange}
-              />
-              <div className="form-group">
-                <input
-                  type="submit"
-                  value="Create"
-                  className="btn btn-primary"
-                />
+            <section class="signup-section3" id="signup4">
+              <div>
+                <div class="row">
+                  <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                    <img
+                      id="pen"
+                      class="img-fluid"
+                      src={require("../images/pen.png")}
+                      alt=""
+                    />
+                    <form onSubmit={this.handleSubmit}>
+                      <textarea
+                        id="textaar"
+                        type="text"
+                        name="text"
+                        required
+                        onChange={this.handleChange}
+                      />
+                      <div className="form-group">
+                        <input
+                          type="submit"
+                          value="New thoughts"
+                          id="btnColor"
+                          className="btn btn-primary"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
-            </form>
+            </section>
           ) : (
             <div>
-              <p>This story has been added to your diary</p>
-              <div>
+              <section class="signup-section3" id="signup4">
                 <div>
-                  <div>&#128512;</div>
-                  <p>Happy</p>
-                  <p>{(Number(this.state.mood.Happy) * 100).toFixed(2)}%</p>
+                  <div class="row">
+                    <div class="col-md-10 col-lg-8 mx-auto text-center">
+                      <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                      <img
+                        id="pen"
+                        class="img-fluid"
+                        src={require("../images/pen.png")}
+                        alt=""
+                      />
+                      <h3>This story has been added to your diary</h3>
+<div className='buttonsMood'>
+                      <button
+                        id="btnColor"
+                        className="btn btn-primary"
+                        onClick={this.toggleForm}
+                      >
+                        Analyze your emotions
+                      </button>
+                      <button
+                        id="btnColor"
+                        className="btn btn-primary"
+                        onClick={this.toggleForm}
+                      >
+                        New thoughts
+                      </button>
+                      </div>
+                      <div className="moodanalyser">
+                        <div>
+                          <div>&#128512;</div>
+                          <p>Happy</p>
+                          <p>
+                            {(Number(this.state.mood.Happy) * 100).toFixed(2)}%
+                          </p>
+                        </div>
+                        <div>
+                          <div>&#128544;</div>
+                          <p>Angry</p>
+                          <p>
+                            {(Number(this.state.mood.Angry) * 100).toFixed(2)}%
+                          </p>
+                        </div>
+                        <div>
+                          <div>&#128564;</div>
+                          <p>Bored</p>
+                          <p>
+                            {(Number(this.state.mood.Bored) * 100).toFixed(2)}%
+                          </p>
+                        </div>
+                        <div>
+                          <div>&#128561;</div>
+                          <p>Fear</p>
+                          <p>
+                            {(Number(this.state.mood.Fear) * 100).toFixed(2)}%
+                          </p>
+                        </div>
+                        <div>
+                          <div>&#128542;</div>
+                          <p>Sad</p>
+                          <p>
+                            {(Number(this.state.mood.Sad) * 100).toFixed(2)}%
+                          </p>
+                        </div>
+                        <div>
+                          <div>&#129321;</div>
+                          <p>Excited</p>
+                          <p>
+                            {(Number(this.state.mood.Excited) * 100).toFixed(2)}
+                            %
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div>&#128544;</div>
-                  <p>Angry</p>
-                  <p>{(Number(this.state.mood.Angry) * 100).toFixed(2)}%</p>
-                </div>
-                <div>
-                  <div>&#128564;</div>
-                  <p>Bored</p>
-                  <p>{(Number(this.state.mood.Bored) * 100).toFixed(2)}%</p>
-                </div>
-                <div>
-                  <div>&#128561;</div>
-                  <p>Fear</p>
-                  <p>{(Number(this.state.mood.Fear) * 100).toFixed(2)}%</p>
-                </div>
-                <div>
-                  <div>&#128542;</div>
-                  <p>Sad</p>
-                  <p>{(Number(this.state.mood.Sad) * 100).toFixed(2)}%</p>
-                </div>
-                <div>
-                  <div>&#129321;</div>
-                  <p>Excited</p>
-                  <p>{(Number(this.state.mood.Excited) * 100).toFixed(2)}%</p>
-                </div>
-              </div>
-              <button onClick={this.toggleForm}>New thoughts</button>
+              </section>
             </div>
           )}
         </div>
