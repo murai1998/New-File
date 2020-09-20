@@ -180,63 +180,63 @@ class Mood extends Component {
                       <div className="buttonsMood">
                         {this.state.formShow2 ? (
                           <div className="moodanalyser">
-                            <div>
-                              <div>&#128512;</div>
-                              <p>Happy</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#128512;</h1>
+                              <h4>Happy</h4>
+                              <h3>
                                 {(Number(this.state.mood.Happy) * 100).toFixed(
                                   2
                                 )}
                                 %
-                              </p>
+                              </h3>
                             </div>
-                            <div>
-                              <div>&#128544;</div>
-                              <p>Angry</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#128544;</h1>
+                              <h4>Angry</h4>
+                              <h3>
                                 {(Number(this.state.mood.Angry) * 100).toFixed(
                                   2
                                 )}
                                 %
-                              </p>
+                              </h3>
                             </div>
-                            <div>
-                              <div>&#128564;</div>
-                              <p>Bored</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#128564;</h1>
+                              <h4>Bored</h4>
+                              <h3>
                                 {(Number(this.state.mood.Bored) * 100).toFixed(
                                   2
                                 )}
                                 %
-                              </p>
+                              </h3>
                             </div>
-                            <div>
-                              <div>&#128561;</div>
-                              <p>Fear</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#128561;</h1>
+                              <h4>Fear</h4>
+                              <h3>
                                 {(Number(this.state.mood.Fear) * 100).toFixed(
                                   2
                                 )}
                                 %
-                              </p>
+                              </h3>
                             </div>
-                            <div>
-                              <div>&#128542;</div>
-                              <p>Sad</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#128542;</h1>
+                              <h4>Sad</h4>
+                              <h3>
                                 {(Number(this.state.mood.Sad) * 100).toFixed(2)}
                                 %
-                              </p>
+                              </h3>
                             </div>
-                            <div>
-                              <div>&#129321;</div>
-                              <p>Excited</p>
-                              <p>
+                            <div className="mood2">
+                              <h1>&#129321;</h1>
+                              <h4>Excited</h4>
+                              <h3>
                                 {(
                                   Number(this.state.mood.Excited) * 100
                                 ).toFixed(2)}
                                 %
-                              </p>
+                              </h3>
                             </div>
                           </div>
                         ) : (
