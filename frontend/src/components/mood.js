@@ -15,7 +15,15 @@ class Mood extends Component {
     formShow2: false,
     username: "",
     text: "",
-    date: new Date()
+    date: new Date(),
+    mood: {
+      Happy: 0,
+      Angry: 0,
+      Bored: 0,
+      Fear: 0,
+      Sad: 0,
+      Excited: 0
+    }
   };
   handleChange = e => {
     this.setState({
@@ -103,6 +111,19 @@ class Mood extends Component {
     {
       console.log("date", this.state.userDate2);
     }
+    let arr1 = Object.keys(this.state.mood);
+    let arr2 = Object.values(this.state.mood);
+    let index = 0;
+    let max = 0;
+    arr2.forEach((x, i) => {
+      if (x > max) {
+        max = x;
+        index = i;
+      }
+      return x;
+    });
+    console.log(max, index);
+    console.log(arr1[index]);
     return (
       <div>
         <Navbar />
