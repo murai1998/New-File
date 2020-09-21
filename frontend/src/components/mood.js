@@ -7,7 +7,9 @@ import DatePicker from "react-datepicker";
 
 const pd = require("paralleldots");
 let dateNow = new Date().toDateString();
-pd.apiKey = process.env.API_KEY;
+// pd.apiKey = process.env.API_KEY;
+pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
+console.log(pd.apiKey);
 class Mood extends Component {
   state = {
     user: { ...this.props.user },
@@ -16,6 +18,7 @@ class Mood extends Component {
     username: "",
     text: "",
     date: new Date(),
+    active: "",
     mood: {
       Happy: 0,
       Angry: 0,
@@ -38,37 +41,60 @@ class Mood extends Component {
   };
   toggleForm2 = () => {
     console.log("Toggle", this.state.formShow2);
-    this.setState({
-      formShow2: true
-    });
+    pd.emotion(this.state.text, "en")
+      .then(response => {
+        console.log("RESPONSE", response);
+
+        let response1 = JSON.parse(response);
+        console.log(response1);
+        let arr1 = Object.keys(response1.emotion);
+        let arr2 = Object.values(response1.emotion);
+        let index = 0;
+        let max = 0;
+        arr2.forEach((x, i) => {
+          if (x > max) {
+            max = x;
+            index = i;
+          }
+          return x;
+        });
+        console.log(max, arr1[index]);
+
+        this.setState({
+          formShow: false,
+          formShow2: true,
+          active: arr1[index],
+          mood: {
+            Happy: response1.emotion.Happy,
+            Angry: response1.emotion.Angry,
+            Bored: response1.emotion.Bored,
+            Fear: response1.emotion.Fear,
+            Sad: response1.emotion.Sad,
+            Excited: response1.emotion.Excited
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // this.setState({
+    //   formShow2: true,
+    //    mood: {
+    //     Happy: 0.0286004865,
+    //     Angry: 0.0304055973,
+    //     Bored: 0.0060389347,
+    //     Fear: 0.1790783869,
+    //     Sad: 0.7433762018,
+    //     Excited: 0.0125003927
+    //   }
+    // });
   };
   handleSubmit = e => {
     e.preventDefault();
 
-    // pd.emotion(
-    //  this.state.text,
-    //   "en"
-    // )
-    //   .then(response => {
-
-    //     this.setState({
-    //       formShow: false,
-    //       mood: response.emotion
-    //     });
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
     this.setState({
-      formShow: false,
-      mood: {
-        Happy: 0.0286004865,
-        Angry: 0.0304055973,
-        Bored: 0.0060389347,
-        Fear: 0.1790783869,
-        Sad: 0.7433762018,
-        Excited: 0.0125003927
-      }
+      formShow: false
     });
     let text = {
       username: this.state.user.email,
@@ -111,19 +137,7 @@ class Mood extends Component {
     {
       console.log("date", this.state.userDate2);
     }
-    let arr1 = Object.keys(this.state.mood);
-    let arr2 = Object.values(this.state.mood);
-    let index = 0;
-    let max = 0;
-    arr2.forEach((x, i) => {
-      if (x > max) {
-        max = x;
-        index = i;
-      }
-      return x;
-    });
-    console.log(max, index);
-    console.log(arr1[index]);
+
     return (
       <div>
         <Navbar />
@@ -201,7 +215,12 @@ class Mood extends Component {
                       <div className="buttonsMood">
                         {this.state.formShow2 ? (
                           <div className="moodanalyser">
-                            <div className="mood2">
+                            <div
+                              id={
+                                this.state.active == "Happy" ? "active5" : null
+                              }
+                              className="mood2"
+                            >
                               <h1>&#128512;</h1>
                               <h4>Happy</h4>
                               <h3>
@@ -211,7 +230,12 @@ class Mood extends Component {
                                 %
                               </h3>
                             </div>
-                            <div className="mood2">
+                            <div
+                              id={
+                                this.state.active == "Angry" ? "active5" : null
+                              }
+                              className="mood2"
+                            >
                               <h1>&#128544;</h1>
                               <h4>Angry</h4>
                               <h3>
@@ -221,7 +245,12 @@ class Mood extends Component {
                                 %
                               </h3>
                             </div>
-                            <div className="mood2">
+                            <div
+                              id={
+                                this.state.active == "Bored" ? "active5" : null
+                              }
+                              className="mood2"
+                            >
                               <h1>&#128564;</h1>
                               <h4>Bored</h4>
                               <h3>
@@ -231,7 +260,10 @@ class Mood extends Component {
                                 %
                               </h3>
                             </div>
-                            <div className="mood2">
+                            <div
+                              id={this.state.active == "Fear" ? "active5" : null}
+                              className="mood2"
+                            >
                               <h1>&#128561;</h1>
                               <h4>Fear</h4>
                               <h3>
@@ -241,7 +273,10 @@ class Mood extends Component {
                                 %
                               </h3>
                             </div>
-                            <div className="mood2">
+                            <div
+                              id={this.state.active == "Sad" ? "active5" : null}
+                              className="mood2"
+                            >
                               <h1>&#128542;</h1>
                               <h4>Sad</h4>
                               <h3>
@@ -249,7 +284,12 @@ class Mood extends Component {
                                 %
                               </h3>
                             </div>
-                            <div className="mood2">
+                            <div
+                              id={
+                                this.state.active == "Excited" ? "active5" : null
+                              }
+                              className="mood2"
+                            >
                               <h1>&#129321;</h1>
                               <h4>Excited</h4>
                               <h3>
