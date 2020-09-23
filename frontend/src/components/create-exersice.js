@@ -105,7 +105,7 @@ class CreateExercise extends Component {
         console.log("OUTPUT", res);
       });
     });
-
+    this.props.history.push(`/circle/${percentage}/${this.state.weight}`);
     // window.location = "/";
   };
 
@@ -252,9 +252,11 @@ class CreateExercise extends Component {
               </form>
             </div>
           ) : (
-            <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
+            {
+              /* <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
               Check your results
-            </Link>
+            </Link> */
+            }("")
           )}
         </div>
       </div>

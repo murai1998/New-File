@@ -12,14 +12,32 @@ class Circle extends Component {
     let perc = Number(this.props?.match?.params?.results);
     // let perc = 78;
     return (
-      <div>
+      <div id="mainCrcle">
         {/* <Link to={`/create/${this.props.match.params.weight}`}>Go Back</Link> */}
         <Navbar />
-        <div style={{ width: "400px" }}>
-          <ChangingProgressProvider values={[...Array(perc).keys()]}>
-            {perc => <CircularProgressbar value={perc} text={`${perc + 1}%`} />}
-          </ChangingProgressProvider>
-        </div>
+        <section className="signup-section4">
+          <div className="circleALl" style={{ width: "fit-content" }}>
+            <ChangingProgressProvider
+              // id="provider"
+              values={[...Array(perc).keys()]}
+            >
+              {perc => (
+                <CircularProgressbar
+                  value={perc}
+                  text={`${perc + 1}%`}
+                  strokeWidth={10}
+                  styles={buildStyles({
+                    strokeLinecap: "#658fbb",
+                    backgroundColor: "red",
+                    textColor: "#658fbb",
+                    pathColor: "#658fbb",
+                    trailColor: "white"
+                  })}
+                />
+              )}
+            </ChangingProgressProvider>
+          </div>
+        </section>
       </div>
     );
   }
