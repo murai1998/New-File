@@ -107,6 +107,7 @@ class Profile extends Component {
         lev: true,
         labelL: newValue.label
       });
+      this.props.history.push("/profile");
     }
   };
   handleInputChange = (inputValue: any, actionMeta: any) => {
@@ -193,14 +194,11 @@ class Profile extends Component {
                           <label>Your weight</label>
                           <input
                             id="typeinp"
-                            type="range"
-                            min="20"
-                            max="150"
+                            type="number"
                             name="weight"
                             onChange={this.handleChange}
-                            step="1"
                           />
-                          <strong>{this.state.weight}</strong> kg
+                          kg
                           {this.state.button ? (
                             <div className="form-group">
                               <input type="submit" value="✔" id="cross2" />
