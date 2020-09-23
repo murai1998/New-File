@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import actions from "../services/index";
 import CreatableSelect from "react-select/creatable";
 import { CircularProgressbar } from "react-circular-progressbar";
@@ -107,8 +109,9 @@ class Profile extends Component {
         lev: true,
         labelL: newValue.label
       });
-      this.props.history.push("/profile");
     }
+    this.props.history.push("/create");
+    // window.location = "/create";
   };
   handleInputChange = (inputValue: any, actionMeta: any) => {
     console.group("Input Changed");
@@ -217,6 +220,7 @@ class Profile extends Component {
                       {this.state.selectShow ? (
                         <div className="selectDes">
                           <p className="level">Choose your Activity Level</p>
+
                           <CreatableSelect
                             className="selectStyle"
                             isClearable
