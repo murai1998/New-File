@@ -111,7 +111,6 @@ class Profile extends Component {
       });
     }
     this.props.history.push("/create");
-    // window.location = "/create";
   };
   handleInputChange = (inputValue: any, actionMeta: any) => {
     console.group("Input Changed");
