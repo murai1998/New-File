@@ -28,6 +28,14 @@ class Mood extends Component {
       Excited: 0
     }
   };
+  async componentDidMount() {
+    let date = new Date();
+    let time = new Date(date).toDateString();
+    let res = await actions.showMemory(this.state.user.email + time);
+    this.setState({
+      memories: res.data
+    });
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -189,7 +197,7 @@ class Mood extends Component {
                       <div className="form-group">
                         <input
                           type="submit"
-                          value="Add more"
+                          value="Add it"
                           id="btnColor"
                           className="btn btn-primary"
                         />
@@ -261,7 +269,9 @@ class Mood extends Component {
                               </h3>
                             </div>
                             <div
-                              id={this.state.active == "Fear" ? "active5" : null}
+                              id={
+                                this.state.active == "Fear" ? "active5" : null
+                              }
                               className="mood2"
                             >
                               <h1>&#128561;</h1>
@@ -286,7 +296,9 @@ class Mood extends Component {
                             </div>
                             <div
                               id={
-                                this.state.active == "Excited" ? "active5" : null
+                                this.state.active == "Excited"
+                                  ? "active5"
+                                  : null
                               }
                               className="mood2"
                             >
