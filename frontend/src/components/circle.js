@@ -16,24 +16,33 @@ class Circle extends Component {
         {/* <Link to={`/create/${this.props.match.params.weight}`}>Go Back</Link> */}
         <Navbar />
         <section className="signup-section4">
-          <div className="circleALl" style={{ width: "fit-content" }}>
+          <div className="circleALl">
+            {perc >= 100 ? <div> You rocked it!</div> : <div>''</div>}
             <ChangingProgressProvider
               // id="provider"
+              strokeWidth={8}
+              styles={buildStyles({
+                pathColor: "#f00",
+                trailColor: "red"
+              })}
               values={[...Array(perc).keys()]}
             >
               {perc => (
-                <CircularProgressbar
-                  value={perc}
-                  text={`${perc + 1}%`}
-                  strokeWidth={10}
-                  styles={buildStyles({
-                    strokeLinecap: "#658fbb",
-                    backgroundColor: "red",
-                    textColor: "#658fbb",
-                    pathColor: "#658fbb",
-                    trailColor: "white"
-                  })}
-                />
+                <div style={{ width: "84%" }}>
+                  <CircularProgressbar
+                    value={perc}
+                    text={`${perc + 1}%`}
+                    strokeWidth={10}
+                    styles={buildStyles({
+                      strokeLinecap: "#658fbb",
+                      backgroundColor: "red",
+
+                      textColor: "#658fbb",
+                      pathColor: "#658fbb",
+                      trailColor: "white"
+                    })}
+                  />
+                </div>
               )}
             </ChangingProgressProvider>
           </div>

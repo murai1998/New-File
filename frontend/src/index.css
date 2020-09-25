@@ -11031,6 +11031,11 @@ body {
   background-attachment: scroll;
   background-size: cover;
 }
+#circ{
+    color: red;
+    background-color: red;
+    font-size: 69px;
+}
 .signup-section3{
     padding: 1rem 0;
   background: linear-gradient(
@@ -11064,7 +11069,13 @@ align-items: center;
     margin-left: auto;
     margin-right: auto;
   padding-bottom: 2em;
+width: fit-content;
+}
 
+@media only screen and (min-width: 1024px) {
+.circleALl{
+width: 500px;
+}
 }
 #provider{
 color: red;
