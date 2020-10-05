@@ -144,7 +144,35 @@ class CreateExercise extends Component {
     return (
       <div>
         <Navbar />
-        <div className="createExs">
+        <div>
+          <section class="signup-section6" id="signup2">
+            <div class="container">
+              <div class="row">
+                <img
+                  id="pen"
+                  class="img-fluid"
+                  src={require("../images/qm.png")}
+                  alt=""
+                />
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                  <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                  One of the easiest methods for recording of the intensity of a
+                  physical activity is the Metabolic Equivalent Task (MET)
+                  method. The energy cost of many activities has been
+                  determined, usually by monitoring the oxygen consumption
+                  during the activity, to determine an average oxygen uptake per
+                  unit of time. This value is then compared to the resting
+                  oxygen uptake.
+                </div>
+                <img
+                  id="pen"
+                  class="img-fluid"
+                  src={require("../images/qm.png")}
+                  alt=""
+                />
+              </div>
+            </div>
+          </section>
           <p className="tags">
             Physical activity has a large effect on total human energy
             expenditure, and contributes 20-30% to the body's total energy

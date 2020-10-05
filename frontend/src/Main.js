@@ -82,17 +82,7 @@ class Main extends Component {
               <Mood setUser={this.setUser} user={this.state.user} {...props} />
             )}
           />
-          <Route
-            exact
-            path="/component"
-            render={props => (
-              <WebComponent
-                setUser={this.setUser}
-                user={this.state.user}
-                {...props}
-              />
-            )}
-          />
+
           <Route
             exact
             path="/circle/:results/:weight"

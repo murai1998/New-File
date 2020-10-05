@@ -11031,6 +11031,24 @@ body {
   background-attachment: scroll;
   background-size: cover;
 }
+
+.signup-section6{
+    padding: 1rem 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.112) 75%,
+      #00000019 100%
+    ),
+    url("https://i.pinimg.com/474x/8d/b0/8e/8db08ef04f7deee4ce87ca01ccdf0308.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+
+
 #circ{
     color: red;
     background-color: red;
