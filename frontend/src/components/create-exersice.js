@@ -144,120 +144,134 @@ class CreateExercise extends Component {
     return (
       <div>
         <Navbar />
-        <div className="createExs">
-          <p className="tags">
-            Physical activity has a large effect on total human energy
-            expenditure, and contributes 20-30% to the body's total energy
-            output. The amount of energy expended for different activities will
-            vary with the intensity and type of exercise. For each person, the
-            range for total daily energy expenditure is highly variable, it
-            depends on many factors, including: activity level, age, gender,
-            size, weight and body composition.
-          </p>
-          <p className="tags">
-            One of the easiest methods for recording of the intensity of a
-            physical activity is the Metabolic Equivalent Task (MET) method. The
-            energy cost of many activities has been determined, usually by
-            monitoring the oxygen consumption during the activity, to determine
-            an average oxygen uptake per unit of time. This value is then
-            compared to the resting oxygen uptake.
-          </p>
-          <h4>
-            Let us help you to calculate how many calories you burn doing
-            various physical tasks.{" "}
-          </h4>
-          {this.state.seeForm ? (
+        <div>
+          <section class="signup-section6">
             <div>
-              <p>
-                Enter your weight, then describe the duration and intensity of
-                each activity
-              </p>
-
-              <form id="form6" onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <label>Description:</label>
-                  {this.state.list.map(item => {
-                    options.push({
-                      value: item.description,
-                      label: item.description
-                    });
-                  })}
-                  {console.log(keys)}
-                  {keys.filter(item => {
-                    {
-                      options2.push({
-                        value: item[0],
-                        label: item[0]
-                      });
-                    }
-                  })}
-
-                  <CreatableSelect
-                    isClearable
-                    onChange={this.handleChange2}
-                    onInputChange={this.handleInputChange}
-                    options={options2}
-                  />
-
-                  {keys.filter(item => {
-                    if (item[0] == this.state.description2) arr = item[1];
-                  })}
-                  {(options2 = [])}
-
-                  {Object.values(arr).filter(item => {
-                    {
-                      options3.push({
-                        value: item.specific,
-                        label: item.specific,
-                        met: item.MET
-                      });
-                    }
-                  })}
-                  {console.log("Arr", Object.values(arr))}
-                  <CreatableSelect
-                    isClearable
-                    onChange={this.handleChange3}
-                    onInputChange={this.handleInputChange}
-                    options={options3}
-                  />
-                  {(options3 = [])}
+              <div id="qMark">
+                <img
+                  id="qmLeft"
+                  class="img-fluid"
+                  src={require("../images/qm copy.png")}
+                  alt=""
+                />
+                <div className="secHeader">
+                  <h2>... Did you know ...</h2>
+                  <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                  One of the easiest methods for recording of the intensity of a
+                  physical activity is the Metabolic Equivalent Task (MET)
+                  method. The energy cost of many activities has been
+                  determined, usually by monitoring the oxygen consumption
+                  during the activity, to determine an average oxygen uptake per
+                  unit of time. This value is then compared to the resting
+                  oxygen uptake.
                 </div>
-                <div className="form-group">
-                  <label>Duration in minutes</label>
-                  <input
-                    type="number"
-                    name="duration"
-                    required
-                    className="form-control"
-                    onChange={this.handleChange}
-                  />
-                </div>
+                <img
+                  id="qmRight"
+                  class="img-fluid"
+                  src={require("../images/qm.png")}
+                  alt=""
+                />
+              </div>
+            </div>
+          </section>
+          <section id="sect33">
+            <h4>
+              Let us help you to calculate how many calories you burn doing
+              various physical tasks.{" "}
+            </h4>
+            {this.state.seeForm ? (
+              <div>
+                <p>
+                  Enter your weight, then describe the duration and intensity of
+                  each activity
+                </p>
 
-                <div className="form-group">
-                  <label>Date</label>
-                  <div>
-                    <DatePicker
-                      selected={this.state.date}
-                      onSelect={this.handleDate}
+                <form id="form6" onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    {this.state.list.map(item => {
+                      options.push({
+                        value: item.description,
+                        label: item.description
+                      });
+                    })}
+                    {console.log(keys)}
+                    {keys.filter(item => {
+                      {
+                        options2.push({
+                          value: item[0],
+                          label: item[0]
+                        });
+                      }
+                    })}
+
+                    <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange2}
+                      onInputChange={this.handleInputChange}
+                      options={options2}
+                    />
+
+                    {keys.filter(item => {
+                      if (item[0] == this.state.description2) arr = item[1];
+                    })}
+                    {(options2 = [])}
+
+                    {Object.values(arr).filter(item => {
+                      {
+                        options3.push({
+                          value: item.specific,
+                          label: item.specific,
+                          met: item.MET
+                        });
+                      }
+                    })}
+                    {console.log("Arr", Object.values(arr))}
+                    <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange3}
+                      onInputChange={this.handleInputChange}
+                      options={options3}
+                    />
+                    {(options3 = [])}
+                  </div>
+                  <div className="form-group">
+                    <label>Duration in minutes</label>
+                    <input
+                      type="number"
+                      name="duration"
+                      required
+                      className="form-control"
+                      onChange={this.handleChange}
                     />
                   </div>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="submit"
-                    value="Create"
-                    className="btn btn-primary"
-                  />
-                </div>
-              </form>
-            </div>
-          ) : (
-            {
-              /* <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
+
+                  <div className="form-group">
+                    <label>Date</label>
+                    <div>
+                      <DatePicker
+                        selected={this.state.date}
+                        onSelect={this.handleDate}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      type="submit"
+                      value="Create"
+                      className="btn btn-primary"
+                    />
+                  </div>
+                </form>
+              </div>
+            ) : (
+              {
+                /* <Link to={`/circle/${this.state.percentage}/${this.state.weight}`}>
               Check your results
             </Link> */
-            }("")
-          )}
+              }("")
+            )}
+          </section>
         </div>
       </div>
     );

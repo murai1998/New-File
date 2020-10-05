@@ -9,7 +9,7 @@ import Svg, {
   Text,
   TSpan,
   Circle
-} from "react-native-svg";
+} from "react";
 /* Adobe XD React Exporter has dropped some elements not supported by react-native-svg: style */
 
 const WebComponent = () => (
