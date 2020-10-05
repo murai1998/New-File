@@ -146,15 +146,16 @@ class CreateExercise extends Component {
         <Navbar />
         <div>
           <section class="signup-section6" id="signup2">
-            <div class="container">
-              <div class="row">
+            <div>
+              <div id="qMark">
                 <img
-                  id="pen"
+                  id="qmLeft"
                   class="img-fluid"
-                  src={require("../images/qm.png")}
+                  src={require("../images/qm copy.png")}
                   alt=""
                 />
-                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                <div className="secHeader">
+                  <h2>... Did you know ...</h2>
                   <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
                   One of the easiest methods for recording of the intensity of a
                   physical activity is the Metabolic Equivalent Task (MET)
@@ -165,7 +166,7 @@ class CreateExercise extends Component {
                   oxygen uptake.
                 </div>
                 <img
-                  id="pen"
+                  id="qmRight"
                   class="img-fluid"
                   src={require("../images/qm.png")}
                   alt=""
