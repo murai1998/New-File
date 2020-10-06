@@ -11571,9 +11571,21 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
 .formulas div{
     width: 300px;
     padding: 0.5em 2em;
+    margin: 20px;
+    color: white;
    
 }
 .formulas2{
- background: linear-gradient(#ffffffe6, #fff0);
+ background: linear-gradient(#aba9a9e6, rgba(130, 129, 129, 0));
 }
 
+.formh2{
+        text-transform: uppercase;
+    font-size: 1.5em;
+    padding: 1em 1em 0.5em;
+    max-width: 400px;
+    line-height: 2.5rem;
+    letter-spacing: 0.8rem;
+    font-weight: 500;
+    
+}
