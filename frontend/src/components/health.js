@@ -132,114 +132,142 @@ class Health extends Component {
     return (
       <div>
         <Navbar />
-        <h1>Ideal Weight Calculator</h1>
-        <p>
-          If you are really concerned about your health or your looks and want
-          to know how much you should weigh, this ideal weight calculator is the
-          tool for you. It will help you determine your ideal body weight based
-          on your height and sex. Read on to learn the different formulas for
-          calculating your IBW (ideal body weight) and how to interpret the
-          results
-        </p>
-        <form className="form1" onSubmit={this.getInfo}>
-          <div id="sex">
-            <label>Gender</label>
-            <CreatableSelect
-              isClearable
-              onChange={this.handleChange3}
-              onInputChange={this.handleInputChange}
-              options={opts}
-            />
+        <div id="weightPage2">
+          <div className="idealWeight">
+            <h1>Ideal Weight Calculator</h1>
+            <div className="calcP">
+              <p>
+                <img
+                  id="checkM"
+                  class="img-fluid"
+                  src={require("../images/clipart289619.png")}
+                  alt=""
+                />
+                {"    "}
+                If you are really concerned about your health and want to know
+                how much you should weigh? This ideal weight calculator is the
+                tool for you.
+              </p>
+              <p id="p11">
+                <img
+                  id="checkM"
+                  class="img-fluid"
+                  src={require("../images/clipart289619.png")}
+                  alt=""
+                />{" "}
+                {"    "}
+                It will help you determine your ideal body weight based on your
+                height and sex.
+              </p>
+              <p id="p12">
+                <img
+                  id="checkM"
+                  class="img-fluid"
+                  src={require("../images/clipart289619.png")}
+                  alt=""
+                />
+                {"    "}
+                Read on to learn the different formulas for calculating your IBW
+                (ideal body weight) and how to interpret the results
+              </p>
+            </div>
+            <h2>Formulas for Finding the Ideal Weight</h2>
+            <div className="formulas">
+              <div className="formulas2">
+                <h3 style={{ color: "#7acfda" }}>G. J. Hamwi</h3>
+                <p>
+                  <p>Male: 48.0 kg + 2.7 kg per inch over 5 feet</p>
+                  <p>Female: 45.5 kg + 2.2 kg per inch over 5 feet</p>
+                </p>
+              </div>
+              <div className="formulas2">
+                <h3 style={{ color: "#90bb92" }}>B. J. Devine</h3>
+                <p>
+                  <p>Male: 50.0 kg + 2.3 kg per inch over 5 feet</p>
+                  <p>Female: 45.5 kg + 2.3 kg per inch over 5 feet</p>
+                </p>
+              </div>
+              <div className="formulas2">
+                <h3 style={{ color: "#f1e8a0" }}>D. R. Miller</h3>
+                <p>
+                  <p>Male: 56.2 kg + 1.41 kg per inch over 5 feet</p>
+                  <p>Female: 53.1 kg + 1.36 kg per inch over 5 feet</p>{" "}
+                </p>
+              </div>
+              <div className="formulas2">
+                <h3 style={{ color: "#f9c77d" }}>J. D. Robinson</h3>
+                <p>
+                  <p>Male: 52 kg + 1.9 kg per inch over 5 feet</p>{" "}
+                  <p>Female: 49 kg + 1.7 kg per inch over 5 feet</p>{" "}
+                </p>
+              </div>
+            </div>
           </div>
-          <div id="height">
-            <label>Height</label>
-            <input
-              id="typeinp"
-              type="range"
-              min="100"
-              max="250"
-              name="height"
-              onChange={this.handleChange}
-              step="1"
-            />
-            {this.state.height} cm
-          </div>
-          <div id="weight">
-            <label>Weight</label>
-            <input
-              id="typeinp"
-              type="range"
-              min="20"
-              max="150"
-              name="weight"
-              onChange={this.handleChange}
-              step="1"
-            />
-            {this.state.weight} kg
-          </div>
-          <div id="age">
-            <label>Age</label>
-            <input
-              placeholder="25"
-              onChange={this.handleChange}
-              type="text"
-              name="age"
-            />
-          </div>
-          <br />
-          <button className="submit" type="submit">
-            Calculate
-          </button>
-        </form>
-        {this.state.showGraph ? (
-          <div>
-            <p>
-              Your body mass index (BMI):{" "}
-              <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong>(
-              {this.state.bmi?.health})
-            </p>
-            <PerfectWeight
-              data={this.getRatingData()}
-              title="Perfect weight in kg"
-            />
-          </div>
-        ) : (
-          ""
-        )}
-        <h2>Formulas for Finding the Ideal Weight</h2>
-        <div>
-          <h3>G. J. Hamwi Formula (1964)</h3>
-          <p>
-            <p>Male: 48.0 kg + 2.7 kg per inch over 5 feet</p>
-            <p>Female: 45.5 kg + 2.2 kg per inch over 5 feet</p> Invented for
-            medicinal dosage purposes
-          </p>
-        </div>
-        <div>
-          <h3>B. J. Devine Formula (1974)</h3>
-          <p>
-            <p>Male: 50.0 kg + 2.3 kg per inch over 5 feet</p>
-            <p>Female: 45.5 kg + 2.3 kg per inch over 5 feet</p> Similar to the
-            Hamwi Formula, it was originally intended as a basis for medicinal
-            dosages based on weight and height. Over time, the formula became a
-            universal determinant of IBW
-          </p>
-          <div>
-            <h3>D. R. Miller Formula (1983)</h3>
-            <p>
-              <p>Male: 56.2 kg + 1.41 kg per inch over 5 feet</p>
-              <p>Female: 53.1 kg + 1.36 kg per inch over 5 feet</p> Modification
-              of the Devine Formula
-            </p>
-          </div>
-          <div>
-            <h3>J. D. Robinson Formula (1983)</h3>
-            <p>
-              <p>Male: 52 kg + 1.9 kg per inch over 5 feet</p>{" "}
-              <p>Female: 49 kg + 1.7 kg per inch over 5 feet</p> Modification of
-              the Devine Formula
-            </p>
-          </div>
+          <form className="form1" onSubmit={this.getInfo}>
+            <div id="sex">
+              <label>Gender</label>
+              <CreatableSelect
+                isClearable
+                onChange={this.handleChange3}
+                onInputChange={this.handleInputChange}
+                options={opts}
+              />
+            </div>
+            <div id="height">
+              <label>Height</label>
+              <input
+                id="typeinp"
+                type="range"
+                min="100"
+                max="250"
+                name="height"
+                onChange={this.handleChange}
+                step="1"
+              />
+              {this.state.height} cm
+            </div>
+            <div id="weight">
+              <label>Weight</label>
+              <input
+                id="typeinp"
+                type="range"
+                min="20"
+                max="150"
+                name="weight"
+                onChange={this.handleChange}
+                step="1"
+              />
+              {this.state.weight} kg
+            </div>
+            <div id="age">
+              <label>Age</label>
+              <input
+                placeholder="25"
+                onChange={this.handleChange}
+                type="text"
+                name="age"
+              />
+            </div>
+            <br />
+            <button className="submit" type="submit">
+              Calculate
+            </button>
+          </form>
+          {this.state.showGraph ? (
+            <div>
+              <p>
+                Your body mass index (BMI):{" "}
+                <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong>(
+                {this.state.bmi?.health})
+              </p>
+              <PerfectWeight
+                data={this.getRatingData()}
+                title="Perfect weight in kg"
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

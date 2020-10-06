@@ -17,7 +17,7 @@ class Circle extends Component {
         <Navbar />
         <section className="signup-section4">
           <div className="circleALl">
-            {perc >= 100 ? <div> You rocked it!</div> : <div>''</div>}
+            {/* {perc >= 100 ? <div> You rocked it!</div> : <div>''</div>} */}
             <ChangingProgressProvider
               // id="provider"
               strokeWidth={8}
@@ -34,10 +34,10 @@ class Circle extends Component {
                     text={`${perc + 1}%`}
                     strokeWidth={10}
                     styles={buildStyles({
-                      strokeLinecap: "#658fbb",
+                      strokeLinecap: "black",
                       backgroundColor: "red",
-
-                      textColor: "#658fbb",
+                      textSize: "30px",
+                      textColor: "black",
                       pathColor: "#658fbb",
                       trailColor: "white"
                     })}

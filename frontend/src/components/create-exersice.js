@@ -175,17 +175,9 @@ class CreateExercise extends Component {
             </div>
           </section>
           <section id="sect33">
-            <h4>
-              Let us help you to calculate how many calories you burn doing
-              various physical tasks.{" "}
-            </h4>
+            <h4>Start calculating your calories</h4>
             {this.state.seeForm ? (
               <div>
-                <p>
-                  Enter your weight, then describe the duration and intensity of
-                  each activity
-                </p>
-
                 <form id="form6" onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <label>Description:</label>
@@ -255,7 +247,7 @@ class CreateExercise extends Component {
                       />
                     </div>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group" id='button8'>
                     <input
                       type="submit"
                       value="Create"
