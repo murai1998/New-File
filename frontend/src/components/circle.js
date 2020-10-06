@@ -34,10 +34,10 @@ class Circle extends Component {
                     text={`${perc + 1}%`}
                     strokeWidth={10}
                     styles={buildStyles({
-                      strokeLinecap: "#658fbb",
+                      strokeLinecap: "black",
                       backgroundColor: "red",
-
-                      textColor: "#658fbb",
+                      textSize: "30px",
+                      textColor: "black",
                       pathColor: "#658fbb",
                       trailColor: "white"
                     })}

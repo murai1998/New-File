@@ -11127,7 +11127,8 @@ body {
 display: flex;
 justify-content: center;
 align-items: center;
-
+padding: 0;
+margin: 0;
 }
 .circleALl{
   /* position: relative;
@@ -11135,6 +11136,7 @@ align-items: center;
   left: 50%;
   /* bring your own prefixes */
   /* transform: translate(-50%, -50%);  */
+  font-size: 2em;
   display: block;
     margin-left: auto;
     margin-right: auto;
@@ -11146,6 +11148,7 @@ align-items: center;
  background: linear-gradient(#ffffffe6, #fff0);
  border-radius:10px;
 }
+
 
 @media only screen and (min-width: 1024px) {
 .circleALl{
@@ -11454,7 +11457,7 @@ background-color: red;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-     padding: 5em 0 5em;
+     padding: 2em 0 11.2em;
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.1) 0%,
@@ -11473,7 +11476,8 @@ background-color: red;
    /* color: #007bff; */
    text-transform: uppercase;
    font-size: 1.5em;
-   padding: 2.5em;
+   padding: 1.5em;
+  
    line-height: 2.5rem;
     letter-spacing: 0.8rem;
     background: linear-gradient(#ffffffe6, #fff0);
@@ -11482,6 +11486,7 @@ background-color: red;
 }
 #form6 label{
     font-weight: 500;
+    font-size: 1.1em;
 }
 #form6{
     min-width: 200px;
