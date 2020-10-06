@@ -17,7 +17,7 @@ class Circle extends Component {
         <Navbar />
         <section className="signup-section4">
           <div className="circleALl">
-            {perc >= 100 ? <div> You rocked it!</div> : <div>''</div>}
+            {/* {perc >= 100 ? <div> You rocked it!</div> : <div>''</div>} */}
             <ChangingProgressProvider
               // id="provider"
               strokeWidth={8}
