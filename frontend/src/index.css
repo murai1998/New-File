@@ -11448,5 +11448,39 @@ background-color: red;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-       padding: 2em;
+     padding: 5em 0 5em;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.112) 75%,
+      #00000025 100%
+    ),
+    url("./images/old-calculator\ copy.JPG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+
+#sect33 h4{
+   /* color: #007bff; */
+   text-transform: uppercase;
+   font-size: 1.5em;
+   padding: 2.5em;
+   line-height: 2.5rem;
+    letter-spacing: 0.8rem;
+    background: linear-gradient(#ffffffe6, #fff0);
+    color: linear-gradient(#ffffffe6, #fff0);
+    text-decoration: underline;
+}
+#form6 label{
+    font-weight: 500;
+}
+#form6{
+    min-width: 200px;
+  width: 300px;
+  background: linear-gradient(#ffffffe6, #fff0);
+border: none;
+   
 }
