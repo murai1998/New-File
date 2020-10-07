@@ -238,8 +238,17 @@ body {
 #sex {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+align-items: center;
+justify-content: center;
+}
+#sex p{
+    margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+    margin-top: 10px;
+    
+
+
 }
 #height {
   display: flex;
@@ -11514,7 +11523,7 @@ border: none;
 .idealWeight{
     background: linear-gradient(#cce0ebe6, rgba(205, 221, 232, 0));
     padding-top: 0;
-    padding: 2em;
+    padding: 2em 2em;
     
 }
 
@@ -11529,8 +11538,11 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
-
+.formulas p{
+    font-size: 1.2em;
+}
 #weightPage2 h1{
     padding: 0.6em;
     text-align: center;
@@ -11571,9 +11583,45 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
 .formulas div{
     width: 300px;
     padding: 0.5em 2em;
+    margin: 20px;
+    color: white;
    
 }
 .formulas2{
- background: linear-gradient(#ffffffe6, #fff0);
+ background: linear-gradient(#aba9a9e6, rgba(130, 129, 129, 0));
 }
 
+.formh2{
+        text-transform: uppercase;
+    font-size: 1.5em;
+    padding: 1em 1em 0.5em;
+    max-width: 400px;
+    line-height: 2.5rem;
+    letter-spacing: 0.8rem;
+    font-weight: 500;
+    
+}
+#calculWeight{
+    padding: 4em 20em;
+}
+.gender{
+    border: 4px solid white;
+    border-radius: 50%;
+    padding: 7px;
+}
+#calculWeight label{
+    color: rgb(100, 99, 99);
+    font-weight: 500;
+    font-size: 1.5em;
+}
+.form1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: inherit;
+    cursor: pointer;
+}
+.params{
+    background-color: none;
+    border: none;
+}
