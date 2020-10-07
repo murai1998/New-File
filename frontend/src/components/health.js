@@ -12,7 +12,7 @@ const opts = [
 
 class Health extends Component {
   state = {
-    gender: "",
+    gender: "female",
     height: "",
     weight: "79",
     age: "",
@@ -29,6 +29,16 @@ class Health extends Component {
   next = e => {
     this.setState({
       showForm: false
+    });
+  };
+  male = e => {
+    this.setState({
+      gender: "male"
+    });
+  };
+  female = e => {
+    this.setState({
+      gender: "female"
     });
   };
   handleChange3 = (newValue: any, actionMeta: any) => {
@@ -208,60 +218,106 @@ class Health extends Component {
                   </p>
                 </div>
               </div>
-              <button onClick={this.next}>Next</button>
+              <button className="btn btn-primary" onClick={this.next}>
+                Next >>
+              </button>
             </div>
           ) : (
             <div>
-              <form className="form1" onSubmit={this.getInfo}>
-                <div id="sex">
-                  <label>Gender</label>
-                  <CreatableSelect
-                    isClearable
-                    onChange={this.handleChange3}
-                    onInputChange={this.handleInputChange}
-                    options={opts}
-                  />
+              <div className="idealWeight" id="calculWeight">
+                <form className="form1" onSubmit={this.getInfo}>
+                  <div id="sex">
+                    <label>Gender:</label>
+                    {/* <CreatableSelect
+                      isClearable
+                      onChange={this.handleChange3}
+                      onInputChange={this.handleInputChange}
+                      options={opts}
+                    /> */}{" "}
+                    {"    "}
+                    <p
+                      className={
+                        this.state.gender == "female" ? "gender" : null
+                      }
+                      onClick={this.female}
+                    >
+                      female
+                    </p>
+                    <p
+                      className={this.state.gender == "male" ? "gender" : null}
+                      onClick={this.male}
+                      onClick={this.male}
+                    >
+                      male
+                    </p>
+                  </div>
+                  <div id="height">
+                    <label>Height:</label>
+                    <input
+                      type="text"
+                      name="height"
+                      onChange={this.handleChange}
+                      className="params"
+                    />
+                    {this.state.height} cm
+                  </div>
+                  <div id="weight">
+                    <label>Weight</label>
+                    <input
+                      type="text"
+                      name="weight"
+                      onChange={this.handleChange}
+                      className="params"
+                    />
+                    {this.state.weight} kg
+                  </div>
+                  <div id="age">
+                    <label>Age</label>
+                    <input
+                      placeholder="25"
+                      onChange={this.handleChange}
+                      type="text"
+                      name="age"
+                      className="params"
+                    />
+                  </div>
+                  <br />
+                  <button className="submit" type="submit">
+                    Calculate
+                  </button>
+                </form>
+                <h2 class="formh2">Formulas</h2>
+                <div className="formulas">
+                  <div className="formulas2">
+                    <h3 style={{ color: "#29c9de" }}>G. J. Hamwi</h3>
+                    <p>
+                      <p>Male: 48.0 kg + 2.7 kg per inch over 5 feet</p>
+                      <p>Female: 45.5 kg + 2.2 kg per inch over 5 feet</p>
+                    </p>
+                  </div>
+                  <div className="formulas2">
+                    <h3 style={{ color: "#51b356" }}>B. J. Devine</h3>
+                    <p>
+                      <p>Male: 50.0 kg + 2.3 kg per inch over 5 feet</p>
+                      <p>Female: 45.5 kg + 2.3 kg per inch over 5 feet</p>
+                    </p>
+                  </div>
+                  <div className="formulas2">
+                    <h3 style={{ color: "#fbe850" }}>D. R. Miller</h3>
+                    <p>
+                      <p>Male: 56.2 kg + 1.41 kg per inch over 5 feet</p>
+                      <p>Female: 53.1 kg + 1.36 kg per inch over 5 feet</p>{" "}
+                    </p>
+                  </div>
+                  <div className="formulas2">
+                    <h3 style={{ color: "#f9c77d" }}>J. D. Robinson</h3>
+                    <p>
+                      <p>Male: 52 kg + 1.9 kg per inch over 5 feet</p>{" "}
+                      <p>Female: 49 kg + 1.7 kg per inch over 5 feet</p>{" "}
+                    </p>
+                  </div>
                 </div>
-                <div id="height">
-                  <label>Height</label>
-                  <input
-                    id="typeinp"
-                    type="range"
-                    min="100"
-                    max="250"
-                    name="height"
-                    onChange={this.handleChange}
-                    step="1"
-                  />
-                  {this.state.height} cm
-                </div>
-                <div id="weight">
-                  <label>Weight</label>
-                  <input
-                    id="typeinp"
-                    type="range"
-                    min="20"
-                    max="150"
-                    name="weight"
-                    onChange={this.handleChange}
-                    step="1"
-                  />
-                  {this.state.weight} kg
-                </div>
-                <div id="age">
-                  <label>Age</label>
-                  <input
-                    placeholder="25"
-                    onChange={this.handleChange}
-                    type="text"
-                    name="age"
-                  />
-                </div>
-                <br />
-                <button className="submit" type="submit">
-                  Calculate
-                </button>
-              </form>
+              </div>
               {this.state.showGraph ? (
                 <div>
                   <p>
