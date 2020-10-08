@@ -235,8 +235,14 @@ body {
 
   align-items: center;
 }
-#sex {
+#sex{
   display: flex;
+  flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+#weight{
+    display: flex;
   flex-direction: row;
 align-items: center;
 justify-content: center;
@@ -11620,8 +11626,40 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
     align-items: center;
     justify-content: inherit;
     cursor: pointer;
+     background: linear-gradient(#cce0ebe6, #cddde800);
+    text-align: center;
 }
 .params{
-    background-color: none;
+    background: linear-gradient(#cce0ebe6, #cddde800);
     border: none;
+    max-width: 80px;
+        margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+    text-align: center;
+    
+
+
+
+    border-bottom: 4px solid white;
+    
+}
+
+#height p{
+     margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+    
+}
+#weight p{
+     margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+   
+    
+}
+#height, #weight, #age{
+    margin-top: 10px;
+    color: rgb(132, 188, 241);
+     color: rgb(65, 158, 245);
 }

@@ -33,9 +33,9 @@ const PerfectWeight = props => {
           {props.data.map((entry, index) => {
             console.log(entry.name);
             return entry.name == "My weight" ? (
-              <Cell fill="#4e1ba8" />
+              <Cell fill="rgb(132, 188, 241)" />
             ) : (
-              <Cell fill="#c0a6ee" />
+              <Cell fill="rgb(65, 158, 245)" />
             );
           })}
         </Bar>
