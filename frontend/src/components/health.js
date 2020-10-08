@@ -226,11 +226,12 @@ class Health extends Component {
             <div>
               <div className="idealWeight" id="calculWeight">
                 {this.state.showGraph ? (
-                  <div>
+                  <div className='barResults'>
+                    <h3>Received results: </h3>
                     <p>
                       Your body mass index (BMI):{" "}
-                      <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong>(
-                      {this.state.bmi?.health})
+                      <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong> &sim;{" "}
+                      <span>{this.state.bmi?.health}</span>
                     </p>
                     <PerfectWeight
                       data={this.getRatingData()}
