@@ -22,7 +22,9 @@ const PerfectWeight = props => {
         margin: 0
       }}
     >
-      <strong>{props.title}</strong>
+      <p id="barTitle">
+        <i>{props.title}</i>
+      </p>
       <BarChart width={500} height={300} data={props.data} margin="auto">
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
@@ -33,9 +35,9 @@ const PerfectWeight = props => {
           {props.data.map((entry, index) => {
             console.log(entry.name);
             return entry.name == "My weight" ? (
-              <Cell fill="#4e1ba8" />
+              <Cell fill="white" />
             ) : (
-              <Cell fill="#c0a6ee" />
+              <Cell fill="rgb(65, 158, 245)" />
             );
           })}
         </Bar>

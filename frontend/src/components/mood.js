@@ -198,7 +198,6 @@ class Mood extends Component {
                         <input
                           type="submit"
                           value="Add it"
-                          id="btnColor"
                           className="btn btn-primary"
                         />
                       </div>

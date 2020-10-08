@@ -225,67 +225,84 @@ class Health extends Component {
           ) : (
             <div>
               <div className="idealWeight" id="calculWeight">
-                <form className="form1" onSubmit={this.getInfo}>
-                  <div id="sex">
-                    <label>Gender:</label>
-                    {/* <CreatableSelect
+                {this.state.showGraph ? (
+                  <div className='barResults'>
+                    <h3>Received results: </h3>
+                    <p>
+                      Your body mass index (BMI):{" "}
+                      <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong> &sim;{" "}
+                      <span>{this.state.bmi?.health}</span>
+                    </p>
+                    <PerfectWeight
+                      data={this.getRatingData()}
+                      title="Perfect weight in kg"
+                    />
+                  </div>
+                ) : (
+                  <form className="form1" onSubmit={this.getInfo}>
+                    <div id="sex">
+                      <label>Gender:</label>
+                      {/* <CreatableSelect
                       isClearable
                       onChange={this.handleChange3}
                       onInputChange={this.handleInputChange}
                       options={opts}
                     /> */}{" "}
-                    {"    "}
-                    <p
-                      className={
-                        this.state.gender == "female" ? "gender" : null
-                      }
-                      onClick={this.female}
-                    >
-                      female
-                    </p>
-                    <p
-                      className={this.state.gender == "male" ? "gender" : null}
-                      onClick={this.male}
-                      onClick={this.male}
-                    >
-                      male
-                    </p>
-                  </div>
-                  <div id="height">
-                    <label>Height:</label>
-                    <input
-                      type="text"
-                      name="height"
-                      onChange={this.handleChange}
-                      className="params"
-                    />
-                    {this.state.height} cm
-                  </div>
-                  <div id="weight">
-                    <label>Weight</label>
-                    <input
-                      type="text"
-                      name="weight"
-                      onChange={this.handleChange}
-                      className="params"
-                    />
-                    {this.state.weight} kg
-                  </div>
-                  <div id="age">
-                    <label>Age</label>
-                    <input
-                      placeholder="25"
-                      onChange={this.handleChange}
-                      type="text"
-                      name="age"
-                      className="params"
-                    />
-                  </div>
-                  <br />
-                  <button className="submit" type="submit">
-                    Calculate
-                  </button>
-                </form>
+                      {"    "}
+                      <p
+                        className={
+                          this.state.gender == "female" ? "gender" : null
+                        }
+                        onClick={this.female}
+                      >
+                        female
+                      </p>
+                      <p
+                        className={
+                          this.state.gender == "male" ? "gender" : null
+                        }
+                        onClick={this.male}
+                        onClick={this.male}
+                      >
+                        male
+                      </p>
+                    </div>
+                    <div id="height">
+                      <label>Height in cm:</label>
+                      <input
+                        placeholder="?"
+                        type="text"
+                        name="height"
+                        onChange={this.handleChange}
+                        className="params"
+                      />{" "}
+                    </div>
+                    <div id="weight">
+                      <label>Weight in kg:</label>
+                      <input
+                        placeholder="?"
+                        type="text"
+                        name="weight"
+                        onChange={this.handleChange}
+                        className="params"
+                      />{" "}
+                    </div>
+                    <div id="age">
+                      <label>Age:</label>
+                      <input
+                        placeholder="?"
+                        onChange={this.handleChange}
+                        type="text"
+                        name="age"
+                        className="params"
+                      />
+                    </div>
+                    <br />
+                    <button className="submit btn btn-primary" type="submit">
+                      Calculate
+                    </button>
+                  </form>
+                )}
                 <h2 class="formh2">Formulas</h2>
                 <div className="formulas">
                   <div className="formulas2">
@@ -318,21 +335,6 @@ class Health extends Component {
                   </div>
                 </div>
               </div>
-              {this.state.showGraph ? (
-                <div>
-                  <p>
-                    Your body mass index (BMI):{" "}
-                    <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong>(
-                    {this.state.bmi?.health})
-                  </p>
-                  <PerfectWeight
-                    data={this.getRatingData()}
-                    title="Perfect weight in kg"
-                  />
-                </div>
-              ) : (
-                ""
-              )}
             </div>
           )}
         </div>

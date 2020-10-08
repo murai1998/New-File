@@ -235,8 +235,14 @@ body {
 
   align-items: center;
 }
-#sex {
+#sex{
   display: flex;
+  flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+#weight{
+    display: flex;
   flex-direction: row;
 align-items: center;
 justify-content: center;
@@ -11493,7 +11499,7 @@ background-color: red;
     letter-spacing: 0.8rem;
     background: linear-gradient(#ffffffe6, #fff0);
     color: linear-gradient(#ffffffe6, #fff0);
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 #form6 label{
     font-weight: 500;
@@ -11620,8 +11626,60 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
     align-items: center;
     justify-content: inherit;
     cursor: pointer;
+     background: linear-gradient(#cce0ebe6, #cddde800);
+    text-align: center;
 }
 .params{
-    background-color: none;
+    background: linear-gradient(#cce0ebe6, #cddde800);
     border: none;
+    max-width: 80px;
+        margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+    text-align: center;
+    
+
+
+
+    border-bottom: 4px solid white;
+    
+}
+
+#height p{
+     margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+    
+}
+#weight p{
+     margin-left: 15px;
+    color: black;
+    font-size: 1.5em;
+   
+    
+}
+#height, #weight, #age{
+    margin-top: 10px;
+    color: rgb(233, 207, 249);
+     color: rgb(65, 158, 245);
+}
+#barTitle{
+    padding: 15px 10px 1px;
+        line-height: 2.5rem;
+        font-weight: 700;
+        color: rgb(133, 130, 130);
+    
+}
+
+.recharts-legend-item-text, .recharts-legend-icon{
+   visibility: hidden;
+}
+.barResults strong{
+    padding: 7px;
+    border: 4px solid white;
+    border-radius: 50%;;
+}
+
+.barResults span {
+    font-weight: 700;
 }
