@@ -182,6 +182,7 @@ class Profile extends Component {
           user={this.state.user}
           weight={this.state.weight}
         />
+       
         <div className="profile">
           <div id="groupFF" className="form-group">
             {console.log("LEV", this.state.levels)}
@@ -209,14 +210,7 @@ class Profile extends Component {
                             ""
                           )}
                         </form>
-                      ) : (
-                        <p className="weightP">
-                          Your weight: {this.state.weight} kg
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      {this.state.selectShow ? (
+                        {this.state.selectShow ? (
                         <div className="selectDes">
                           <p className="level">Choose your Activity Level</p>
 
@@ -235,27 +229,18 @@ class Profile extends Component {
                       ) : (
                         ""
                       )}
-                      {this.state.lev ? (
-                        <div className="weightP" id="levelA">
-                          <p>Acivity level: {this.state.labelL}</p>
-                        </div>
                       ) : (
-                        ""
+                        
                       )}
                     </div>
+                   
                   </div>
                 </div>
-                <div id="trBorder" className="tableDiv">
-                  <h4> Hi, {this.state.user.username}</h4>
-                  <h3>Quote of the day</h3>
-                  <p>
-                    <i>"{this.state.quote.slice(1)}"</i>
-                  </p>
-                  <p>{this.state.author}</p>
-                </div>
+                
               </div>
             ) : (
-              <div className="profilePic1">
+              <div>
+                          <div className="profilePic1">
                 {console.log("Username", this.state.user.username)}
                 <div className="inputProfile">
                   <h1 className="h1P">Profile</h1>
@@ -270,6 +255,7 @@ class Profile extends Component {
                   <p>{this.state.author}</p>
                 </div>
               </div>
+                        </div>
             )}
           </div>
           <div className="circleLayout">
