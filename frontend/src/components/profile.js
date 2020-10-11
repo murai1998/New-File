@@ -183,7 +183,7 @@ class Profile extends Component {
           weight={this.state.weight}
         />
 
-        <div className="weightForm">
+        <div className="masthead2">
           <div id="groupFF" className="form-group">
             {console.log("LEV", this.state.levels)}
             {this.state.perc == 0 ? (
