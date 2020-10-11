@@ -11683,3 +11683,15 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
 .barResults span {
     font-weight: 700;
 }
+.weightProf{
+      background: 
+    url("./images/landingWeight.JPG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+min-height: 94vh;
+  min-width: 99vw;
+  padding: 0;
+  margin: 0;
+}
