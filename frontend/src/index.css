@@ -11719,7 +11719,7 @@ min-height: 94vh;
   position: relative;
   width: 100%;
   height: auto;
-  min-height: 35rem;
+  min-height: 65rem;
   
   background: linear-gradient(
       to bottom,
@@ -11799,4 +11799,7 @@ input{
 }
 #next2{
     margin-top: 10px;
+}
+.quote4{
+    color: white;
 }

@@ -208,7 +208,7 @@ class Profile extends Component {
                               {this.state.button ? (
                                 <div className="form-group">
                                   <input
-                                  id='next2'
+                                    id="next2"
                                     type="submit"
                                     value=" Next >>"
                                     className="btn btn-primary"
@@ -252,30 +252,29 @@ class Profile extends Component {
                   {console.log("Username", this.state.user.username)}
                   <div className="inputProfile">
                     <h1 className="h1P">Profile</h1>
-                    <p>Today's goal: {this.state.reqAct} calories</p>
-                  </div>
-                  <div id="trBorder" className="tableDiv">
                     <p>Welcome back, {this.state.user.username}!</p>
+                    <p>Today's goal: {this.state.reqAct} calories</p>
+                    <div className="caption1">
+                      <h3 id="nameH">Calories in Progress</h3>
+                      {/* <h3>{this.state.burned} calories</h3> */}
+                    </div>
+                    <div className="circle10">
+                      <CircularProgressbar
+                        value={this.state.perc}
+                        text={`${Number(this.state.perc)}%`}
+                        // text={`${Math.round((value * 100) / this.state.level)}%`}
+                      />
+                    </div>
+<div className='quote4'>
                     <h3>Quote of the day</h3>
                     <p>
                       <i>"{this.state.quote.slice(1)}"</i>
                     </p>
                     <p>{this.state.author}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="circleLayout">
-                  <div className="circle2">
-                    <div className="caption1">
-                      <h3 id="nameH">Calories in Progress</h3>
-                      {/* <h3>{this.state.burned} calories</h3> */}
-                    </div>
-                    <CircularProgressbar
-                      value={this.state.perc}
-                      text={`${Number(this.state.perc)}%`}
-                      // text={`${Math.round((value * 100) / this.state.level)}%`}
-                    />
-                  </div>
-
+                {/* <div className="circleLayout">
                   <div id="trBorder" className="tableDiv">
                     <table class="table table-bordered">
                       <thead>
@@ -343,7 +342,7 @@ class Profile extends Component {
                       </tbody>
                     </table>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>
