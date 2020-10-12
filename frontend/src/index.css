@@ -11388,15 +11388,27 @@ background-color: red;
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(197, 197, 197);
-  width: 351px;
+  width: 100%;
+     background: linear-gradient(#ffffffe6, #fff0);
+border: none;
   padding: 10px 0;
-  margin-top: 0;
+  margin-bottom: 7em;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 0;
 }
 #groupFF {
   margin-bottom: 0;
 }
 .h1P {
   text-align: center;
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 2.5rem;
+padding: 0.7em 0 0.2em;
+   
+    background: linear-gradient( #007bff, rgb(193, 192, 192));
+    -webkit-text-fill-color: #0000;
+    -webkit-background-clip: text;
 }
 .profile {
   display: block;
@@ -11694,6 +11706,11 @@ min-height: 94vh;
   min-width: 99vw;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 }
 
 
@@ -11703,7 +11720,7 @@ min-height: 94vh;
   width: 100%;
   height: auto;
   min-height: 35rem;
- 
+  
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.3) 0%,
@@ -11715,6 +11732,7 @@ min-height: 94vh;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  
 }
 /* .masthead2 h1 {
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -11752,4 +11770,33 @@ min-height: 94vh;
     max-width: 30rem;
     font-size: 1.25rem;
   }
+}
+
+
+
+.params2{
+       
+    border: none;
+    max-width: 80px;
+    margin-left: 15px;
+    color: black;
+    border-radius: 50%;
+    font-size: 1.3em;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+.form9{
+   font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+}
+input{
+    outline: none;
+     cursor: pointer;
+}
+#next2{
+    margin-top: 10px;
 }

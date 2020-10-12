@@ -189,24 +189,30 @@ class Profile extends Component {
             {this.state.perc == 0 ? (
               <div className="weightProf">
                 <div className="inputProfile">
-                  <h1 className="h1P">Profile</h1>
+                  <h1 className="h1P">PROFILE</h1>
                   <div className="allInput">
                     <div>
                       <div>
                         <div>
                           {this.state.input2 ? (
-                            <form onSubmit={this.getInfo}>
+                            <form className="form9" onSubmit={this.getInfo}>
                               <label>Your weight</label>
                               <input
                                 id="typeinp"
-                                type="number"
+                                type="text"
                                 name="weight"
+                                className="params2"
                                 onChange={this.handleChange}
                               />
                               kg
                               {this.state.button ? (
                                 <div className="form-group">
-                                  <input type="submit" value="✔" id="cross2" />
+                                  <input
+                                  id='next2'
+                                    type="submit"
+                                    value=" Next >>"
+                                    className="btn btn-primary"
+                                  />
                                 </div>
                               ) : (
                                 ""
