@@ -38,7 +38,7 @@ class Circle extends Component {
                       backgroundColor: "red",
                       textSize: "30px",
                       textColor: "black",
-                      pathColor: "#658fbb",
+                      pathColor: "linear-gradient( #007bff, #c1c0c0)",
                       trailColor: "white"
                     })}
                   />
