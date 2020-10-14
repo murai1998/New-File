@@ -25,7 +25,8 @@ class Profile extends Component {
     value: 0,
     input2: true,
     lev: false,
-    quote: ""
+    quote: "",
+    weight: 0
   };
 
   async componentDidMount() {
@@ -80,8 +81,9 @@ class Profile extends Component {
   }
 
   handleChange = e => {
+    console.log("weight", e.target.value);
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: Number(e.target.value)
     });
   };
   handleChange3 = (newValue: any, actionMeta: any) => {
@@ -123,21 +125,21 @@ class Profile extends Component {
     console.log(this.state.user.height);
 
     let h2 = this.state.user.height;
-
+    console.log("RESULT OF ACTIVITY");
     let res1 = await axios({
       method: "GET",
       url: "https://fitness-calculator.p.rapidapi.com/dailycalory",
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+        "x-rapidapi-key": "8a158d113cmshffce8fd760f557fp1409e3jsnc500e0bbf51e",
         useQueryString: true
       },
       params: {
         heigth: this.state.user.height,
         age: this.state.user.birth,
         gender: this.state.user.gender,
-        weigth: this.state.weight
+        weigth: Number(this.state.weight)
       }
     });
 
@@ -196,15 +198,17 @@ class Profile extends Component {
                         <div>
                           {this.state.input2 ? (
                             <form className="form9" onSubmit={this.getInfo}>
-                              <label>Your weight</label>
-                              <input
-                                id="typeinp"
-                                type="text"
-                                name="weight"
-                                className="params2"
-                                onChange={this.handleChange}
-                              />
-                              kg
+                              <p>
+                                <label>Your weight</label>
+                                <input
+                                  id="typeinp"
+                                  type="text"
+                                  name="weight"
+                                  className="params2"
+                                  onChange={this.handleChange}
+                                />
+                                <div className="kg">kg</div>
+                              </p>
                               {this.state.button ? (
                                 <div className="form-group">
                                   <input
@@ -252,8 +256,19 @@ class Profile extends Component {
                   {console.log("Username", this.state.user.username)}
                   <div className="inputProfile">
                     <h1 className="h1P">Profile</h1>
-                    <p>Welcome back, {this.state.user.username}!</p>
-                    <p>Today's goal: {this.state.reqAct} calories</p>
+                    <p className="pp">
+                      Welcome back, {this.state.user.username}!
+                    </p>
+                    <p className="pp">
+                      Today's goal: {this.state.reqAct} calories
+                    </p>
+                    <div className="quote4">
+                      <h3>Quote of the day</h3>
+                      <p>
+                        <i>"{this.state.quote.slice(1)}"</i>
+                      </p>
+                      <p>{this.state.author}</p>
+                    </div>
                     <div className="caption1">
                       <h3 id="nameH">Calories in Progress</h3>
                       {/* <h3>{this.state.burned} calories</h3> */}
@@ -264,13 +279,6 @@ class Profile extends Component {
                         text={`${Number(this.state.perc)}%`}
                         // text={`${Math.round((value * 100) / this.state.level)}%`}
                       />
-                    </div>
-<div className='quote4'>
-                    <h3>Quote of the day</h3>
-                    <p>
-                      <i>"{this.state.quote.slice(1)}"</i>
-                    </p>
-                    <p>{this.state.author}</p>
                     </div>
                   </div>
                 </div>
