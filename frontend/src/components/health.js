@@ -65,12 +65,12 @@ class Health extends Component {
     let data = [
       {
         name: "Devine",
-        weight: this.state.perfectWeight?.Devine?.toFixed(1)
+        weight: this.state.perfectWeight.Devine.toFixed(1)
       },
       {
         name: "Hamwi",
 
-        weight: this.state.perfectWeight?.Hamwi?.toFixed(1)
+        weight: this.state.perfectWeight.Hamwi.toFixed(1)
       },
       {
         name: "My weight",
@@ -79,12 +79,12 @@ class Health extends Component {
       {
         name: "Miller",
 
-        weight: this.state.perfectWeight?.Miller?.toFixed(1)
+        weight: this.state.perfectWeight.Miller.toFixed(1)
       },
       {
         name: "Robinson",
 
-        weight: this.state.perfectWeight?.Robinson?.toFixed(1)
+        weight: this.state.perfectWeight.Robinson.toFixed(1)
       }
     ];
     return data;
@@ -92,42 +92,74 @@ class Health extends Component {
   getInfo = async e => {
     e.preventDefault();
     console.log("Gender", this.state.gender);
-    let res1 = await axios({
-      method: "GET",
-      url: "https://fitness-calculator.p.rapidapi.com/bmi",
-      headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
-        useQueryString: true
-      },
-      params: {
-        age: this.state.age,
-        height: this.state.height,
-        weight: this.state.weight
-      }
-    });
-
-    let res2 = await axios({
-      method: "GET",
-      url: "https://fitness-calculator.p.rapidapi.com/idealweight",
-      headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
-        useQueryString: true
-      },
-      params: {
-        weight: this.state.weight,
-        gender: this.state.gender,
-        height: this.state.height
-      }
-    });
+    // let res1 = await axios({
+    //   method: "GET",
+    //   url: "https://fitness-calculator.p.rapidapi.com/bmi",
+    //   headers: {
+    //     "content-type": "application/octet-stream",
+    //     "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+    //     "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+    //     useQueryString: true
+    //   },
+    //   params: {
+    //     age: this.state.age,
+    //     height: this.state.height,
+    //     weight: this.state.weight
+    //   }
+    // });
+    let bmi =
+      Number(this.state.weight) /
+      ((Number(this.state.height) / 100) * (Number(this.state.height) / 100));
+    console.log("bmi", bmi);
+    let bmiVal = "";
+    if (bmi <= 18.5) bmiVal === "Underweight";
+    else if (bmi > 18.5 && bmi <= 24.9) bmiVal === "Normal healthy weight";
+    else if (bmi >= 25.0 && bmi <= 29.9) bmiVal === "Overweight";
+    else if (bmi > 30 && bmi <= 39.9) bmiVal === "Obese";
+    else bmiVal === "Morbidly obese";
+    // let res2 = await axios({
+    //   method: "GET",
+    //   url: "https://fitness-calculator.p.rapidapi.com/idealweight",
+    //   headers: {
+    //     "content-type": "application/octet-stream",
+    //     "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+    //     "x-rapidapi-key": "e14d7b4a61mshaf4d68517150093p1d2b11jsnaa5e4d29c6bc",
+    //     useQueryString: true
+    //   },
+    //   params: {
+    //     weight: this.state.weight,
+    //     gender: this.state.gender,
+    //     height: this.state.height
+    //   }
+    // });
+    let formulas = {
+      Devine: 0,
+      Hamwi: 0,
+      Miller: 0,
+      Robinson: 0
+    };
+    if ((this.state.gender = "male")) {
+      formulas.Devine = 50 + 2.3 * (0.393701 * this.state.height - 60);
+      formulas.Hamwi = 48 + 2.7 * (0.393701 * this.state.height - 60);
+      formulas.Miller = 56.2 + 1.41 * (0.393701 * this.state.height - 60);
+      formulas.Robinson = 52 + 1.9 * (0.393701 * this.state.height - 60);
+    } else {
+      formulas.Devine = 45.5 + 2.3 * (0.393701 * this.state.height - 60);
+      formulas.Hamwi = 45.5 + 2.2 * (0.393701 * this.state.height - 60);
+      formulas.Miller = 53.1 + 1.36 * (0.393701 * this.state.height - 60);
+      formulas.Robinson = 49 + 1.7 * (0.393701 * this.state.height - 60);
+    }
     // console.log(res1.data);
+    // this.setState({
+    //   perfectWeight: res2.data,
+    //   bmi: res1.data,
+    //   showGraph: true
+    // });
     this.setState({
-      perfectWeight: res2.data,
-      bmi: res1.data,
-      showGraph: true
+      perfectWeight: formulas,
+      bmi: bmi,
+      showGraph: true,
+      bmiVal: bmiVal
     });
   };
 
@@ -226,12 +258,12 @@ class Health extends Component {
             <div>
               <div className="idealWeight" id="calculWeight">
                 {this.state.showGraph ? (
-                  <div className='barResults'>
+                  <div className="barResults">
                     <h3>Received results: </h3>
                     <p>
                       Your body mass index (BMI):{" "}
-                      <strong>{this.state.bmi?.bmi?.toFixed(1)}</strong> &sim;{" "}
-                      <span>{this.state.bmi?.health}</span>
+                      <strong>{this.state.bmi.toFixed(1)}</strong> &sim;{" "}
+                      <span>{this.state.bmiVal}</span>
                     </p>
                     <PerfectWeight
                       data={this.getRatingData()}

@@ -126,49 +126,94 @@ class Profile extends Component {
 
     let h2 = this.state.user.height;
     console.log("RESULT OF ACTIVITY");
-    let res1 = await axios({
-      method: "GET",
-      url: "https://fitness-calculator.p.rapidapi.com/dailycalory",
-      headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "8a158d113cmshffce8fd760f557fp1409e3jsnc500e0bbf51e",
-        useQueryString: true
-      },
-      params: {
-        heigth: this.state.user.height,
-        age: this.state.user.birth,
-        gender: this.state.user.gender,
-        weigth: Number(this.state.weight)
-      }
-    });
+    let bmr = 0;
+    if ((this.state.user.gender = "male")) {
+      bmr = Number(
+        66 +
+          13.7 * Number(this.state.weight) +
+          5 * Number(this.state.user.height) -
+          6.8 * Number(this.state.user.birth)
+      );
+    } else {
+      bmr = Number(
+        655 +
+          9.6 * Number(this.state.weight) +
+          1.8 * Number(this.state.user.height) -
+          4.7 * Number(this.state.user.birth)
+      );
+    }
+    console.log("BMR", bmr);
+    // let res1 = await axios({
+    //   method: "GET",
+    //   url: "https://fitness-calculator.p.rapidapi.com/dailycalory",
+    //   headers: {
+    //     "content-type": "application/octet-stream",
+    //     "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+    //     "x-rapidapi-key": "8a158d113cmshffce8fd760f557fp1409e3jsnc500e0bbf51e",
+    //     useQueryString: true
+    //   },
+    //   params: {
+    //     heigth: this.state.user.height,
+    //     age: this.state.user.birth,
+    //     gender: this.state.user.gender,
+    //     weigth: Number(this.state.weight)
+    //   }
+    // });
 
+    // let levels = [
+    //   {
+    //     value: res1.data.data["Sedentary: little or no exercise"],
+    //     label: `Sedentary: little or no exercise`
+    //   },
+    //   {
+    //     value: res1.data.data["Exercise 1-3 times/week"],
+    //     label: `Lightly active: exercise 1-3 times/week`
+    //   },
+    //   {
+    //     value: res1.data.data["Exercise 4-5 times/week"],
+    //     label: `Moderately active: exercise 4-5 times/week`
+    //   },
+    //   {
+    //     value: res1.data.data["Intense exercise 6-7 times/week"],
+    //     label: `Very active: Intense exercise 6-7 times/week`
+    //   },
+    //   {
+    //     value: res1.data.data["Very intense exercise daily, or physical job"],
+    //     label: `Extra active: Very intense exercise daily, or physical job`
+    //   }
+    // ];
     let levels = [
       {
-        value: res1.data.data["Sedentary: little or no exercise"],
-        label: `Sedentary`
+        value: (bmr * 1.2).toFixed(1),
+        label: `Sedentary: little or no exercise`
       },
       {
-        value: res1.data.data["Exercise 1-3 times/week"],
-        label: `Lightly active`
+        value: (bmr * 1.375).toFixed(1),
+        label: `Lightly active: exercise 1-3 times/week`
       },
       {
-        value: res1.data.data["Exercise 4-5 times/week"],
-        label: `Moderately active`
+        value: (bmr * 1.55).toFixed(1),
+        label: `Moderately active: exercise 4-5 times/week`
       },
       {
-        value: res1.data.data["Intense exercise 6-7 times/week"],
-        label: `Very active`
+        value: (bmr * 1.725).toFixed(1),
+        label: `Very active: Intense exercise 6-7 times/week`
       },
       {
-        value: res1.data.data["Very intense exercise daily, or physical job"],
-        label: `Extra active`
+        value: (bmr * 1.9).toFixed(1),
+        label: `Extra active: Very intense exercise daily, or physical job`
       }
     ];
-
+    // this.setState({
+    //   levels: levels,
+    //   default: res1.data.data["Exercise 4-5 times/week"],
+    //   button: false,
+    //   selectShow: true,
+    //   input2: false
+    // });
     this.setState({
       levels: levels,
-      default: res1.data.data["Exercise 4-5 times/week"],
+      default: (bmr * 1.55).toFixed(1),
       button: false,
       selectShow: true,
       input2: false
