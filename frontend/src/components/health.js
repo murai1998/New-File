@@ -5,6 +5,7 @@ import PerfectWeight from "./weight";
 import Slider from "react-rangeslider";
 import Navbar from "./navbar";
 import CreatableSelect from "react-select/creatable";
+let bmiVal = "";
 const opts = [
   { value: "female", label: "female" },
   { value: "male", label: "male" }
@@ -111,12 +112,7 @@ class Health extends Component {
       Number(this.state.weight) /
       ((Number(this.state.height) / 100) * (Number(this.state.height) / 100));
     console.log("bmi", bmi);
-    let bmiVal = "";
-    if (bmi <= 18.5) bmiVal === "Underweight";
-    else if (bmi > 18.5 && bmi <= 24.9) bmiVal === "Normal healthy weight";
-    else if (bmi >= 25.0 && bmi <= 29.9) bmiVal === "Overweight";
-    else if (bmi > 30 && bmi <= 39.9) bmiVal === "Obese";
-    else bmiVal === "Morbidly obese";
+
     // let res2 = await axios({
     //   method: "GET",
     //   url: "https://fitness-calculator.p.rapidapi.com/idealweight",
@@ -132,6 +128,7 @@ class Health extends Component {
     //     height: this.state.height
     //   }
     // });
+
     let formulas = {
       Devine: 0,
       Hamwi: 0,
@@ -158,16 +155,18 @@ class Health extends Component {
     this.setState({
       perfectWeight: formulas,
       bmi: bmi,
-      showGraph: true,
-      bmiVal: bmiVal
+      showGraph: true
     });
   };
 
   render() {
-    {
-      console.log(this.state.bmi);
-    }
-
+    if (this.state.bmi <= 18.5) bmiVal = "Underweight";
+    else if (this.state.bmi > 18.5 && this.state.bmi <= 24.9)
+      bmiVal = "Normal healthy weight";
+    else if (this.state.bmi >= 25.0 && this.state.bmi <= 29.9)
+      bmiVal = "Overweight";
+    else if (this.state.bmi > 30 && this.state.bmi <= 39.9) bmiVal = "Obese";
+    else bmiVal = "Morbidly obese";
     const { horizontal } = this.state;
     const horizontalLabels = {
       0: "Short",
@@ -263,7 +262,7 @@ class Health extends Component {
                     <p>
                       Your body mass index (BMI):{" "}
                       <strong>{this.state.bmi.toFixed(1)}</strong> &sim;{" "}
-                      <span>{this.state.bmiVal}</span>
+                      <span>{bmiVal}</span>
                     </p>
                     <PerfectWeight
                       data={this.getRatingData()}
