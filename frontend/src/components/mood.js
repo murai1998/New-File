@@ -7,9 +7,9 @@ import DatePicker from "react-datepicker";
 
 const pd = require("paralleldots");
 let dateNow = new Date().toDateString();
-// pd.apiKey = process.env.API_KEY;
-pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
-console.log(pd.apiKey);
+pd.apiKey = process.env.API_KEY;
+// pd.apiKey = "M0crWrIdDTIEXWb5krd8IyAYsLaLwUTjvATB0FvLgv0";
+
 class Mood extends Component {
   state = {
     user: { ...this.props.user },
