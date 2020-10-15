@@ -59,26 +59,28 @@ function Socket(props) {
   return (
     <div>
       <Navbar disconect={disconect} />
-      <div className="tableNames ">
-        <h3> Active users: {user.usersList?.length} </h3>
-        <table className="table table-striped ">
-          <thead className="d-flex justify-content-center">
-            <tr>
-              <th> User name </th>
-              <th> Connection Date </th>
-            </tr>
-          </thead>
-          <tbody className="d-flex justify-content-center">
-            {user.usersList?.map(user => {
-              return (
-                <tr key={user.id}>
-                  <td> {user.userName} </td>
-                  <td> {user.connectionTime} </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <div className="table22">
+        <div className="tableNames ">
+          <h3> Active users: {user.usersList?.length} </h3>
+          <table className="connect">
+            <thead>
+              <tr>
+                <th> User name </th>
+                <th> Connection Date </th>
+              </tr>
+            </thead>
+            <tbody>
+              {user.usersList?.map(user => {
+                return (
+                  <tr key={user.id}>
+                    <td> {user.userName} </td>
+                    <td> {user.connectionTime} </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="messageChat2">
         {/* <h3 className="d-flex justify-content-center">
@@ -88,7 +90,7 @@ function Socket(props) {
         <div className="messageChat">
           <h3 id="chatH" className="d-flex justify-content-center">
             {" "}
-            {loggedUser?.userName}`s CHAT{" "}
+            Messanger
           </h3>
           <div id="chat">
             {recMsg.listMsg ? (
