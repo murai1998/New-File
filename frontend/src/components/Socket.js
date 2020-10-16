@@ -87,6 +87,11 @@ function Socket(props) {
           {" "}
           Hi, ! Start a new conversation
         </h3> */}
+        <p>
+          This is a place where you can meet new people who share your ideas and
+          views
+        </p>
+        <p>Join our chat now</p>
         <div className="messageChat">
           <h3 id="chatH" className="d-flex justify-content-center">
             {" "}

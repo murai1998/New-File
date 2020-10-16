@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap": "^4.5.2",
     "bootstrap-progress-bar": "^1.1.3",
+    "dotenv": "^8.2.0",
     "moment": "^2.27.0",
     "paralleldots": "^3.2.5",
     "parcel": "^1.12.4",
