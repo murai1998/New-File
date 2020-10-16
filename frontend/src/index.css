@@ -11867,3 +11867,12 @@ input{
     font-size: 4.5em;
     padding-bottom: 0.4em;
 }
+.chatFor{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2em 0 3em;
+    font-size: 1.6em;
+}
