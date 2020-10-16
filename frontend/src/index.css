@@ -198,7 +198,7 @@ font-size: 2.2em;
   align-items: center;
   justify-content: center;
   background-color: white;
-  background: linear-gradient(#b7e0f5e6, #fcfdfe00);
+background: linear-gradient(#ffffffe6, #fff0);
   
 }
 #messText {
@@ -11866,4 +11866,13 @@ input{
 #h1F{
     font-size: 4.5em;
     padding-bottom: 0.4em;
+}
+.chatFor{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2em 0 3em;
+    font-size: 1.6em;
 }

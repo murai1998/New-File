@@ -82,11 +82,20 @@ function Socket(props) {
           </table>
         </div>
       </div>
+
       <div className="messageChat2">
+        <div className="chatFor">
+          <p>
+            This is a place where you can meet new people who share your ideas
+            and views
+          </p>
+          <p>Join our chat now</p>
+        </div>
         {/* <h3 className="d-flex justify-content-center">
           {" "}
           Hi, ! Start a new conversation
         </h3> */}
+
         <div className="messageChat">
           <h3 id="chatH" className="d-flex justify-content-center">
             {" "}
